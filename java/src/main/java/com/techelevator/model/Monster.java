@@ -5,15 +5,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.List;
 
 public class Monster extends Creature {
-    private int challenegeRating;
+    private int challengeRating;
     private String size;
     private List<String> specialAbilities;
 
+
     //POJO constructors
-    public Monster(String name, String size, int challenegeRating, List<String> specialAbilities) {
+    public Monster(String name, String size, int challengeRating, List<String> specialAbilities) {
         this.name = name;
         this.size = size;
-        this.challenegeRating = challenegeRating;
+        this.challengeRating = challengeRating;
         this.specialAbilities = specialAbilities;
 
     }
@@ -23,8 +24,8 @@ public class Monster extends Creature {
     public String getName(){
         return name;
     }
-    public int getChallenegeRating(){
-        return challenegeRating;
+    public int getChallengeRating(){
+        return challengeRating;
     }
     public String getSize() {
         return size;
@@ -38,8 +39,8 @@ public class Monster extends Creature {
     public void setName(String name) {
         this.name = name;
     }
-    public void setChallenegeRating(int challenegeRating) {
-        this.challenegeRating = challenegeRating;
+    public void setChallengeRating(int challengeRating) {
+        this.challengeRating = challengeRating;
     }
 
     public void setSize(String size) {
