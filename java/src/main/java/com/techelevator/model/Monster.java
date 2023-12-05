@@ -10,8 +10,9 @@ public class Monster extends Creature {
     private List<String> specialAbilities;
 
     public Monster() {
-
     }
+    //POJO constructor
+
     public int getChallenegeRating(){
         return challenegeRating;
     }
