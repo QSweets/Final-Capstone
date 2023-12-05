@@ -17,7 +17,7 @@
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <div>
-        <img class="container" src="../loginImages/LoginBG3.png" alt="big ol dude fr" />
+        <!-- <img class="container" src="../loginImages/LoginBG3.png" alt="big ol dude fr" /> -->
       </div>
       <button class="register" type="submit">Sign in</button>
       <p>
