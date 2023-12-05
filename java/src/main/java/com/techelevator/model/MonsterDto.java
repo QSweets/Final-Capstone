@@ -5,13 +5,13 @@ import java.util.List;
 public class MonsterDto {
     private String name;
     private String size;
-    private int challenegeRating;
+    private int challengeRating;
     private List<String> specialAbilities;
 
-    public MonsterDto(String name, String size, int challenegeRating, List<String> specialAbilities) {
+    public MonsterDto(String name, String size, int challengeRating, List<String> specialAbilities) {
         this.name = name;
         this.size = size;
-        this.challenegeRating = challenegeRating;
+        this.challengeRating = challengeRating;
         this.specialAbilities = specialAbilities;
 
     }
@@ -25,8 +25,8 @@ public class MonsterDto {
         return size;
     }
 
-    public int getChallenegeRating() {
-        return challenegeRating;
+    public int getChallengeRating() {
+        return challengeRating;
     }
 
     public List<String> getSpecialAbilities() {
@@ -41,8 +41,8 @@ public class MonsterDto {
         this.size = size;
     }
 
-    public void setChallenegeRating(int challenegeRating) {
-        this.challenegeRating = challenegeRating;
+    public void setChallengeRating(int challengeRating) {
+        this.challengeRating = challengeRating;
     }
 
     public void setSpecialAbilities(List<String> specialAbilities) {
