@@ -1,24 +1,27 @@
 <template>
   <div id="login" class="login-container">
     <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h1 class="register" id="signInText">Who enters the dungeon!</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
       <div role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
-      <div class="form-input-group">
+      <div class="form-input-group" id="user">
         <label for="username">Username</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
-      <div class="form-input-group">
+      <div class="form-input-group" id="pass">
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
+      <div>
+        <img class="container" src="../loginImages/LoginBG3.png" alt="big ol dude fr" />
+      </div>
+      <button class="register" type="submit">Sign in</button>
       <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <router-link class="register" v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
   </div>
 </template>
@@ -62,20 +65,43 @@ export default {
 
 <style scoped>
 .login-container {
-  background-image: url('../images/LoginBG2.png');
-  margin: 0;
-  padding: 0;
+  background-image: url('../loginImages/LoginBG2.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+.container{
+  position: relative;
+  left: 48%;
+  top: 51vh;
+  border: solid 2px;
+}
+/* width: 40vh; */
+#signInText {
+  width: 22vh;
+}
+.register {
+  position: relative;
+  left: 42.5%;
+  top: 55vh;
+}
+#user {
+  display: grid;
+  grid-template-columns: 15%;
+  color: white;
+  justify-content: center;
+}
+#pass {
+  display: grid;
+  grid-template-columns: 15%;
+  color: white;
+  justify-content: center;
+}
 .form-input-group {
-  margin: 1rem;
-  padding: 0px;
-  position: center;
-  border: solid 5px;
-
+  position: relative;
+  top: 55vh;
+  grid-template-columns: 10%;
 }
 label {
   margin-right: 0.5rem;
