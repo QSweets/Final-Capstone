@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="login-container">
     <form v-on:submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -61,10 +61,24 @@ export default {
 </script>
 
 <style scoped>
+.login-container {
+  background-image: url('../images/LoginBG2.png');
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
 .form-input-group {
-  margin-bottom: 1rem;
+  margin: 1rem;
+  padding: 0px;
+  position: center;
+  border: solid 5px;
+
 }
 label {
   margin-right: 0.5rem;
+ 
 }
 </style>
