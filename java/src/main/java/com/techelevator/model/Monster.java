@@ -9,6 +9,7 @@ public class Monster extends Creature {
     private String size;
     private List<String> specialAbilities;
 
+
     //POJO constructors
     public Monster(String name, String size, int challenegeRating, List<String> specialAbilities) {
         this.name = name;
