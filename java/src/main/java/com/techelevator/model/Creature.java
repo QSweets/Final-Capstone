@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public abstract class Creature {
     private int id;
-    private String name;
+    public String name;
     private int strength;
     private int dexterity;
     private int constitution;

@@ -1,49 +1,48 @@
 package com.techelevator.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import java.util.List;
 
-public class Monster extends Creature {
-    private int challenegeRating;
+public class MonsterDto {
+    private String name;
     private String size;
+    private int challenegeRating;
     private List<String> specialAbilities;
 
-    //POJO constructors
-    public Monster(String name, String size, int challenegeRating, List<String> specialAbilities) {
+    public MonsterDto(String name, String size, int challenegeRating, List<String> specialAbilities) {
         this.name = name;
         this.size = size;
         this.challenegeRating = challenegeRating;
         this.specialAbilities = specialAbilities;
 
     }
-    public Monster(){};
+    public MonsterDto(){};
 
-    //Getters
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public int getChallenegeRating(){
-        return challenegeRating;
-    }
+
     public String getSize() {
         return size;
     }
+
+    public int getChallenegeRating() {
+        return challenegeRating;
+    }
+
     public List<String> getSpecialAbilities() {
         return specialAbilities;
     }
 
-    //Setters
-
     public void setName(String name) {
         this.name = name;
-    }
-    public void setChallenegeRating(int challenegeRating) {
-        this.challenegeRating = challenegeRating;
     }
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public void setChallenegeRating(int challenegeRating) {
+        this.challenegeRating = challenegeRating;
     }
 
     public void setSpecialAbilities(List<String> specialAbilities) {
