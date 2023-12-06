@@ -18,7 +18,6 @@ public class MonsterController {
     public MonsterController(RestTemplate restTemplate) { /** This is the dependency that Spring will inject **/
         this.restTemplate = restTemplate;
     }
-
     public ResponseEntity<String> getRandomMonster() {
         String dndApi = MONSTER_API_BASE_URL + "/random"; /** to get information about a random monster **/
         String response = restTemplate.getForObject(dndApi, String.class); /** is making a GET request to the specified URL (dndApi) it is stored as a String **/
