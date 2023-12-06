@@ -8,8 +8,6 @@
   </div>
 </template>
 
-<script>
-
 export default {
   computed: {
     isLoggedIn() {
@@ -19,13 +17,14 @@ export default {
   },
 };
 
-</script>
+<script>
 
-<!-- <style>
+/* <style>
 #nav {
   position: relative;
   top: 5vh;
   color: black;
   border: solid 2px;
-}
-</style> -->
+} */
+
+</style> 
