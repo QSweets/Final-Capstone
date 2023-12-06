@@ -2,16 +2,19 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Monster extends Creature {
     private int challengeRating;
     private String size;
     private List<String> specialAbilities;
+    private int index;
 
 
     //POJO constructors
-    public Monster(String name, String size, int challengeRating, List<String> specialAbilities) {
+    public Monster(int index, String name, String size, int challengeRating, List<String> specialAbilities) {
+        this.index = index;
         this.name = name;
         this.size = size;
         this.challengeRating = challengeRating;
@@ -21,6 +24,11 @@ public class Monster extends Creature {
     public Monster(){};
 
     //Getters
+
+    public int getIndex() {
+        return index;
+    }
+
     public String getName(){
         return name;
     }
@@ -36,6 +44,9 @@ public class Monster extends Creature {
 
     //Setters
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
     public void setName(String name) {
         this.name = name;
     }
