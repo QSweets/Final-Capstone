@@ -13,12 +13,12 @@ import org.springframework.web.client.RestTemplate;
 @PreAuthorize("isAuthenticated()")
 public class MonsterController {
 
-    // private final String MONSTER_API_BASE_URL = "https://www.dnd5eapi.co/api/monsters";
-    // private final RestTemplate restTemplate;
+    // privatee final String MONSTER_API_BASE_URL = "https://www.dnd5eapi.co/api/monsters";
+    // privatee final RestTemplate restTemplate;
 
     @Autowired //used for automatic dependency injection
     public MonsterController() { /** This is the dependency that Spring will inject **/
-   //     this.restTemplate = restTemplate;
+        //     this.restTemplate = restTemplate;
     }
 
     /*public ResponseEntity<String> getRandomMonster() {
@@ -28,6 +28,5 @@ public class MonsterController {
         return ResponseEntity.ok(response); *//** Used to Construct and return a HTTP response with a status of 200 along with the response body **//*
 
     }*/
-
 
 }
