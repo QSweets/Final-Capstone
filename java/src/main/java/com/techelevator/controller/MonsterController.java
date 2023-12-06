@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,12 @@ public class MonsterController {
 
 
     private final String MONSTER_API_BASE_URL = "https://www.dnd5eapi.co/api/monsters";
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    @Autowired
+    public MonsterController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
 
     public ResponseEntity<String> getRandomMonster() {
@@ -20,7 +26,7 @@ public class MonsterController {
         String response = restTemplate.getForObject(dndApi, String.class);
 
         return ResponseEntity.ok(response);
-    };
+    }
 
 
 }
