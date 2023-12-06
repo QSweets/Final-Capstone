@@ -20,9 +20,11 @@ public class MonsterController {
     }
 
     public ResponseEntity<String> getRandomMonster() {
-        String dndApi = MONSTER_API_BASE_URL + "/random"; /** to get information about a random monster **/
+        String dndApi = MONSTER_API_BASE_URL + ""; /** to get information about a random monster **/
         String response = restTemplate.getForObject(dndApi, String.class); /** is making a GET request to the specified URL (dndApi) it is stored as a String **/
 
         return ResponseEntity.ok(response); /** Used to Construct and return a HTTP response with a status of 200 along with the response body **/
     }
+
+
 }
