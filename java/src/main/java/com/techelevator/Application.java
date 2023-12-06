@@ -13,12 +13,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    private void handleListAllMonsters(){
+            System.out.println(monsterService.getListOfMonsters());
 
-
-
-
-//    private void handleListAllMonsters(){
-//            System.out.println(monsterService.getListOfMonsters());
-//
-//    }
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MonsterService {
     private final String MONSTER_API_BASE_URL = "https://www.dnd5eapi.co/api/monsters";
@@ -32,9 +33,18 @@ public class MonsterService {
 
     }*/
 
-    public Monster getListOfMonsters(){
-        try {
-            return restTemplate.getForObject(MONSTER_API_BASE_URL, Monster.class);
+
+    public Map<Integer, Monster> getListOfMonsters(){
+    Map<Integer, Monster> monsterMap = null;
+    try {
+            int count = 0;
+            restTemplate.getForObject(MONSTER_API_BASE_URL, Monster.class);
+            //for each monster in the list of monsters
+            //add each monster to a map
+            //where the key is count++
+            //value is Monster
+
+            return monsterMap;
         }  catch (RestClientResponseException e) {
             System.out.println(e.getRawStatusCode() + " : " + e.getStatusText());
         } catch (ResourceAccessException e) {
@@ -43,5 +53,12 @@ public class MonsterService {
         return null;
     }
 
+
+//    public Monster getRandomMonster() {
+//        //we have an index for each monster,
+//        //we want want to generate a random number
+//        //and pull the monster with that index
+////        return getListOfMonsters();
+//    }
 
 }
