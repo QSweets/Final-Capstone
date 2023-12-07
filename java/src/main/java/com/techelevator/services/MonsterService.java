@@ -1,6 +1,5 @@
 package com.techelevator.services;
 
-
 import com.techelevator.model.Monster;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -42,9 +41,15 @@ public class MonsterService {
         Random random = new Random();
         return allMonsters.get(random.nextInt(allMonsters.size()));
     }
+
+    public Map<String, Object> fetchMonsterDetails(String index) {
+        String monsterDetailsUrl = MONSTER_API_BASE_URL + "/" + index;
+        try {
+            return restTemplate.getForObject(monsterDetailsUrl, Map.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error fetching monster details: " + e.getMessage());
+            return null;
+        }
+    }
 }
-
-
-
-
-

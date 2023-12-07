@@ -36,10 +36,6 @@ public class Monster extends Creature {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getName(){
         return name;
     }
@@ -54,4 +50,7 @@ public class Monster extends Creature {
         this.name = name;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

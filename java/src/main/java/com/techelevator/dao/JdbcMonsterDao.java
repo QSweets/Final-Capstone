@@ -24,7 +24,6 @@ public class JdbcMonsterDao implements MonsterDao {
             monster.setUrl(resultSet.getString("url"));
             return monster;
         });
-
         return monsters;
     }
 }
