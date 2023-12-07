@@ -42,6 +42,10 @@ public class MonsterService {
         Random random = new Random();
         return allMonsters.get(random.nextInt(allMonsters.size()));
     }
+
+    //Method getMonsterDetails()
+    //that given a random monster.(specific index id)
+    //prints monster details (whatever details we want to display)
 }
 
 
