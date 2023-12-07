@@ -14,14 +14,16 @@ public class Monster extends Creature {
 
     private String name;
 
+    private String size;
+
+
 
     //POJO constructors
     public Monster(String index, String name, String size, String url, int challengeRating, List<String> specialAbilities) {
         this.index = index;
         this.name = name;
         this.url = url;
-
-
+        this.size = size;
 
     }
     public Monster(){};

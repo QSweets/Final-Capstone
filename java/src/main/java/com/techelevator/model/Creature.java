@@ -3,6 +3,7 @@ package com.techelevator.model;
 public abstract class Creature {
     private int id;
     public String name;
+    public String size;
     private int strength;
     private int dexterity;
     private int constitution;
@@ -36,6 +37,12 @@ public abstract class Creature {
     }
     public int getCharisma() {
         return charisma;
+    }
+    public String getSize(){
+        return size;
+    }
+    public String setSize(){
+        return size;
     }
 
 }
