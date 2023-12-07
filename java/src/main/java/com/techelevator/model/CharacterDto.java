@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 import java.util.List;
 
-public class Character extends Creature{
+public class CharacterDto {
     private byte[] portrait;
     private String background;
     private List<String> abilities;
@@ -16,8 +16,8 @@ public class Character extends Creature{
     private int wisdom;
     private int charisma;
 
-    public Character(){
-    }
+//    public Character(){
+//    }
     public byte[] getPortrait(){
         return portrait;
     }
@@ -28,7 +28,7 @@ public class Character extends Creature{
         return abilities;
     }
 
-    @Override
+//    @Override
     public String getName() {
         return name;
     }
@@ -41,32 +41,32 @@ public class Character extends Creature{
         return profession;
     }
 
-    @Override
+//    @Override
     public int getStrength() {
         return strength;
     }
 
-    @Override
+//    @Override
     public int getDexterity() {
         return dexterity;
     }
 
-    @Override
+//    @Override
     public int getConstitution() {
         return constitution;
     }
 
-    @Override
+//    @Override
     public int getIntelligence() {
         return intelligence;
     }
 
-    @Override
+//    @Override
     public int getWisdom() {
         return wisdom;
     }
 
-    @Override
+//    @Override
     public int getCharisma() {
         return charisma;
     }
@@ -83,7 +83,7 @@ public class Character extends Creature{
         this.abilities = abilities;
     }
 
-    @Override
+//    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -96,32 +96,32 @@ public class Character extends Creature{
         this.profession = profession;
     }
 
-    @Override
+//    @Override
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    @Override
+//    @Override
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
-    @Override
+//    @Override
     public void setConstitution(int constitution) {
         this.constitution = constitution;
     }
 
-    @Override
+//    @Override
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    @Override
+//    @Override
     public void setWisdom(int wisdom) {
         this.wisdom = wisdom;
     }
 
-    @Override
+//    @Override
     public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
