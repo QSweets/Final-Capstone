@@ -60,7 +60,6 @@ public class MonsterService {
 
 }
 
-
     //How do we make this method's return into a Monster and not a Map
 //    public Monster<String, Object> getRandomMonsterFromList() {
 //        if (allMonsters.isEmpty()) {
