@@ -14,25 +14,16 @@ public class Monster extends Creature {
 
     private String name;
 
-    private String size;
-    private double challengeRating;
-    private List<String> specialAbilities;
-    private String image;
-
-
 
     //POJO constructors
-    public Monster(String index, String name, String size, String url, double challengeRating, List<String> specialAbilities, String image) {
+    public Monster(String index, String name, String size, String url, int challengeRating, List<String> specialAbilities) {
         this.index = index;
         this.name = name;
         this.url = url;
-        this.size = size;
-        this.challengeRating = challengeRating;
-        this.specialAbilities = specialAbilities;
-        this.image = image;
-    }
 
-    //Maybe separate constructors for index/name/url and name/size/challengerating/specialabilities/image
+
+
+    }
     public Monster(){};
 
     //Getters
@@ -45,59 +36,10 @@ public class Monster extends Creature {
         return url;
     }
 
-<<<<<<< HEAD
-    public String getName(){
-        return name;
-=======
-
     public String getName(){
         return name;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String getSize() {
-        return size;
-    }
-
-    @Override
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    @Override
-    public double getChallengeRating() {
-        return challengeRating;
-    }
-
-    @Override
-    public void setChallengeRating(double challengeRating) {
-        this.challengeRating = challengeRating;
-    }
-
-    @Override
-    public List<String> getSpecialAbilities() {
-        return specialAbilities;
->>>>>>> 5ff9724892be829efb14f2ce00ce4b6a4fccbaea
-    }
-
-    @Override
-    public void setSpecialAbilities(List<String> specialAbilities) {
-        this.specialAbilities = specialAbilities;
-    }
-
-    @Override
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @Override
-    public String getImage() {
-        return image;
-    }
 
     //Setters
 
@@ -108,12 +50,7 @@ public class Monster extends Creature {
         this.name = name;
     }
 
-<<<<<<< HEAD
     public void setUrl(String url) {
         this.url = url;
     }
-=======
-
-
->>>>>>> 5ff9724892be829efb14f2ce00ce4b6a4fccbaea
 }
