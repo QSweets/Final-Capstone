@@ -19,10 +19,8 @@
     },
     methods: {
       getRandomMonster() {
-        // Make a GET request to your backend endpoint
         axios.get('/api/monsters/random')
           .then(response => {
-            // Update the data property with the fetched monster
             this.randomMonster = response.data;
           })
           .catch(error => {

@@ -7,7 +7,7 @@
   
       <p>This is my vote page</p>
   
-      <!-- Example: Use router-link to navigate to the "logout" route -->
+      <!-- navigate to the "logout" route -->
       <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
     </div>
   </template>
