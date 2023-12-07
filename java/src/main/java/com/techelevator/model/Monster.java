@@ -45,14 +45,54 @@ public class Monster extends Creature {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getName(){
         return name;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String getSize() {
+        return size;
+    }
+
+    @Override
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    @Override
+    public double getChallengeRating() {
+        return challengeRating;
+    }
+
+    @Override
+    public void setChallengeRating(double challengeRating) {
+        this.challengeRating = challengeRating;
+    }
+
+    @Override
+    public List<String> getSpecialAbilities() {
+        return specialAbilities;
+    }
+
+    @Override
+    public void setSpecialAbilities(List<String> specialAbilities) {
+        this.specialAbilities = specialAbilities;
+    }
+
+    @Override
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public String getImage() {
+        return image;
+    }
 
     //Setters
 
@@ -62,5 +102,7 @@ public class Monster extends Creature {
     public void setName(String name) {
         this.name = name;
     }
+
+
 
 }
