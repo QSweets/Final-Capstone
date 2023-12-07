@@ -1,9 +1,15 @@
 <template>
   <div class="dropdown">
-    <select class="dropbtn">Dropdown
-      <button>milk</button>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </select>
+    <button class="dropbtn">Nav bar selection
+    <div>
+      <router-link v-bind:to="{ name: 'profile' }">My Profile</router-link>
+    </div>
+    <div>
+      <router-link v-bind:to="{ name: 'profile' }">Home</router-link>
+    </div>
+      <div>
+      <router-link v-bind:to="{ name: 'profile' }">Vote</router-link>
+    </div>
+    </button>
   </div>
-</template>
+</template>xXOG_DnD_Omega_fortnight_360_god_slayerXx
