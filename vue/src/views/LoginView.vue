@@ -77,7 +77,6 @@ export default {
   top: 51vh;
   border: solid 2px;
 }
-/* width: 40vh; */
 #signInText {
   width: 22vh;
 }

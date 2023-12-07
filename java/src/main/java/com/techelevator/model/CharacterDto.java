@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 import java.util.List;
 
-public class Character extends Creature{
+public class CharacterDto {
     private byte[] portrait;
     private String background;
     private List<String> abilities;

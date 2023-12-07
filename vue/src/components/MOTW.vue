@@ -3,7 +3,7 @@
       <button v-on:click="getRandomMonster">Get Random Monster</button>
       <div v-if="randomMonster">
         <p>Name: {{ randomMonster.name }}</p>
-        
+        <img v-if="randomMonster.image" :src="randomMonster.image" alt="Monster image" />
       </div>
     </div>
   </template>
