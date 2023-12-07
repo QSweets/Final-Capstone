@@ -21,13 +21,13 @@ public class MonsterController {
         this.monsterService = monsterService;
     }
     @RequestMapping(path = "/all", method = RequestMethod.GET)
-    public Monster[] getAllMonsters() {
-        return monsterService.fetchMonsters();
-
+    public List<Map<String, Object>> getAllMonsters() {
+        monsterService.fetchMonsters();
+        return monsterService.getAllMonsters();
     }
     @PreAuthorize("permitAll()")
     @RequestMapping(path = "/random", method = RequestMethod.GET)
-    public Monster randomMonster() {
+    public Map<String, Object> randomMonster() {
         monsterService.fetchMonsters();
         Map<String, Object> randomMonster = monsterService.getRandomMonsterFromList();
 
@@ -40,14 +40,6 @@ public class MonsterController {
             }
         }
         return randomMonster;
-    }
-
-    @PreAuthorize("permitAll()")
-    @RequestMapping(path="/details", method = RequestMethod.GET)
-    public Monster monsterDetails() {
-        monsterService.fetchMonsters();
-        monsterService.getRandomMonsterFromList();
-        return monsterService.getMonsterDetails();
     }
 }
 
