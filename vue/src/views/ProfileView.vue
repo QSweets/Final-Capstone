@@ -4,12 +4,10 @@
   
       <!-- This is to navigate to the homepage -->
       <router-link to="/" v-if="$store.state.token !== ''">Home</router-link>
-  
       
-  
       <!-- navigate to the "logout" route -->
       <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
-      
+
       <Profile />
       <GlobalLogoHeader />
     </div>
