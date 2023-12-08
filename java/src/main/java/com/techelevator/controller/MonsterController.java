@@ -17,17 +17,17 @@ import java.util.Map;
 public class MonsterController {
     private MonsterService monsterService;
 
-    public MonsterController(MonsterService monsterService) {
+    public MonsterController(MonsterService monsterService) { /** Injects Monster Service into the Monster Controller #DependancyInjection **/
         this.monsterService = monsterService;
     }
     @RequestMapping(path = "/all", method = RequestMethod.GET)
-    public List<Map<String, Object>> getAllMonsters() {
+    public List<Map<String, Object>> getAllMonsters() { /** Mapping "/all" endpoint handling #CRUD OPS : calls the fetchMonster method from monster Service to update the list of monsters **/
         monsterService.fetchMonsters();
         return monsterService.getAllMonsters();
     }
     @PreAuthorize("permitAll()")
     @RequestMapping(path = "/random", method = RequestMethod.GET)
-    public Map<String, Object> randomMonster() {
+    public Map<String, Object> randomMonster() { /** Mapping "/random" endpoint handling #CRUD OPS : calls the fetchMonster method from monster Service : Retrieves the index of the random monster **/
         monsterService.fetchMonsters();
         Map<String, Object> randomMonster = monsterService.getRandomMonsterFromList();
 
