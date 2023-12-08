@@ -12,10 +12,11 @@ public class JdbcMonsterDao implements MonsterDao {
     public JdbcMonsterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    //Do we need this? If so we need to change some stuff
+    //We will need for archive for later
     @Override
     public List<Monster> getAllMonsters() {
-        String sql = "SELECT * FROM monster";
+        String sql = "SELECT monster_id, monster_name, challenge_rating, special_abilities, monster_size, image_id FROM monster";
 
         List<Monster> monsters = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             Monster monster = new Monster();
