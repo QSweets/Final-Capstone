@@ -7,23 +7,24 @@ import java.util.List;
 
 public class Monster extends Creature {
 
-
     private String url;
-
     private String index;
+    private String size;
+    private double challengeRating;
+    public List<String> specialAbilities;
 
-    private String name;
 
 
     //POJO constructors
-    public Monster(String index, String name, String size, String url, int challengeRating, List<String> specialAbilities) {
-        this.index = index;
-        this.name = name;
+    public Monster(int id, String name, Byte image, String url, String index, String size, double challengeRating, List<String> specialAbilities) {
+        super(id, name, image);
         this.url = url;
-
-
-
+        this.index = index;
+        this.size = size;
+        this.challengeRating = challengeRating;
+        this.specialAbilities = specialAbilities;
     }
+
     public Monster(){};
 
     //Getters
@@ -36,21 +37,38 @@ public class Monster extends Creature {
         return url;
     }
 
-    public String getName(){
-        return name;
+
+    public String getSize(){
+        return size;
     }
 
+    public double getChallengeRating() {
+        return challengeRating;
+    }
+
+    public List<String> getSpecialAbilities(){
+        return specialAbilities;
+    }
 
     //Setters
 
     public void setIndex(String index) {
         this.index = index;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setChallengeRating(double challengeRating) {
+        this.challengeRating = challengeRating;
+    }
+
+    public void setSpecialAbilities(List<String> specialAbilities) {
+        this.specialAbilities = specialAbilities;
     }
 }
