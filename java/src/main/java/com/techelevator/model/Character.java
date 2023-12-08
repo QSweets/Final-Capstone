@@ -3,17 +3,13 @@ package com.techelevator.model;
 import java.util.List;
 
 public class Character extends Creature {
-
-    //is portrait the same as image?
-    //if yes, do we need portrait?
-    private byte[] portrait;
-
-    //And what is background?
     private String background;
 
-//    private List<String> abilities;
-
+    //Spells is an ability
+   private String abilities;
+   //Creature is race
     private String creature;
+    //Profession is character class
     private String profession;
     private int strength;
     private int dexterity;
@@ -22,10 +18,10 @@ public class Character extends Creature {
     private int wisdom;
     private int charisma;
 
-    public Character(int id, String name, Byte image, byte[] portrait, String background, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+    public Character(int id, String name, Byte image, String background, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, String abilities) {
         super(id, name, image);
-        this.portrait = portrait;
         this.background = background;
+        this.abilities = abilities;
         this.creature = creature;
         this.profession = profession;
         this.strength = strength;
@@ -39,16 +35,16 @@ public class Character extends Creature {
     public Character() {
     }
 
-    public byte[] getPortrait() {
-        return portrait;
-    }
-
-    public void setPortrait(byte[] portrait) {
-        this.portrait = portrait;
-    }
-
     public String getBackground() {
         return background;
+    }
+
+    public String getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(String abilities) {
+        this.abilities = abilities;
     }
 
     public void setBackground(String background) {
