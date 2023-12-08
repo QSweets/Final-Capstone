@@ -84,12 +84,3 @@ export default {
   background-repeat: no-repeat;
 }
 </style>
-
-computed: {
-  classNames() {
-    
-      
-      
-    }
-  };
-},
