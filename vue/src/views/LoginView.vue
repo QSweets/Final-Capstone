@@ -42,6 +42,10 @@ export default {
   },
   methods: {
     login() {
+
+      const lowercaseUsername = this.user.username.toLowerCase();
+      const userWithLowercaseUsername = { ...this.user, username: lowercaseUsername };
+
       authService
         .login(this.user)
         .then(response => {
