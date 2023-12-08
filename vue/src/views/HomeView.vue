@@ -6,7 +6,6 @@
     <NavBar />
     <MOTW />
     <Welcome />
-    <ProfileTab />
     <GlobalLogoHeader />
   </div>
 </template>
@@ -16,14 +15,12 @@ import NavBar from '../components/NavBar.vue';
 import MOTW from '../components/MOTW.vue';
 import Welcome from '../components/Welcome.vue';
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
-import ProfileTab from '../components/ProfileTab.vue';
 
 export default {
   components: {
     NavBar,
     MOTW,
     Welcome,
-    ProfileTab,
     GlobalLogoHeader
   }
 };
