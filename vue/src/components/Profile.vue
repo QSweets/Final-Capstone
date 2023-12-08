@@ -130,4 +130,8 @@ export default {
   background-image: url('../loginImages/LoginBG3.png');
   background-repeat: no-repeat;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> f6b32e9e81132d81b0c7cabf80c2ce3cba9464a0
