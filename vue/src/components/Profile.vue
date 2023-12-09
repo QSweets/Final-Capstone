@@ -8,10 +8,10 @@
   <button v-on:click="toggleForm">Add Character</button>
 
   <form v-on:submit.prevent="submitCharacter">
-    <div>
-      <label for="picture">Picture</label>
-      <input type="file" id="picture" name="picture" />
-    </div>
+
+
+      <b-form-file v-model="file1" class="mt-3" plain></b-form-file>
+
     <div>
       <label for="characterName">Character Name:</label>
       <input type="text" id="characterName" name="characterName" required/>
@@ -93,6 +93,7 @@ export default {
       ability3: '',
       ability4: '',
       background: '',
+      file1: null
     };
   },
 
