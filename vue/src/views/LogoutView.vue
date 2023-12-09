@@ -2,7 +2,7 @@
   <h1>Logout</h1>
 </template>
 
-<script>
+<script scoped>
 export default {
   created() {
     this.$store.commit("LOGOUT");
