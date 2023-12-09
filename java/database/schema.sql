@@ -20,28 +20,29 @@ CREATE SEQUENCE seq_user_id
 
 
 CREATE TABLE users (
-   user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
-   username varchar(50) NOT NULL,
-   password_hash varchar(200) NOT NULL,
-   role varchar(50) NOT NULL,
-   CONSTRAINT PK_user PRIMARY KEY (user_id)
+	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
+	username varchar(50) NOT NULL,
+	password_hash varchar(200) NOT NULL,
+	role varchar(50) NOT NULL,
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
 CREATE SEQUENCE seq_images_id
-   INCREMENT BY 1
-   NO MINVALUE
-   NO MAXVALUE
-   CACHE 1;
+	INCREMENT BY 1
+	NO MINVALUE
+	NO MAXVALUE
+	CACHE 1;
 
 CREATE TABLE images (
-   image_id int DEFAULT nextval('seq_images_id'::regclass) NOT NULL,
-   user_id int,
-   mediatype varchar(100) NULL,
-   data BYTEA NULL,
-   CONSTRAINT PK_images PRIMARY KEY (image_id),
-   CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+	image_id int DEFAULT nextval('seq_images_id'::regclass) NOT NULL,
+	user_id int,
+	mediatype varchar(100) NULL,
+	data BYTEA NULL,
+	CONSTRAINT PK_images PRIMARY KEY (image_id),
+	CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+<<<<<<< HEAD
 
 CREATE TABLE achievements (
    badge_id serial,
@@ -113,6 +114,9 @@ CREATE TABLE graveyard (
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 
 CREATE TABLE achievments (
+=======
+CREATE TABLE achievements (
+>>>>>>> d34457554557a2a7334bf2a81f918bdb2d2d52e6
 	badge_id serial,
 	badge_name varchar(20),
 	badge_desc text,
@@ -126,21 +130,6 @@ CREATE TABLE vote (
 	user_id int,
 	CONSTRAINT PK_vote PRIMARY KEY (vote_id),
 	CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
-
-CREATE TABLE profession (
-	profession_id serial,
-	profession_name varchar(20) NOT NULL,
-	starting_health int NOT NULL,
-	starting_defense int NOT NULL,
-	starting_strength int NOT NULL,
-	starting_dexterity int NOT NULL,
-	starting_constitution int NOT NULL,
-	starting_intelligence int NOT NULL,
-	starting_wisdom int NOT NULL,
-	starting_charisma int NOT NULL,
-	starting_attack_description varchar(20) NOT NULL,
-	CONSTRAINT pk_profession PRIMARY KEY (profession_id)
 );
 
 CREATE TABLE character (
@@ -191,13 +180,17 @@ CREATE TABLE graveyard (
 	character_name varchar(50),
 	created_date date,
 	user_id int,
-	enternity_date date,
+	eternity_date date,
 	CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
 	CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
 	CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+<<<<<<< HEAD
 
+=======
+>>>>>>> d34457554557a2a7334bf2a81f918bdb2d2d52e6
 );
 
 
-
 COMMIT TRANSACTION;
+
+

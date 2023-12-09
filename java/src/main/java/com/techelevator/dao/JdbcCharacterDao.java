@@ -41,9 +41,9 @@ public class JdbcCharacterDao implements CharacterDao {
                     "character_wisdom, character_charisma, abilities, user_id, created_date) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
 
-            int characterId = jdbcTemplate.queryForObject(
+            int newcharacterId = jdbcTemplate.queryForObject(
                     sql,
-                    Integer.class,
+                    int.class,
                     character.getName(),
                     character.getBackground(),
                     character.getCreature(),
@@ -58,7 +58,7 @@ public class JdbcCharacterDao implements CharacterDao {
                     character.getUser_id()
             );
 
-            character.setId(characterId);
+            character.setId(newcharacterId);
             return character;
         } catch (DataAccessException e) {
             // Log the details of the exception
