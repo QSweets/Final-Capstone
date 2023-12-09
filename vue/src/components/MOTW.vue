@@ -3,7 +3,6 @@
     <button v-on:click="getRandomMonster">Get Random Monster</button>
     <div v-if="randomMonster">
       <p>Name: {{ randomMonster.name }}</p>
-      <p>index: {{ randomMonster.index }}</p>
       <p>Size: {{ randomMonster.details.size }}</p>
       <p>Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
       <p>Special Abilities: {{ randomMonster.details.special_abilities }}</p>

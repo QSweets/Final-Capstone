@@ -2,7 +2,7 @@
   <p>This is my Profile page</p>
   <h3>My Party</h3>
   <div class="img">
-    <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a>
+    <!-- <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a> -->
   </div>
   <div class="Character-creation-form">
   <button v-on:click="toggleForm">Add Character</button>
@@ -193,4 +193,8 @@ export default {
   background-image: url('../loginImages/LoginBG3.png');
   background-repeat: no-repeat;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> b222d202c6c84733e3c94c3ab1dd6f0485273af7
