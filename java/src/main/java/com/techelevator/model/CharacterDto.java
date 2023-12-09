@@ -3,11 +3,10 @@ package com.techelevator.model;
 import java.util.List;
 
 public class CharacterDto {
-    private int characterId;
-    private Byte image;
-    private String name;
+    private byte[] portrait;
     private String background;
-    private String abilities;
+    private List<String> abilities;
+    private String name;
     private String creature;
     private String profession;
     private int strength;
@@ -17,52 +16,21 @@ public class CharacterDto {
     private int wisdom;
     private int charisma;
 
-    public CharacterDto(Byte image, String name, String background, String abilities, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.image = image;
-        this.name = name;
-        this.background = background;
-        this.abilities = abilities;
-        this.creature = creature;
-        this.profession = profession;
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        this.intelligence = intelligence;
-        this.wisdom = wisdom;
-        this.charisma = charisma;
+//    public Character(){
+//    }
+    public byte[] getPortrait(){
+        return portrait;
     }
-
-    public CharacterDto(int characterId, Byte image, String name, String background, String abilities, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.characterId = characterId;
-        this.image = image;
-        this.name = name;
-        this.background = background;
-        this.abilities = abilities;
-        this.creature = creature;
-        this.profession = profession;
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        this.intelligence = intelligence;
-        this.wisdom = wisdom;
-        this.charisma = charisma;
-    }
-
-    public CharacterDto(){}
-
     public String getBackground(){
         return background;
     }
-    public String getAbilities() {
+    public List<String> getAbilities() {
         return abilities;
     }
 
+//    @Override
     public String getName() {
         return name;
-    }
-
-    public Byte getImage() {
-        return image;
     }
 
     public String getCreature() {
@@ -73,52 +41,51 @@ public class CharacterDto {
         return profession;
     }
 
+//    @Override
     public int getStrength() {
         return strength;
     }
 
+//    @Override
     public int getDexterity() {
         return dexterity;
     }
 
+//    @Override
     public int getConstitution() {
         return constitution;
     }
 
+//    @Override
     public int getIntelligence() {
         return intelligence;
     }
 
+//    @Override
     public int getWisdom() {
         return wisdom;
     }
 
+//    @Override
     public int getCharisma() {
         return charisma;
     }
 
-    public int getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
+    public void setPortrait(byte[] portrait) {
+        this.portrait = portrait;
     }
 
     public void setBackground(String background) {
         this.background = background;
     }
 
-    public void setAbilities(String abilities) {
+    public void setAbilities(List<String> abilities) {
         this.abilities = abilities;
     }
 
+//    @Override
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setImage(Byte image) {
-        this.image = image;
     }
 
     public void setCreature(String creature) {
@@ -129,26 +96,32 @@ public class CharacterDto {
         this.profession = profession;
     }
 
+//    @Override
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
+//    @Override
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
+//    @Override
     public void setConstitution(int constitution) {
         this.constitution = constitution;
     }
 
+//    @Override
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
+//    @Override
     public void setWisdom(int wisdom) {
         this.wisdom = wisdom;
     }
 
+//    @Override
     public void setCharisma(int charisma) {
         this.charisma = charisma;
     }

@@ -1,7 +1,6 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CharacterDao;
-<<<<<<< HEAD
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Character;
 import com.techelevator.services.CharacterService;
@@ -16,45 +15,18 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
-=======
-import com.techelevator.model.Character;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
->>>>>>> b222d202c6c84733e3c94c3ab1dd6f0485273af7
-
-import java.util.List;
 
 @RestController
-<<<<<<< HEAD
 @CrossOrigin
 @RequestMapping("/characters")
-=======
-@RequestMapping("/users/characters")
-@PreAuthorize("isAuthenticated()")
->>>>>>> b222d202c6c84733e3c94c3ab1dd6f0485273af7
 public class CharacterController {
-    private CharacterDao characterDao;
 
-    public CharacterController(CharacterDao characterDao) {
-        this.characterDao = characterDao;
-    }
-
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Character> getCharactersByUsername() {
-        characterDao.getCharactersByUsername();
-        List<Character> characters = characterDao.getCharactersByUsername();
-
-<<<<<<< HEAD
     private final CharacterDao characterDao;
     private final UserService userService;
 
     public CharacterController(CharacterDao characterDao, UserService userService) {
         this.characterDao = characterDao;
         this.userService = userService;
-=======
->>>>>>> b222d202c6c84733e3c94c3ab1dd6f0485273af7
     }
 
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
