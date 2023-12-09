@@ -3,6 +3,9 @@ package com.techelevator.model;
 import java.util.List;
 
 public class Character extends Creature {
+
+    private int user_id;
+
     private String background;
 
     //Spells is an ability
@@ -18,8 +21,9 @@ public class Character extends Creature {
     private int wisdom;
     private int charisma;
 
-    public Character(int id, String name, Byte image, String background, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, String abilities) {
+    public Character(int id, String name, Byte image, int user_id, String background, String abilities, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         super(id, name, image);
+        this.user_id = user_id;
         this.background = background;
         this.abilities = abilities;
         this.creature = creature;
@@ -41,6 +45,14 @@ public class Character extends Creature {
 
     public String getAbilities() {
         return abilities;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setAbilities(String abilities) {
@@ -114,4 +126,5 @@ public class Character extends Creature {
     public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
+
 }
