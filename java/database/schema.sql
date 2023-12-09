@@ -42,10 +42,6 @@ CREATE TABLE images (
    CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5b6f98e8df01e5feaf66906a027cfd1999783b93
 CREATE TABLE achievements (
    badge_id serial,
    badge_name varchar(20),
@@ -114,98 +110,7 @@ CREATE TABLE graveyard (
    CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
    CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
-<<<<<<< HEAD
 );
 
-=======
-
-CREATE TABLE achievments (
-	badge_id serial,
-	badge_name varchar(20),
-	badge_desc text,
-	image_id int,
-	CONSTRAINT PK_badge PRIMARY KEY (badge_id),
-	CONSTRAINT FK_badge_images FOREIGN KEY (image_id) REFERENCES images (image_id)
-);
-
-CREATE TABLE vote (
-	vote_id serial,
-	user_id int,
-	CONSTRAINT PK_vote PRIMARY KEY (vote_id),
-	CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
-
-CREATE TABLE profession (
-	profession_id serial,
-	profession_name varchar(20) NOT NULL,
-	starting_health int NOT NULL,
-	starting_defense int NOT NULL,
-	starting_strength int NOT NULL,
-	starting_dexterity int NOT NULL,
-	starting_constitution int NOT NULL,
-	starting_intelligence int NOT NULL,
-	starting_wisdom int NOT NULL,
-	starting_charisma int NOT NULL,
-	starting_attack_description varchar(20) NOT NULL,
-	CONSTRAINT pk_profession PRIMARY KEY (profession_id)
-);
-
-CREATE TABLE character (
-	character_id serial,
-	character_name varchar(25),
-	creature varchar(50),
-	class_profession varchar(50),
-	background text,
-	abilities varchar(50),
-	created_date date,
-	character_strength int NOT NULL,
-	character_dexterity int NOT NULL,
-	character_constitution int NOT NULL,
-	character_intelligence int NOT NULL,
-	character_wisdom int NOT NULL,
-	character_charisma int NOT NULL,
-	vote_id int,
-	user_id int,
-	image_id int,
-	CONSTRAINT PK_character PRIMARY KEY (character_id),
-	CONSTRAINT FK_character_vote FOREIGN KEY (vote_id) REFERENCES vote (vote_id),
-	CONSTRAINT FK_character_user FOREIGN KEY (user_id) REFERENCES users (user_id),
-	CONSTRAINT FK_character_image FOREIGN KEY (image_id) REFERENCES images (image_id)
-);
-
-CREATE TABLE monster (
-	monster_id serial,
-	monster_name varchar(50),
-	challenge_rating int,
-	special_abilities varchar(50),
-	monster_size varchar(20),
-	monster_strength int NOT NULL,
-	monster_dexterity int NOT NULL,
-	monster_constitution int NOT NULL,
-	monster_intelligence int NOT NULL,
-	monster_wisdom int NOT NULL,
-	monster_charisma int NOT NULL,
-	image_id int,
-	user_id int,
-	CONSTRAINT PK_monster PRIMARY KEY (monster_id),
-	CONSTRAINT FK_monster_image FOREIGN KEY (image_id) REFERENCES images (image_id),
-	CONSTRAINT FK_monster_user FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
-
-CREATE TABLE graveyard (
-	graveyard_id serial,
-	character_id int,
-	character_name varchar(50),
-	created_date date,
-	user_id int,
-	enternity_date date,
-	CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
-	CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
-	CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
-
-);
-
-
->>>>>>> 5b6f98e8df01e5feaf66906a027cfd1999783b93
 
 COMMIT TRANSACTION;
