@@ -42,7 +42,7 @@ CREATE TABLE images (
    CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
-<<<<<<< HEAD
+
 CREATE TABLE achievements (
    badge_id serial,
    badge_name varchar(20),
@@ -111,7 +111,7 @@ CREATE TABLE graveyard (
    CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
    CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
-=======
+
 CREATE TABLE achievments (
 	badge_id serial,
 	badge_name varchar(20),
@@ -195,7 +195,7 @@ CREATE TABLE graveyard (
 	CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
 	CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
 	CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
->>>>>>> 90fc6a00c00082abf84942be417cddf7a393fa91
+
 );
 
 
