@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
@@ -37,19 +38,16 @@ public class CharacterController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @RequestMapping(value = "/{user_id}", method = RequestMethod.POST)
-    public ResponseEntity<Character> createCharacter(@RequestBody Character character, Principal principal) {
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/{user_id}", method = RequestMethod.POST)
+    public Character createCharacter(@Valid @RequestBody Character character, Principal principal) {
         try {
-            int userId = userService.getUserIdByUsername(principal.getName());
-            character.setUser_id(userId);
-
-            Character createdCharacter = characterDao.createCharacter(character);
-
-            return new ResponseEntity<>(createdCharacter, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return characterDao.createCharacter(character);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @RequestMapping(value = "/user_id/{characterId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteCharacter(@PathVariable int characterId, Principal principal) {
         try {
