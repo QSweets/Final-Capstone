@@ -8,10 +8,17 @@
   <button v-on:click="toggleForm">Add Character</button>
   <div v-if="showForm" class="popup-form">
   <form v-on:submit.prevent="submitCharacter">
+<<<<<<< HEAD
+
+
+      <b-form-file v-model="file1" class="mt-3" plain></b-form-file>
+
+=======
     <div>
       <label for="picture">Picture:</label>
       <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
     </div>
+>>>>>>> 986c7e5dd16049e40ccb053798e1c07f581393b6
     <div>
       <label for="characterName">Character Name:</label>
       <input type="text" id="characterName" name="characterName" required/>
@@ -121,7 +128,11 @@ export default {
       // ability3: '',
       // ability4: '',
       background: '',
+<<<<<<< HEAD
+      file1: null
+=======
       user_id: null, // Placeholder for user_id
+>>>>>>> 986c7e5dd16049e40ccb053798e1c07f581393b6
     };
   },
   methods: {
