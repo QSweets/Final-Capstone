@@ -3,6 +3,7 @@ package com.techelevator.model;
 import java.util.List;
 
 public class CharacterDto {
+    private int characterId;
     private Byte image;
     private String name;
     private String background;
@@ -30,6 +31,23 @@ public class CharacterDto {
         this.wisdom = wisdom;
         this.charisma = charisma;
     }
+
+    public CharacterDto(int characterId, Byte image, String name, String background, String abilities, String creature, String profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        this.characterId = characterId;
+        this.image = image;
+        this.name = name;
+        this.background = background;
+        this.abilities = abilities;
+        this.creature = creature;
+        this.profession = profession;
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.intelligence = intelligence;
+        this.wisdom = wisdom;
+        this.charisma = charisma;
+    }
+
     public CharacterDto(){}
 
     public String getBackground(){
@@ -79,7 +97,13 @@ public class CharacterDto {
         return charisma;
     }
 
+    public int getCharacterId() {
+        return characterId;
+    }
 
+    public void setCharacterId(int characterId) {
+        this.characterId = characterId;
+    }
 
     public void setBackground(String background) {
         this.background = background;
