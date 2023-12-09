@@ -22,26 +22,6 @@ public class JdbcCharacterDao implements CharacterDao {
 
 
     @Override
-<<<<<<< HEAD
-    public List<CharacterDto> getCharactersByUserId(int userId) {
-        List<CharacterDto> characters = new ArrayList<>();
-        String sql = "SELECT character_id, character_name, creature, class_profession, background, abilities, created_date, " +
-                "character_strength, character_dexterity, character_constitution, character_intelligence, " +
-                "character_wisdom, character_charisma, vote_id, user_id, image_id " +
-                "FROM character " +
-                "WHERE user_id = ?";
-
-        try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-            while (results.next()) {
-                CharacterDto character = mapRowToCharacterDto(results);
-                characters.add(character);
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-        return characters;
-=======
     public Character getCharacterById(int userId) {
         String sql = "SELECT * FROM character WHERE user_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
@@ -84,7 +64,6 @@ public class JdbcCharacterDao implements CharacterDao {
             // Log the details of the exception
             throw new RuntimeException("Error creating character", e);
         }
->>>>>>> 90fc6a00c00082abf84942be417cddf7a393fa91
     }
 
 
