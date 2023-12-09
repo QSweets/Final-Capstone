@@ -58,21 +58,6 @@ CREATE TABLE vote (
 	CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
-CREATE TABLE profession (
-	profession_id serial,
-	profession_name varchar(20) NOT NULL,
-	starting_health int NOT NULL,
-	starting_defense int NOT NULL,
-	starting_strength int NOT NULL,
-	starting_dexterity int NOT NULL,
-	starting_constitution int NOT NULL,
-	starting_intelligence int NOT NULL,
-	starting_wisdom int NOT NULL,
-	starting_charisma int NOT NULL,
-	starting_attack_description varchar(20) NOT NULL,
-	CONSTRAINT pk_profession PRIMARY KEY (profession_id)
-);
-
 CREATE TABLE character (
 	character_id serial,
 	character_name varchar(25),
@@ -126,7 +111,6 @@ CREATE TABLE graveyard (
 	CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
 	CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
 
 
 COMMIT TRANSACTION;
