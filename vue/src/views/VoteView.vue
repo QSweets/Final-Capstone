@@ -1,6 +1,6 @@
 <template>
     <div class="vote">
-      <h1>This is The Voting Page</h1>
+      <h1>Ready, Set, Vote!</h1>
   
       <!-- This is to navigate to the homepage -->
       <router-link v-bind:to="{ name: 'home'}" v-if="$store.state.token !== ''">Home</router-link>

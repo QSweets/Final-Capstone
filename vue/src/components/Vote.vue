@@ -1,9 +1,11 @@
-<template>
-    <p>This is the Voting Page</p>
+<!-- <template>
     <div class="voting-form">
-        
+
     </div>
 
+<div class="voting-actions">
+    <button v-on:click="voteForSelectedUsers()" v-bind:disabled=""!action
+</div>
 </template>
 
 
@@ -24,4 +26,4 @@ export default {
 
 <style scoped> 
 
-</style>
+</style> -->
