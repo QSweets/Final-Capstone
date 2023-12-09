@@ -20,44 +20,26 @@ public class JdbcCharacterDao implements CharacterDao{
     }
 
     @Override
-    public List<CharacterDto> getCharactersByUserId(int id) {
-        //We did not add the image section to the character table
-//        String sql = "SELECT character_name, creature, class_profession, background, abilities, character_strength, " +
-//                        "character_dexterity, character_constitution, character_intelligence, character_wisdom, " +
-//                        "character_charisma FROM character WHERE user_id = ?";
-        List<CharacterDto> characterDtos = new ArrayList<>();
-        String sql = "SELECT character_name, creature, class_profession, background, abilities, character_strength, " +
-                "character_dexterity, character_constitution, character_intelligence, character_wisdom, " +
-                "character_charisma FROM character " +
-                "JOIN users ON character.user_id = users.user_id " +
+    public List<CharacterDto> getCharactersByUserId(int userId) {
+        List<CharacterDto> characters = new ArrayList<>();
+        String sql = "SELECT character_id, character_name, creature, class_profession, background, abilities, created_date, " +
+                "character_strength, character_dexterity, character_constitution, character_intelligence, " +
+                "character_wisdom, character_charisma, vote_id, user_id, image_id " +
+                "FROM character " +
                 "WHERE user_id = ?";
 
-//            List<CharacterDto> characterDtos = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-//            CharacterDto characterDto = new CharacterDto();
-//            characterDto.setName(resultSet.getString("character_name"));
-//            characterDto.setCreature(resultSet.getString("creature"));
-//            characterDto.setProfession(resultSet.getString("class_profession"));
-//            characterDto.setBackground(resultSet.getString("background"));
-//            characterDto.setAbilities(resultSet.getString("abilities"));
-//            characterDto.setStrength(resultSet.getInt("character_strength"));
-//            characterDto.setDexterity(resultSet.getInt("character_dexterity"));
-//            characterDto.setConstitution(resultSet.getInt("character_constitution"));
-//            characterDto.setIntelligence(resultSet.getInt("character_intelligence"));
-//            characterDto.setWisdom(resultSet.getInt("character_wisdom"));
-//            characterDto.setCharisma(resultSet.getInt("character_charisma"));
-//            return characterDto;
-//        });
-       // return characterDtos;
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
-                characterDtos.add(mapRowToCharacterDto(results));
+                CharacterDto character = mapRowToCharacterDto(results);
+                characters.add(character);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return characterDtos;
+        return characters;
     }
+
 
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
