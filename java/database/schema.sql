@@ -43,7 +43,7 @@ CREATE TABLE images (
 );
 
 CREATE TABLE achievments (
-	badge_id int,
+	badge_id serial,
 	badge_name varchar(20),
 	badge_desc text,
 	image_id int,
@@ -52,14 +52,14 @@ CREATE TABLE achievments (
 );
 
 CREATE TABLE vote (
-	vote_id int,
+	vote_id serial,
 	user_id int,
 	CONSTRAINT PK_vote PRIMARY KEY (vote_id),
 	CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE profession (
-	profession_id int NOT NULL,
+	profession_id serial,
 	profession_name varchar(20) NOT NULL,
 	starting_health int NOT NULL,
 	starting_defense int NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE profession (
 );
 
 CREATE TABLE character (
-	character_id int,
+	character_id serial,
 	character_name varchar(25),
 	creature varchar(50),
 	class_profession varchar(50),
@@ -97,7 +97,7 @@ CREATE TABLE character (
 );
 
 CREATE TABLE monster (
-	monster_id int,
+	monster_id serial,
 	monster_name varchar(50),
 	challenge_rating int,
 	special_abilities varchar(50),
@@ -116,7 +116,7 @@ CREATE TABLE monster (
 );
 
 CREATE TABLE graveyard (
-	graveyard_id int,
+	graveyard_id serial,
 	character_id int,
 	character_name varchar(50),
 	created_date date,

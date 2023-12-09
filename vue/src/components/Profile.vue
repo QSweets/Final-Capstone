@@ -6,12 +6,19 @@
   </div>
   <div class="Character-creation-form">
   <button v-on:click="toggleForm">Add Character</button>
-
+  <div v-if="showForm" class="popup-form">
   <form v-on:submit.prevent="submitCharacter">
+<<<<<<< HEAD
 
 
       <b-form-file v-model="file1" class="mt-3" plain></b-form-file>
 
+=======
+    <div>
+      <label for="picture">Picture:</label>
+      <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
+    </div>
+>>>>>>> 986c7e5dd16049e40ccb053798e1c07f581393b6
     <div>
       <label for="characterName">Character Name:</label>
       <input type="text" id="characterName" name="characterName" required/>
@@ -31,8 +38,8 @@
       </select>
     </div>
     <div>
-      <label for="characterClass">Character Class:</label>
-      <select v-model="characterClass" id="characterClass" required>
+      <label for="profession">Profession:</label>
+      <select v-model="profession" id="profession" required>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
         <option value="Cleric">Cleric</option>
@@ -48,14 +55,34 @@
       </select>
     </div>
     <div>
-      <label for="rolledStats">Rolled Stats:</label>
-      <input type="text" id="rolledStats" name="rolledStats" />
+      <label for="strength">Strength:</label>
+      <input type="text" id="strength" name="strength" />
     </div>
     <div>
-      <label for="ability1">Ability 1:</label>
+      <label for="dexterity">Dexterity:</label>
+      <input type="text" id="dexterity" name="dexterity" />
+    </div>
+    <div>
+      <label for="constitution">Constitution:</label>
+      <input type="text" id="constitution" name="constitution" />
+    </div>
+    <div>
+      <label for="intelligence">Intelligence:</label>
+      <input type="text" id="intelligence" name="intelligence" />
+    </div>
+    <div>
+      <label for="wisdom">Wisdom:</label>
+      <input type="text" id="wisdom" name="wisdom" />
+    </div>
+    <div>
+      <label for="charisma">Charisma:</label>
+      <input type="text" id="charisma" name="charisma" />
+    </div>
+    <div>
+      <label for="abilities">abilities:</label>
       <textarea v-model="text"></textarea> 
     </div>
-    <div>
+    <!-- <div>
       <label for="ability2">Ability 2:</label>
       <textarea v-model="text"></textarea> 
     </div>
@@ -66,15 +93,16 @@
     <div>
       <label for="ability4">Ability 4:</label>
       <textarea v-model="text"></textarea> 
-    </div>
+    </div> -->
     <div>
       <label for="background">Background:</label>
       <textarea v-model="text"></textarea> 
     </div>
 
-    <button type="submit" class="save btn">Save Character</button>
+    <button type="submit" class="save btn" v-on:click="saveCharacter">Save Character</button>
     
   </form>
+  </div>
   </div>
 </template>
 
@@ -84,45 +112,90 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      showForm: false,
       picture: null,
       characterName: '',
       creature: '',
-      rolledStats: '',
-      ability1: '',
-      ability2: '',
-      ability3: '',
-      ability4: '',
+      profession: '',
+      strength: '',
+      dexterity: '',
+      constitution: '',
+      intelligence: '',
+      wisdom: '',
+      charisma: '',
+      abilities: '',
+      // ability2: '',
+      // ability3: '',
+      // ability4: '',
       background: '',
+<<<<<<< HEAD
       file1: null
+=======
+      user_id: null, // Placeholder for user_id
+>>>>>>> 986c7e5dd16049e40ccb053798e1c07f581393b6
     };
   },
-
   methods: {
-    async submitCharacter(){
+    toggleForm() {
+      this.showForm = !this.showForm;
+    },
+    async saveCharacter() {
       try {
-        const formData = new formData();
+        const formData = new FormData();
         formData.append('picture', this.picture);
         formData.append('characterName', this.characterName);
         formData.append('creature', this.creature);
-        formData.append('rolledStats', this.rolledStats);
-        formData.append('ability1', this.ability1);
-        formData.append('ability2', this.ability2);
-        formData.append('ability3', this.ability3);
-        formData.append('ability4', this.ability4);
+        formData.append('profession', this.profession);
+        formData.append('strength', this.strength);
+        formData.append('dexterity', this.dexterity);
+        formData.append('constitution', this.constitution);
+        formData.append('intelligence', this.intelligence);
+        formData.append('wisdom', this.wisdom);
+        formData.append('charisma', this.charisma);
+        formData.append('abilities', this.abilities);
+        // formData.append('ability2', this.ability2);
+        // formData.append('ability3', this.ability3);
+        // formData.append('ability4', this.ability4);
         formData.append('background', this.background);
+        
+      
+        
+        this.user_id = 3;
 
-        await axios.post('http://localhost:9000/users/character', formData, {
+        formData.append('user_id', this.user_id);
+
+        await axios.post(`http://localhost:9000/character/${this.user_id}`, formData, {
           headers: {
-            'Content-Type' : 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         });
 
         console.log('Character Saved!');
+        
+        this.picture = null;
+        this.characterName = '';
+        this.creature = '';
+        this.profession = '';
+        this.strength = '';
+        this.dexterity = '';
+        this.constitution = '';
+        this.intelligence = '';
+        this.wisdom = '';
+        this.charisma = '';
+        this.abilities = '';
+        // this.ability2 = '';
+        // this.ability3 = '';
+        // this.ability4 = '';
+        this.background = '';
+        this.showForm = false;
       } catch (error) {
         console.error('Error saving character', error);
       }
-    }
-  }
+    },
+  },
+  onFileChange(event) {
+    this.picture = event.target.files[0];
+  },
 }
 </script>
 
@@ -131,4 +204,8 @@ export default {
   background-image: url('../loginImages/LoginBG3.png');
   background-repeat: no-repeat;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> b222d202c6c84733e3c94c3ab1dd6f0485273af7
