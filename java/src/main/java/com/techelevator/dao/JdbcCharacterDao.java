@@ -9,12 +9,15 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public class JdbcCharacterDao implements CharacterDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = Logger.getLogger(JdbcCharacterDao.class.getName());
 
     public JdbcCharacterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -41,7 +44,7 @@ public class JdbcCharacterDao implements CharacterDao {
                     "character_wisdom, character_charisma, abilities, user_id, created_date) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
 
-            int newcharacterId = jdbcTemplate.queryForObject(
+            int newCharacterId = jdbcTemplate.queryForObject(
                     sql,
                     int.class,
                     character.getName(),
@@ -57,42 +60,55 @@ public class JdbcCharacterDao implements CharacterDao {
                     character.getAbilities(),
                     character.getUser_id()
             );
-
-            character.setId(newcharacterId);
+            character.setId(newCharacterId);
             return character;
         } catch (DataAccessException e) {
             // Log the details of the exception
+            logger.severe("Error creating character");
+            logger.severe(e.getMessage());  // log the exception message
+            logger.severe(Arrays.toString(e.getStackTrace()));  // log the stack trace
             throw new RuntimeException("Error creating character", e);
         }
     }
 
 
+
     @Override
     public Character updateCharacter(Character character) {
-        // Implement the SQL query to update an existing character in the database
-        String sql = "UPDATE character SET name = ?, background = ?, creature = ?, " +
-                "profession = ?, strength = ?, dexterity = ?, constitution = ?, " +
-                "intelligence = ?, wisdom = ?, charisma = ?, abilities = ? " +
-                "WHERE id = ?";
+        try {
+            String sql = "UPDATE character SET character_name = ?, creature=?, class_profession=?, background=?, abilities=?, character_strength=?, \n" +
+                    "character_dexterity=?, character_constitution=?, character_intelligence=?, character_wisdom=?, character_charisma=? WHERE character_id=?;\n";
 
-        jdbcTemplate.update(
-                sql,
-                character.getName(),
-                character.getBackground(),
-                character.getCreature(),
-                character.getProfession(),
-                character.getStrength(),
-                character.getDexterity(),
-                character.getConstitution(),
-                character.getIntelligence(),
-                character.getWisdom(),
-                character.getCharisma(),
-                character.getAbilities(),
-                character.getId()
-        );
+            int rowsUpdated = jdbcTemplate.update(
+                    sql,
+                    character.getName(),
+                    character.getCreature(),
+                    character.getBackground(),
+                    character.getProfession(),
+                    character.getAbilities(),
+                    character.getStrength(),
+                    character.getDexterity(),
+                    character.getConstitution(),
+                    character.getIntelligence(),
+                    character.getWisdom(),
+                    character.getCharisma(),
+                    character.getId()
+            );
 
-        return character;
+
+            if (rowsUpdated > 0) {
+                return character;
+            } else {
+                throw new RuntimeException("Character not found or not updated");
+            }
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating character", e);
+        }
     }
+
+
+
 
     @Override
     public int deleteCharacterById(int id) {
@@ -124,14 +140,23 @@ public class JdbcCharacterDao implements CharacterDao {
     }
 
 
-    @Override
-    public boolean doesCharacterBelongToUser(int characterId, int userId) {
-        return false;
-    }
+
+
 
     @Override
-    public void deleteCharacter(int characterId) {
+    public Character deleteCharacter(int userId, int characterId) {
+        try {
+            String sql = "DELETE FROM character WHERE user_id = ? AND character_id = ?";
 
+            int rowsDeleted = jdbcTemplate.update(sql, userId, characterId);
+
+            if (rowsDeleted == 0) {
+                throw new RuntimeException("Character not found for deletion");
+            }
+        } catch (DataAccessException e) {
+            throw new DaoException("Error deleting character", e);
+        }
+        return null;
     }
 
     private Character mapRowToCharacter(SqlRowSet rowSet) {
