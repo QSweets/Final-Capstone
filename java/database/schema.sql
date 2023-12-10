@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS profession;
 DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS monster;
 DROP TABLE IF EXISTS graveyard;
+DROP TABLE IF EXISTS messages;
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
   NO MAXVALUE
@@ -98,5 +99,14 @@ CREATE TABLE graveyard (
    CONSTRAINT PK_graveyard PRIMARY KEY (graveyard_id),
    CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+CREATE TABLE messages (
+	comment_id serial,
+	user_id int,
+	comment_title varchar(50),
+	comment_box text,
+	comment_timestamp date,
+	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
+	CONSTRAINT FK_comment_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 COMMIT TRANSACTION;
