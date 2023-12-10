@@ -50,7 +50,7 @@ CREATE TABLE vote (
 );
 CREATE TABLE character (
    character_id serial,
-   character_name varchar(25),
+   name varchar(25),
    creature varchar(50),
    class_profession varchar(50),
    background text,

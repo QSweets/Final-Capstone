@@ -2,11 +2,11 @@ package com.techelevator.model;
 
 public abstract class Creature {
     private int id;
-    private String character_name;
+    private String name;
     private int image_id;
-    public Creature(int id, String character_name, int image_id) {
+    public Creature(int id, String name, int image_id) {
         this.id = id;
-        this.character_name = character_name;
+        this.name = name;
         this.image_id = image_id;
     }
 
@@ -29,11 +29,11 @@ public abstract class Creature {
     }
 
     public String getCharacter_name() {
-        return character_name;
+        return name;
     }
 
     public void setName(String name) {
-        this.character_name = character_name;
+        this.name = name;
     }
 
     public Object getImage() {

@@ -21,8 +21,10 @@ public class Character extends Creature {
     private int character_wisdom;
     private int character_charisma;
 
-    public Character(int id, String character_name, Byte image, int user_id, String background, String abilities, String creature, String class_profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        super(id, character_name, image);
+    private byte[] image;
+
+    public Character(int id, String name, Byte image, int user_id, String background, String abilities, String creature, String class_profession, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        super(id, name != null ? name : "No Name", image);
         this.user_id = user_id;
         this.background = background;
         this.abilities = abilities;
@@ -40,6 +42,13 @@ public class Character extends Creature {
 
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
     public int getUser_id() {
         return user_id;
     }
