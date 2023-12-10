@@ -9,11 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import VoteView from '../views/VoteView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import SocialView from '../views/SocialView.vue';
-import CommentHomeView from '../views/CommentHomeView.vue';
-import CommentAddMessageView from '../views/CommentAddMessageView.vue';
-import CommentNotFoundView from '../views/CommentNotFoundView.vue';
-import CommentEditMessageView from '../views/CommentEditMessageView.vue';
-import CommentMessageDetailsView from '../views/CommentMessageDetailsView.vue';
+
 
 const routes = [
   {
@@ -62,46 +58,6 @@ const routes = [
     path: '/social',
     name: 'social',
     component: SocialView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/social/not-found",
-    name: "CommentNotFoundView",
-    component: CommentNotFoundView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social',
-    name: 'CommentHomeView',
-    component: CommentHomeView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/message/:messageId',
-    name: 'CommentMessageDetailsView',
-    component: CommentMessageDetailsView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/message/create',
-    name: 'CommentAddMessageView',
-    component: CommentAddMessageView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/message/:messageId/edit',
-    name: 'CommentEditMessageView',
-    component: CommentEditMessageView,
     meta: {
       requiresAuth: true
     }

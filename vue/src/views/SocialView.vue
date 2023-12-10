@@ -1,29 +1,57 @@
 <template>
-  <header class="app-header" v-on:click="$router.push({name: 'CommentHomeView'})">
+ =
+  <div class="social">
     <h1>Let's Talk About It</h1>
-  </header>
-  <div>
     <!-- This is to navigate to the homepage -->
-    <router-link to="/" v-if="$store.state.token !== ''">Home</router-link>
+    <router-link to="/" v-if="$store.state.token !== ''">Home</router-link> &nbsp; | &nbsp;
     <!-- navigate to the "logout" route -->
     <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
-  </div>
   
+  </div>
+  <GlobalLogoHeader />
   <main>
-    <!-- If there is a notification, display it  -->
-    <div v-bind:class="notificationClass" v-show="notification" v-on:click="clearNotification">
-      {{ notification?.message }}
-    </div>
     <router-view />
+    <CommentHomeView />
+    <CommentMessageDetails />
+    <CommentMessageForm />
+    <CommentMessageSummary /> 
+    <MessageService />
+    
   </main>
+
 </template>
 
 <script>
+import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
 import CommentHomeView from '../views/CommentHomeView.vue';
+import CommentMessageDetails from '../components/CommentMessageDetails.vue';
+import CommentMessageForm from '../components/CommentMessageForm.vue'; 
+import CommentMessageSummary from '../components/CommentMessageSummary.vue';
+import MessageService from '../services/MessageService';
+
 export default {
   components: {
-    //CommentHomeView
-  },
+    GlobalLogoHeader, 
+    CommentHomeView,
+    CommentMessageDetails,
+    CommentMessageForm,
+    CommentMessageSummary,
+    MessageService
+
+},
+
+data() {
+      return {
+        message: {
+          id: 0,
+          topicId: Number(this.$route.params.topicId),
+          created: new Date(),
+          title: '',
+          messageText: ''
+        },
+      }
+    },
+
   computed: {
     notification() {
       return this.$store.state.notification;
@@ -45,7 +73,12 @@ export default {
 </script>
 
 <style>
-body {
+
+h1 {
+  justify-content: center;
+  
+}
+/* body {
   font-family: Arial, sans-serif;
   margin: 0 auto;
 }
@@ -132,5 +165,5 @@ button:hover {
 .status-message.error {
   background-color: #f08080;
 }
+   */
 </style>
-  
