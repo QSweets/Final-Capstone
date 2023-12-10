@@ -30,7 +30,6 @@
         //initialize a new object with the same property values.
         editMessage: {
           id: this.message.id,
-          topicId: this.message.topicId,
           created: this.message.created,
           title: this.message.title,
           messageText: this.message.messageText,

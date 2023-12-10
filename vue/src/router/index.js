@@ -10,10 +10,7 @@ import VoteView from '../views/VoteView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import SocialView from '../views/SocialView.vue';
 import CommentHomeView from '../views/CommentHomeView.vue';
-import CommentTopicDetailsView from '../views/CommentTopicDetailsView.vue';
 import CommentAddMessageView from '../views/CommentAddMessageView.vue';
-import CommentAddTopicView from '../views/CommentAddTopicView.vue';
-import CommentEditTopicView from '../views/CommentEditTopicView.vue';
 import CommentNotFoundView from '../views/CommentNotFoundView.vue';
 import CommentEditMessageView from '../views/CommentEditMessageView.vue';
 import CommentMessageDetailsView from '../views/CommentMessageDetailsView.vue';
@@ -86,31 +83,7 @@ const routes = [
     }
   },
   {
-    path: '/social/topic/:topicId',
-    name: 'CommentTopicDetailsView',
-    component: CommentTopicDetailsView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/topic/create',
-    name: 'CommentAddTopicView',
-    component: CommentAddTopicView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/topic/:topicId/edit',
-    name: 'CommentEditTopicView',
-    component: CommentEditTopicView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/social/topic/:topicId/message/:messageId',
+    path: '/social/message/:messageId',
     name: 'CommentMessageDetailsView',
     component: CommentMessageDetailsView,
     meta: {
@@ -118,7 +91,7 @@ const routes = [
     }
   },
   {
-    path: '/social/topic/:topicId/message/create',
+    path: '/social/message/create',
     name: 'CommentAddMessageView',
     component: CommentAddMessageView,
     meta: {
@@ -126,7 +99,7 @@ const routes = [
     }
   },
   {
-    path: '/social/topic/:topicId/message/:messageId/edit',
+    path: '/social/message/:messageId/edit',
     name: 'CommentEditMessageView',
     component: CommentEditMessageView,
     meta: {
