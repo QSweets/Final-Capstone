@@ -1,10 +1,6 @@
 <template>
-  <div id="welcome">
-    <h1>Welcome {{ this.$store.state.user.username }}</h1>
+  <div>
+    <h1 id="welcome">Welcome {{ this.$store.state.user.username }}</h1>
   </div>
   
-</template> test
-
-<style>
-
-</style>
+</template>

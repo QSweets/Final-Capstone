@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button v-on:click="getRandomMonster">Get Random Monster</button>
-    <div v-if="randomMonster">
-      <p>Name: {{ randomMonster.name }}</p>
-      <p>Size: {{ randomMonster.details.size }}</p>
-      <p>Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
-      <p>Special Abilities: {{ randomMonster.details.special_abilities }}</p>
-      <img :src="monsterImageUrl" alt="Monster Image" />
+    <button class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
+    <div class="m-stats" v-if="randomMonster">
+      <p id="m-name">Name: {{ randomMonster.name }}</p>
+      <p id="m-size">Size: {{ randomMonster.details.size }}</p>
+      <p id="m-challenge">Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
+      <p id="m-abilities">Special Abilities: {{ randomMonster.details.special_abilities }}</p>
+      <img id="m-img" :src="monsterImageUrl" alt="Monster Image" />
     </div>
   </div>
 </template>
