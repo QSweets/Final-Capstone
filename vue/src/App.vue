@@ -27,7 +27,7 @@ export default {
   flex-direction: row;
   position: relative;
   left: 93.2%;
-  top: 4.2vh;
+  top: 10.2vh;
   width: 9vh;
 }
 #welcome {
@@ -40,12 +40,10 @@ export default {
 }
 .home{
   display: flex;
-  flex-direction: row-reverse;
   position: absolute;
   top: 10.8vh;
-  border-bottom: solid 2px;
   border-color: rgb(89, 4, 248);
-  width: 7%;
+  width: 3.5%;
 }
 html {
   font: 62.5% / 1.15 sans-serif;

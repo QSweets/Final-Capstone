@@ -25,20 +25,13 @@
   
 <style>
   .profile { 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   position: absolute;
   top: 23.8vh;
   padding: 1vh;
   width: 14.2vh;
 }
 .vote {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   position: absolute;
-  flex-wrap: nowrap;
   top: 28.9vh;
   padding: 1vh;
   width: 14.8vh;
