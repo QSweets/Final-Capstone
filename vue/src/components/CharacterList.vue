@@ -5,7 +5,6 @@
         <img :src="character.picture" alt="Character Picture" />
         <div v-if="showTooltip" class="tooltip" :style="{ top: tooltipPosition.top + 'px', left: tooltipPosition.left + 'px' }">
           <p>Name: {{ character.characterName }}</p>
-          <!-- Add more attributes as needed -->
         </div>
       </div>
     </div>

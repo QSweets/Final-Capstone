@@ -2,7 +2,7 @@
   <p>This is my Profile page</p>
   <h3>My Party</h3>
   <div class="img">
-    <!-- <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a> -->
+    <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a>
   </div>
   <div class="Character-creation-form">
   <button v-on:click="toggleForm">Add Character</button>
@@ -13,8 +13,8 @@
       <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
     </div>
     <div>
-      <label for="characterName">Character Name:</label>
-      <input type="text" id="characterName" name="characterName" required/>
+      <label for="character_name">Character Name:</label>
+      <input type="text" id="characterName" name="characterName" v-model="character_name" required/>
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -31,8 +31,8 @@
       </select>
     </div>
     <div>
-      <label for="profession">Profession:</label>
-      <select v-model="profession" id="profession" required>
+      <label for="class_profession">Profession:</label>
+      <select v-model="class_profession" id="profession" required>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
         <option value="Cleric">Cleric</option>
@@ -48,52 +48,44 @@
       </select>
     </div>
     <div>
-      <label for="strength">Strength:</label>
-      <input type="text" id="strength" name="strength" />
+      <label for="character_strength">Strength:</label>
+      <input type="text" id="strength" name="strength" v-model="character_strength" disabled />
     </div>
     <div>
-      <label for="dexterity">Dexterity:</label>
-      <input type="text" id="dexterity" name="dexterity" />
+      <label for="character_dexterity">Dexterity:</label>
+      <input type="text" id="dexterity" name="dexterity"  v-model="character_dexterity" disabled />
     </div>
     <div>
-      <label for="constitution">Constitution:</label>
-      <input type="text" id="constitution" name="constitution" />
+      <label for="character_constitution">Constitution:</label>
+      <input type="text" id="constitution" name="constitution"  v-model="character_constitution" disabled />
     </div>
     <div>
-      <label for="intelligence">Intelligence:</label>
-      <input type="text" id="intelligence" name="intelligence" />
+      <label for="character_intelligence">Intelligence:</label>
+      <input type="text" id="intelligence" name="intelligence" v-model="character_intelligence" disabled/>
+    </div>
+
+    <div>
+      <label for="character_wisdom">Wisdom:</label>
+      <input type="text" id="wisdom" name="wisdom"  v-model="character_wisdom" disabled />
     </div>
     <div>
-      <label for="wisdom">Wisdom:</label>
-      <input type="text" id="wisdom" name="wisdom" />
-    </div>
-    <div>
-      <label for="charisma">Charisma:</label>
-      <input type="text" id="charisma" name="charisma" />
+      <label for="character_charisma">Charisma:</label>
+      <input type="text" id="charisma" name="charisma"  v-model="character_charisma" disabled />
     </div>
     <div>
       <label for="abilities">abilities:</label>
-      <textarea v-model="text"></textarea> 
+      <textarea v-model="abilities"></textarea> 
     </div>
-    <!-- <div>
-      <label for="ability2">Ability 2:</label>
-      <textarea v-model="text"></textarea> 
-    </div>
-    <div>
-      <label for="ability3">Ability 3:</label>
-      <textarea v-model="text"></textarea> 
-    </div>
-    <div>
-      <label for="ability4">Ability 4:</label>
-      <textarea v-model="text"></textarea> 
-    </div> -->
     <div>
       <label for="background">Background:</label>
-      <textarea v-model="text"></textarea> 
+      <textarea v-model="background"></textarea> 
     </div>
 
     <button type="submit" class="save btn" v-on:click="saveCharacter">Save Character</button>
-    
+    <div>
+    <button v-on:click="rollAllStats">Roll Stats</button>
+    </div>
+
   </form>
   </div>
   </div>
@@ -102,79 +94,121 @@
 <script>
 import axios from 'axios';
 
+function generateRandomStat(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export default {
   data() {
     return {
       showForm: false,
-      picture: null,
-      characterName: '',
+      imageFile: null,
+      character_name: '',
       creature: '',
-      profession: '',
-      strength: '',
-      dexterity: '',
-      constitution: '',
-      intelligence: '',
-      wisdom: '',
-      charisma: '',
+      class_profession: '',
+      character_strength: generateRandomStat(8, 18),
+      character_dexterity: generateRandomStat(8, 18),
+      character_constitution: generateRandomStat(8, 18),
+      character_intelligence: generateRandomStat(8, 18),
+      character_wisdom: generateRandomStat(8, 18),
+      character_charisma: generateRandomStat(8, 18),
       abilities: '',
-      // ability2: '',
-      // ability3: '',
-      // ability4: '',
       background: '',
-      user_id: null, // Placeholder for user_id
+      user_id: null,
     };
   },
   methods: {
     toggleForm() {
       this.showForm = !this.showForm;
     },
+    isStatFieldDisabled(statField) {
+      return false;
+    },
+    rollStat(statField) {
+      this[statField] = generateRandomStat(8, 18);
+    },
+    getUserId() {
+      return this.$store.state.user.id;
+    },
+    rollAllStats() {
+      this.character_strength = generateRandomStat(8, 18);
+      this.character_dexterity = generateRandomStat(8, 18);
+      this.character_constitution = generateRandomStat(8, 18);
+      this.character_intelligence = generateRandomStat(8, 18);
+      this.character_wisdom = generateRandomStat(8, 18);
+      this.character_charisma = generateRandomStat(8, 18);
+    },
+    onFileChange(event) {
+      const selectedFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageFile = e.target.result;
+      };
+      reader.readAsDataURL(selectedFile);
+    },
+    dataURLtoBlob(dataURL) {
+      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
+      const arr = dataURL.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], { type: mime });
+    },
+    blobToBase64(blob) {
+      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    },
     async saveCharacter() {
       try {
-        const formData = new FormData();
-        formData.append('picture', this.picture);
-        formData.append('characterName', this.characterName);
-        formData.append('creature', this.creature);
-        formData.append('profession', this.profession);
-        formData.append('strength', this.strength);
-        formData.append('dexterity', this.dexterity);
-        formData.append('constitution', this.constitution);
-        formData.append('intelligence', this.intelligence);
-        formData.append('wisdom', this.wisdom);
-        formData.append('charisma', this.charisma);
-        formData.append('abilities', this.abilities);
-        // formData.append('ability2', this.ability2);
-        // formData.append('ability3', this.ability3);
-        // formData.append('ability4', this.ability4);
-        formData.append('background', this.background);
-        
-      
-        
-        this.user_id = 3;
+        const imageBlob = this.dataURLtoBlob(this.imageFile);
+        const base64Image = await this.blobToBase64(imageBlob);
 
-        formData.append('user_id', this.user_id);
+        const characterData = {
+          picture: base64Image,
+          character_name: this.character_name,
+          creature: this.creature,
+          class_profession: this.class_profession,
+          character_strength: this.character_strength,
+          character_dexterity: this.character_dexterity,
+          character_constitution: this.character_constitution,
+          character_intelligence: this.character_intelligence,
+          character_wisdom: this.character_wisdom,
+          character_charisma: this.character_charisma,
+          abilities: this.abilities,
+          background: this.background,
+          user_id: this.getUserId(),
+        };
 
-        await axios.post(`http://localhost:9000/character/${this.user_id}`, formData, {
+        console.log('Character Data:', characterData);
+
+        await axios.post(`http://localhost:9000/characters/${this.getUserId()}`, characterData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         });
 
         console.log('Character Saved!');
-        
+
         this.picture = null;
-        this.characterName = '';
+        this.character_name = '';
         this.creature = '';
-        this.profession = '';
-        this.strength = '';
-        this.dexterity = '';
-        this.constitution = '';
-        this.intelligence = '';
-        this.wisdom = '';
-        this.charisma = '';
+        this.class_profession = '';
+        this.character_strength = '';
+        this.character_dexterity = '';
+        this.character_constitution = '';
+        this.character_intelligence = '';
+        this.character_wisdom = '';
+        this.character_charisma = '';
         this.abilities = '';
-        // this.ability2 = '';
-        // this.ability3 = '';
-        // this.ability4 = '';
         this.background = '';
         this.showForm = false;
       } catch (error) {
@@ -182,10 +216,7 @@ export default {
       }
     },
   },
-  onFileChange(event) {
-    this.picture = event.target.files[0];
-  },
-}
+};
 </script>
 
 <style>

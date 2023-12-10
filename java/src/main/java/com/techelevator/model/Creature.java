@@ -2,14 +2,20 @@ package com.techelevator.model;
 
 public abstract class Creature {
     private int id;
-    private String name;
-    private Byte image;
-    private Integer image_id;  // New property for image ID
-
-    public Creature(int id, String name, Byte image) {
+    private String character_name;
+    private int image_id;
+    public Creature(int id, String character_name, int image_id) {
         this.id = id;
-        this.name = name;
-        this.image = image;
+        this.character_name = character_name;
+        this.image_id = image_id;
+    }
+
+    public int getImage_id() {
+        return image_id;
+    }
+
+    public void setImage_id(int image_id) {
+        this.image_id = image_id;
     }
 
     public Creature() {}
@@ -22,28 +28,16 @@ public abstract class Creature {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCharacter_name() {
+        return character_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.character_name = character_name;
     }
 
-    public Byte getImage() {
-        return image;
-    }
-
-    public void setImage(Byte image) {
-        this.image = image;
-    }
-
-    public Integer getImage_id() {
-        return image_id;
-    }
-
-    public void setImage_id(Integer image_id) {
-        this.image_id = image_id;
+    public Object getImage() {
+        return null;
     }
 }
 

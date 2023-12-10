@@ -36,36 +36,43 @@ public class JdbcCharacterDao implements CharacterDao {
     @Override
     public Character createCharacter(Character character) {
         try {
-            String sql = "INSERT INTO character (character_name, background, creature, class_profession, " +
+            String imageSql = "INSERT INTO public.images (user_id, mediatype, data) VALUES (?, ?, ?)";
+
+            int imageId = jdbcTemplate.update(
+                    imageSql, character.getUser_id(), "image/jpg", character.getImage()
+            );
+
+            String characterSql = "INSERT INTO character (character_name, background, creature, class_profession, " +
                     "character_strength, character_dexterity, character_constitution, character_intelligence, " +
-                    "character_wisdom, character_charisma, abilities, user_id, created_date) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
+                    "character_wisdom, character_charisma, abilities, user_id, image_id, created_date) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
+
+
 
             int newCharacterId = jdbcTemplate.queryForObject(
-                    sql,
+                    characterSql,
                     int.class,
-                    character.getName(),
+                    character.getCharacter_name(),
                     character.getBackground(),
                     character.getCreature(),
-                    character.getProfession(),
-                    character.getStrength(),
-                    character.getDexterity(),
-                    character.getConstitution(),
-                    character.getIntelligence(),
-                    character.getWisdom(),
-                    character.getCharisma(),
+                    character.getClass_profession(),
+                    character.getCharacter_strength(),
+                    character.getCharacter_dexterity(),
+                    character.getCharacter_constitution(),
+                    character.getCharacter_intelligence(),
+                    character.getCharacter_wisdom(),
+                    character.getCharacter_charisma(),
                     character.getAbilities(),
-                    character.getUser_id()
+                    character.getUser_id(),
+                    imageId
             );
-            character.setId(newCharacterId);
             return character;
         } catch (DataAccessException e) {
-            logger.severe("Error creating character");
-            logger.severe(e.getMessage());
-            logger.severe(Arrays.toString(e.getStackTrace()));
             throw new RuntimeException("Error creating character", e);
         }
     }
+
+
     @Override
     public Character updateCharacter(Character character) {
         try {
@@ -74,17 +81,17 @@ public class JdbcCharacterDao implements CharacterDao {
 
             int rowsUpdated = jdbcTemplate.update(
                     sql,
-                    character.getName(),
+                    character.getCharacter_name(),
                     character.getCreature(),
                     character.getBackground(),
-                    character.getProfession(),
+                    character.getClass_profession(),
                     character.getAbilities(),
-                    character.getStrength(),
-                    character.getDexterity(),
-                    character.getConstitution(),
-                    character.getIntelligence(),
-                    character.getWisdom(),
-                    character.getCharisma(),
+                    character.getCharacter_strength(),
+                    character.getCharacter_dexterity(),
+                    character.getCharacter_constitution(),
+                    character.getCharacter_intelligence(),
+                    character.getCharacter_wisdom(),
+                    character.getCharacter_charisma(),
                     character.getId()
             );
             if (rowsUpdated > 0) {
@@ -143,13 +150,13 @@ public class JdbcCharacterDao implements CharacterDao {
         character.setName(rowSet.getString("character_name"));
         character.setBackground(rowSet.getString("background"));
         character.setCreature(rowSet.getString("creature"));
-        character.setProfession(rowSet.getString("class_profession"));
-        character.setStrength(rowSet.getInt("character_strength"));
-        character.setDexterity(rowSet.getInt("character_dexterity"));
-        character.setConstitution(rowSet.getInt("character_constitution"));
-        character.setIntelligence(rowSet.getInt("character_intelligence"));
-        character.setWisdom(rowSet.getInt("character_wisdom"));
-        character.setCharisma(rowSet.getInt("character_charisma"));
+        character.setClass_profession(rowSet.getString("class_profession"));
+        character.setCharacter_strength(rowSet.getInt("character_strength"));
+        character.setCharacter_dexterity(rowSet.getInt("character_dexterity"));
+        character.setCharacter_constitution(rowSet.getInt("character_constitution"));
+        character.setCharacter_intelligence(rowSet.getInt("character_intelligence"));
+        character.setCharacter_wisdom(rowSet.getInt("character_wisdom"));
+        character.setCharacter_charisma(rowSet.getInt("character_charisma"));
         character.setAbilities(rowSet.getString("abilities"));
         return character;
     }
