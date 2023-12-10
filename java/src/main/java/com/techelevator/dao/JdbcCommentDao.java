@@ -1,17 +1,17 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.Character;
 import com.techelevator.model.Comment;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Component
 public class JdbcCommentDao implements CommentDao{
     private List<Comment> comments = new ArrayList<>();
     private final JdbcTemplate jdbcTemplate;
@@ -25,7 +25,9 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment createComment(Comment comment) {
         try {
-            String commentSql = "INSERT INTO comment (comment_title, comment_box, CURRENT_DATE)" + "VALUES (?, ?, CURRENT_DATE) RETURNING comment_id";
+            String commentSql = "INSERT INTO public.messages(\n" +
+                    "\tcomment_title, comment_box, comment_timestamp)\n" +
+                    "\tVALUES (?, ?, CURRENT_DATE); RETURNING comment_id";
 
             int newCommentId = jdbcTemplate.queryForObject(
                     commentSql,
@@ -43,7 +45,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment updateComment(Comment comment) {
         try {
-            String sql = "UPDATE comment SET comment_title = ?, comment_box = ? WHERE comment_id = ?;";
+            String sql = "UPDATE messages SET comment_title = ?, comment_box = ? WHERE comment_id = ?;";
 
             int rowsUpdated = jdbcTemplate.update(
                     sql,
@@ -65,7 +67,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment deleteComment(int userId, int commentId) {
         try {
-            String sql = "DELETE FROM comment WHERE user_id = ? AND comment_id = ?";
+            String sql = "DELETE FROM messages WHERE user_id = ? AND comment_id = ?";
 
             int rowsDeleted = jdbcTemplate.update(sql, userId, commentId);
 
@@ -80,8 +82,8 @@ public class JdbcCommentDao implements CommentDao{
 
     public List<Comment> getCommentsByUserId(int userId) {
         List<Comment> comments = new ArrayList<>();
-        String sql = "SELECT comment_id, comment_title, comment_box, timestamp " +
-                "FROM comment " +
+        String sql = "SELECT comment_id, comment_title, comment_box, comment_timestamp " +
+                "FROM messages " +
                 "WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -100,7 +102,7 @@ public class JdbcCommentDao implements CommentDao{
         comment.setCommentId(rowSet.getInt("comment_id"));
         comment.setCommentTitle(rowSet.getString("comment_title"));
         comment.setCommentBox(rowSet.getString("comment_box"));
-        comment.setTimestamp(rowSet.getDate("timestamp"));
+        comment.setTimestamp(rowSet.getDate("comment_timestamp"));
         return comment;
     }
 
