@@ -8,19 +8,22 @@
     <!-- navigate to the "logout" route -->
     <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
   </div>
+  <comment-home-view />
   <main>
     <!-- If there is a notification, display it  -->
     <div v-bind:class="notificationClass" v-show="notification" v-on:click="clearNotification">
       {{ notification?.message }}
     </div>
     <router-view />
-    <CommentHomeView />
   </main>
 </template>
 
 <script>
 import CommentHomeView from '../views/CommentHomeView.vue';
 export default {
+  components: {
+    CommentHomeView
+  },
   computed: {
     notification() {
       return this.$store.state.notification;

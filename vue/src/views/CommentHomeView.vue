@@ -1,8 +1,8 @@
 <template>
-    <div class="loading" v-if="isLoading">
+    <!-- <div class="loading" v-if="isLoading">
       <p>Loading...</p>
-    </div>
-    <div v-else>
+    </div> -->
+    <div >
       <header class="flex">
         <h1>Topics</h1>
         <button class="btn-add" v-on:click="$router.push({ name: 'CommentAddTopicView' })">Add Topic</button>

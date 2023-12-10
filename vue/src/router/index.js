@@ -65,46 +65,73 @@ const routes = [
     path: '/social',
     name: 'social',
     component: SocialView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/social/not-found",
     name: "CommentNotFoundView",
     component: CommentNotFoundView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social',
     name: 'CommentHomeView',
-    component: CommentHomeView
+    component: CommentHomeView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/:topicId',
     name: 'CommentTopicDetailsView',
-    component: CommentTopicDetailsView
+    component: CommentTopicDetailsView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/create',
     name: 'CommentAddTopicView',
-    component: CommentAddTopicView
+    component: CommentAddTopicView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/:topicId/edit',
     name: 'CommentEditTopicView',
-    component: CommentEditTopicView
+    component: CommentEditTopicView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/:topicId/message/:messageId',
     name: 'CommentMessageDetailsView',
-    component: CommentMessageDetailsView
+    component: CommentMessageDetailsView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/:topicId/message/create',
     name: 'CommentAddMessageView',
-    component: CommentAddMessageView
+    component: CommentAddMessageView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/social/topic/:topicId/message/:messageId/edit',
     name: 'CommentEditMessageView',
-    component: CommentEditMessageView
+    component: CommentEditMessageView,
+    meta: {
+      requiresAuth: true
+    }
   },
 
 ]; 
