@@ -27,8 +27,7 @@
     },
     data() {
       return {
-        // Since props are read-only, don't bind to props directly. 
-        // Instead, initialize a new object with the same property values.
+        //initialize a new object with the same property values.
         editMessage: {
           id: this.message.id,
           topicId: this.message.topicId,
@@ -47,7 +46,6 @@
         }
         // Check for add or edit
         if (this.editMessage.id === 0) {
-          // TODO - Do an add, then navigate Home on success.
           // For errors, call handleErrorResponse
           messageService.create(this.editMessage)
             .then(response => {
@@ -59,7 +57,6 @@
               this.handleErrorResponse(error, 'adding');
             });
         } else {
-          // TODO - Do an edit, then navigate back to Message Details on success
           // For errors, call handleErrorResponse
           messageService.update(this.message.id, this.editMessage)
             .then(response => {

@@ -18,7 +18,6 @@
   </template>
   
   <script>
-  //import topicService from '../services/TopicService.js';
   import CommentMessageSummary from '../components/CommentMessageSummary.vue';
   import TopicService from '../services/TopicService.js';
   

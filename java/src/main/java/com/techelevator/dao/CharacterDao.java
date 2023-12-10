@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CharacterDao {
 
+    int deleteCharacterById(int id);
+
     //We want a method that will get the characters for a specific user
     //allowing a user to click on their character list and see all their characters
     List<Character> getCharactersByUserId(int userId);
@@ -21,10 +23,5 @@ public interface CharacterDao {
     Character updateCharacter(Character character);
 
 
-    //Allow a user to delete their character
-    int deleteCharacterById(int id);
-
-    boolean doesCharacterBelongToUser(int characterId, int userId);
-
-    void deleteCharacter(int characterId);
+    Character deleteCharacter(int userId, int characterId);
 }

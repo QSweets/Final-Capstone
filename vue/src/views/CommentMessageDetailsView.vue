@@ -1,8 +1,8 @@
 <template>
-    <div class="loading" v-if="isLoading">
+    <!-- <div class="loading" v-if="isLoading">
       <p>Loading...</p>
-    </div>
-    <div v-else>
+    </div> -->
+    <div>
       <nav>
         <router-link v-bind:to="{ name: 'CommentTopicDetailsView', params: { topicId: topicId } }">Back to Topic Details</router-link>
       </nav>

@@ -23,8 +23,7 @@
     },
     data() {
       return {
-        // Since props are read-only, don't bind to props directly. 
-        // Instead, initialize a new object with the same property values.
+        //initialize a new object with the same property values.
         editTopic: {
           id: this.topic.id,
           title: this.topic.title,

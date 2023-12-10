@@ -1,8 +1,14 @@
 <template>
-    <p>This is the Voting Page</p>
+
     <div class="voting-form">
-        
+
     </div>
+
+
+<div class="voting-actions">
+    <button v-on:click="voteForSelectedUsers()">Vote</button>
+</div>
+
 
 </template>
 

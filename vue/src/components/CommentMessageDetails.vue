@@ -54,7 +54,7 @@
       handleErrorResponse(error, verb) {
         if (error.response) {
           if (error.response.status == 404) {
-            this.$router.push({name: 'NotFoundView'});
+            this.$router.push({name: 'CommentNotFoundView'});
           } else {
             this.$store.commit('SET_NOTIFICATION',
             `Error ${verb} message. Response received was "${error.response.statusText}".`);

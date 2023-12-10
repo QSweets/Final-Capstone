@@ -9,7 +9,7 @@
       <button>Go to My Profile</button>
     </router-link>
   </div>
-    
+
   </template>
   
   <script>
@@ -23,3 +23,31 @@
   };
   </script>
   
+<style>
+  .profile { 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 23.8vh;
+  padding: 1vh;
+  width: 14.2vh;
+}
+.vote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  flex-wrap: nowrap;
+  top: 28.9vh;
+  padding: 1vh;
+  width: 14.8vh;
+}
+.blank-box {
+  border: solid 2px;
+  position: absolute;
+  width: 12%;
+  height: 60%;
+  top: 24%;
+}
+</style>

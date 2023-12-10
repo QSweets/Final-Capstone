@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
     <div class="m-stats" v-if="randomMonster">
       <p id="m-name">Name: {{ randomMonster.name }}</p>
       <p id="m-size">Size: {{ randomMonster.details.size }}</p>
@@ -8,6 +7,7 @@
       <p id="m-abilities">Special Abilities: {{ randomMonster.details.special_abilities }}</p>
       <img id="m-img" :src="monsterImageUrl" alt="Monster Image" />
     </div>
+    <button class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
   </div>
 </template>
 
@@ -42,3 +42,55 @@ export default {
   },
 };
 </script>
+
+<style>
+.r-monster {
+  display: flex;
+  position: absolute;
+  bottom: 6.5vh;
+  right: 44%;
+}
+  .m-stats {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
+  width: 87%;
+  top: 14.4%;
+  position: absolute;
+  left: 17vh;
+}
+#m-name {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 10vh;
+}
+#m-size {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 50vh;
+}
+#m-challenge {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 85vh;
+}
+#m-abilities {
+  border: solid 2px;
+  position: absolute;
+  top: 14vh;
+  left: 2vh;
+  width: 60vh;
+  height: 52.8vh;
+}
+#m-img {
+  width: 52.7vh;
+  position: absolute;
+  top: 15.8vh;
+  left: 63.9vh;
+  border: solid 2px;
+}
+</style>

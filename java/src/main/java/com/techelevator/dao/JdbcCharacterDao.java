@@ -9,18 +9,19 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public class JdbcCharacterDao implements CharacterDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = Logger.getLogger(JdbcCharacterDao.class.getName());
 
     public JdbcCharacterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-
     @Override
     public Character getCharacterById(int userId) {
         String sql = "SELECT * FROM character WHERE user_id = ?";
@@ -32,36 +33,39 @@ public class JdbcCharacterDao implements CharacterDao {
 
         return null;
     }
-
     @Override
     public Character createCharacter(Character character) {
         try {
-            String sql = "INSERT INTO character (character_name, background, creature, class_profession, " +
-                    "character_strength, character_dexterity, character_constitution, character_intelligence, " +
-                    "character_wisdom, character_charisma, abilities, user_id, created_date) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
+            String imageSql = "INSERT INTO public.images (user_id, mediatype, data) VALUES (?, ?, ?)";
 
-            int newcharacterId = jdbcTemplate.queryForObject(
-                    sql,
-                    int.class,
-                    character.getName(),
-                    character.getBackground(),
-                    character.getCreature(),
-                    character.getProfession(),
-                    character.getStrength(),
-                    character.getDexterity(),
-                    character.getConstitution(),
-                    character.getIntelligence(),
-                    character.getWisdom(),
-                    character.getCharisma(),
-                    character.getAbilities(),
-                    character.getUser_id()
+            int imageId = jdbcTemplate.update(
+                    imageSql, character.getUser_id(), "image/jpg", character.getImage()
             );
 
-            character.setId(newcharacterId);
+            String characterSql = "INSERT INTO character (character_name, background, creature, class_profession, " +
+                    "character_strength, character_dexterity, character_constitution, character_intelligence, " +
+                    "character_wisdom, character_charisma, abilities, user_id, image_id, created_date) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
+
+            int newCharacterId = jdbcTemplate.queryForObject(
+                    characterSql,
+                    int.class,
+                    character.getCharacter_name(),
+                    character.getBackground(),
+                    character.getCreature(),
+                    character.getClass_profession(),
+                    character.getCharacter_strength(),
+                    character.getCharacter_dexterity(),
+                    character.getCharacter_constitution(),
+                    character.getCharacter_intelligence(),
+                    character.getCharacter_wisdom(),
+                    character.getCharacter_charisma(),
+                    character.getAbilities(),
+                    character.getUser_id(),
+                    imageId
+            );
             return character;
         } catch (DataAccessException e) {
-            // Log the details of the exception
             throw new RuntimeException("Error creating character", e);
         }
     }
@@ -69,39 +73,41 @@ public class JdbcCharacterDao implements CharacterDao {
 
     @Override
     public Character updateCharacter(Character character) {
-        // Implement the SQL query to update an existing character in the database
-        String sql = "UPDATE character SET name = ?, background = ?, creature = ?, " +
-                "profession = ?, strength = ?, dexterity = ?, constitution = ?, " +
-                "intelligence = ?, wisdom = ?, charisma = ?, abilities = ? " +
-                "WHERE id = ?";
+        try {
+            String sql = "UPDATE character SET character_name = ?, creature=?, class_profession=?, background=?, abilities=?, character_strength=?, \n" +
+                    "character_dexterity=?, character_constitution=?, character_intelligence=?, character_wisdom=?, character_charisma=? WHERE character_id=?;\n";
 
-        jdbcTemplate.update(
-                sql,
-                character.getName(),
-                character.getBackground(),
-                character.getCreature(),
-                character.getProfession(),
-                character.getStrength(),
-                character.getDexterity(),
-                character.getConstitution(),
-                character.getIntelligence(),
-                character.getWisdom(),
-                character.getCharisma(),
-                character.getAbilities(),
-                character.getId()
-        );
-
-        return character;
+            int rowsUpdated = jdbcTemplate.update(
+                    sql,
+                    character.getCharacter_name(),
+                    character.getCreature(),
+                    character.getBackground(),
+                    character.getClass_profession(),
+                    character.getAbilities(),
+                    character.getCharacter_strength(),
+                    character.getCharacter_dexterity(),
+                    character.getCharacter_constitution(),
+                    character.getCharacter_intelligence(),
+                    character.getCharacter_wisdom(),
+                    character.getCharacter_charisma(),
+                    character.getId()
+            );
+            if (rowsUpdated > 0) {
+                return character;
+            } else {
+                throw new RuntimeException("Character not found or not updated");
+            }
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating character", e);
+        }
     }
-
     @Override
     public int deleteCharacterById(int id) {
-        // Implement the SQL query to delete a character by ID
         String sql = "DELETE FROM character WHERE id = ?";
         jdbcTemplate.update(sql, id);
         return id;
     }
-
     @Override
     public List<Character> getCharactersByUserId(int userId) {
         List<Character> characters = new ArrayList<>();
@@ -110,7 +116,6 @@ public class JdbcCharacterDao implements CharacterDao {
                 "character_wisdom, character_charisma, vote_id, user_id, image_id " +
                 "FROM character " +
                 "WHERE user_id = ?";
-
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -122,32 +127,34 @@ public class JdbcCharacterDao implements CharacterDao {
         }
         return characters;
     }
-
-
     @Override
-    public boolean doesCharacterBelongToUser(int characterId, int userId) {
-        return false;
+    public Character deleteCharacter(int userId, int characterId) {
+        try {
+            String sql = "DELETE FROM character WHERE user_id = ? AND character_id = ?";
+
+            int rowsDeleted = jdbcTemplate.update(sql, userId, characterId);
+
+            if (rowsDeleted == 0) {
+                throw new RuntimeException("Character not found for deletion");
+            }
+        } catch (DataAccessException e) {
+            throw new DaoException("Error deleting character", e);
+        }
+        return null;
     }
-
-    @Override
-    public void deleteCharacter(int characterId) {
-
-    }
-
     private Character mapRowToCharacter(SqlRowSet rowSet) {
-        // Implement the mapping from SQL row to Character object
         Character character = new Character();
         character.setId(rowSet.getInt("character_id"));
         character.setName(rowSet.getString("character_name"));
         character.setBackground(rowSet.getString("background"));
         character.setCreature(rowSet.getString("creature"));
-        character.setProfession(rowSet.getString("class_profession"));
-        character.setStrength(rowSet.getInt("character_strength"));
-        character.setDexterity(rowSet.getInt("character_dexterity"));
-        character.setConstitution(rowSet.getInt("character_constitution"));
-        character.setIntelligence(rowSet.getInt("character_intelligence"));
-        character.setWisdom(rowSet.getInt("character_wisdom"));
-        character.setCharisma(rowSet.getInt("character_charisma"));
+        character.setClass_profession(rowSet.getString("class_profession"));
+        character.setCharacter_strength(rowSet.getInt("character_strength"));
+        character.setCharacter_dexterity(rowSet.getInt("character_dexterity"));
+        character.setCharacter_constitution(rowSet.getInt("character_constitution"));
+        character.setCharacter_intelligence(rowSet.getInt("character_intelligence"));
+        character.setCharacter_wisdom(rowSet.getInt("character_wisdom"));
+        character.setCharacter_charisma(rowSet.getInt("character_charisma"));
         character.setAbilities(rowSet.getString("abilities"));
         return character;
     }
