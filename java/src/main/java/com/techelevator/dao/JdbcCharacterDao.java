@@ -47,8 +47,6 @@ public class JdbcCharacterDao implements CharacterDao {
                     "character_wisdom, character_charisma, abilities, user_id, image_id, created_date) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
 
-
-
             int newCharacterId = jdbcTemplate.queryForObject(
                     characterSql,
                     int.class,
