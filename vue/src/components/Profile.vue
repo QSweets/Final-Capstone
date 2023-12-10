@@ -13,8 +13,8 @@
       <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
     </div>
     <div>
-      <label for="character_name">Character Name:</label>
-      <input type="text" id="characterName" name="characterName" v-model="character_name" required/>
+      <label for="name">Character Name:</label>
+      <input type="text" id="name" name="name" v-model="name" required/>
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -103,7 +103,7 @@ export default {
     return {
       showForm: false,
       imageFile: null,
-      character_name: '',
+      name: '',
       creature: '',
       class_profession: '',
       character_strength: generateRandomStat(8, 18),
@@ -174,7 +174,7 @@ export default {
 
         const characterData = {
           picture: base64Image,
-          character_name: this.character_name,
+          name: this.name,
           creature: this.creature,
           class_profession: this.class_profession,
           character_strength: this.character_strength,
@@ -199,7 +199,7 @@ export default {
         console.log('Character Saved!');
 
         this.picture = null;
-        this.character_name = '';
+        this.name = '';
         this.creature = '';
         this.class_profession = '';
         this.character_strength = '';
