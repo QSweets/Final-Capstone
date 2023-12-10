@@ -65,32 +65,40 @@ export default {
   position: absolute;
   top: 7.8vh;
   left: 10vh;
+  padding-left: .5%;
+  padding-right: .5%;
 }
 #m-size {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
   left: 50vh;
+  padding-left: .5%;
+  padding-right: .5%;
 }
 #m-challenge {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
   left: 85vh;
+  padding-left: .5%;
+  padding-right: .5%;
 }
 #m-abilities {
   border: solid 2px;
   position: absolute;
   top: 14vh;
-  left: 2vh;
+  left: 1.5vh;
   width: 60vh;
   height: 52.8vh;
+  overflow: scroll;
+  padding-left: .5%;
 }
 #m-img {
   width: 52.7vh;
   position: absolute;
-  top: 15.8vh;
-  left: 63.9vh;
-  border: solid 2px;
+  top: 15.7vh;
+  left: 62.9vh;
+  height: 53.1vh;
 }
 </style>

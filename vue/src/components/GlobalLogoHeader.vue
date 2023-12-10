@@ -2,17 +2,26 @@
   <header id="logo">
     <h1>This <span> is <i>a placement</i> holder for <i>Logo</i></span></h1>
   </header>
+  <div class="logo-line"/>
 </template>
 
 <style>
 #logo {
   display: flex;
   position: absolute;
-  bottom: 88.8vh;
+  top: 0vh;
+  left: .1vh;
   border: solid;
-  width: 100%;
+  width: 99.4%;
   height: 7.9%;
   justify-content: center;
   background-color: blue;
+}
+.logo-line {
+  border: solid 4px;
+  width: 99.4%;
+  position: absolute;
+  top: 8.5vh;
+  border-color: rgb(89, 4, 248);
 }
 </style>

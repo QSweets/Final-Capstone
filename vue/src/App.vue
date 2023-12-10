@@ -35,13 +35,16 @@ export default {
   position: absolute;
   bottom: 82.5vh;
   right: 40%;
+  border-bottom: solid 2px;
+  border-color: rgb(89, 4, 248);
 }
 .home{
   display: flex;
   flex-direction: row-reverse;
   position: absolute;
   top: 10.8vh;
-  border-bottom: solid 1px;
+  border-bottom: solid 2px;
+  border-color: rgb(89, 4, 248);
   width: 7%;
 }
 html {
