@@ -9,7 +9,6 @@
       <GlobalLogoHeader />
       <!-- /*Want to display the MOTW details*/ -->
       <MOTW />
-      
       <CharacterList />
       <Vote />
 
