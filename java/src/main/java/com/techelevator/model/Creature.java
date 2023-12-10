@@ -1,19 +1,18 @@
 package com.techelevator.model;
 
-import java.util.List;
-
 public abstract class Creature {
     private int id;
-    public String name;
+    private String name;
     private Byte image;
+    private Integer image_id;  // New property for image ID
 
-    public Creature(int id, String name, Byte image){
+    public Creature(int id, String name, Byte image) {
         this.id = id;
         this.name = name;
         this.image = image;
     }
 
-    public Creature(){}
+    public Creature() {}
 
     public int getId() {
         return id;
@@ -39,5 +38,12 @@ public abstract class Creature {
         this.image = image;
     }
 
+    public Integer getImage_id() {
+        return image_id;
+    }
 
+    public void setImage_id(Integer image_id) {
+        this.image_id = image_id;
+    }
 }
+

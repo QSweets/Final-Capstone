@@ -9,18 +9,19 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public class JdbcCharacterDao implements CharacterDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = Logger.getLogger(JdbcCharacterDao.class.getName());
 
     public JdbcCharacterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-
     @Override
     public Character getCharacterById(int userId) {
         String sql = "SELECT * FROM character WHERE user_id = ?";
@@ -32,7 +33,6 @@ public class JdbcCharacterDao implements CharacterDao {
 
         return null;
     }
-
     @Override
     public Character createCharacter(Character character) {
         try {
@@ -41,7 +41,7 @@ public class JdbcCharacterDao implements CharacterDao {
                     "character_wisdom, character_charisma, abilities, user_id, created_date) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
 
-            int newcharacterId = jdbcTemplate.queryForObject(
+            int newCharacterId = jdbcTemplate.queryForObject(
                     sql,
                     int.class,
                     character.getName(),
@@ -57,51 +57,52 @@ public class JdbcCharacterDao implements CharacterDao {
                     character.getAbilities(),
                     character.getUser_id()
             );
-
-            character.setId(newcharacterId);
+            character.setId(newCharacterId);
             return character;
         } catch (DataAccessException e) {
-            // Log the details of the exception
+            logger.severe("Error creating character");
+            logger.severe(e.getMessage());
+            logger.severe(Arrays.toString(e.getStackTrace()));
             throw new RuntimeException("Error creating character", e);
         }
     }
-
-
     @Override
     public Character updateCharacter(Character character) {
-        // Implement the SQL query to update an existing character in the database
-        String sql = "UPDATE character SET name = ?, background = ?, creature = ?, " +
-                "profession = ?, strength = ?, dexterity = ?, constitution = ?, " +
-                "intelligence = ?, wisdom = ?, charisma = ?, abilities = ? " +
-                "WHERE id = ?";
+        try {
+            String sql = "UPDATE character SET character_name = ?, creature=?, class_profession=?, background=?, abilities=?, character_strength=?, \n" +
+                    "character_dexterity=?, character_constitution=?, character_intelligence=?, character_wisdom=?, character_charisma=? WHERE character_id=?;\n";
 
-        jdbcTemplate.update(
-                sql,
-                character.getName(),
-                character.getBackground(),
-                character.getCreature(),
-                character.getProfession(),
-                character.getStrength(),
-                character.getDexterity(),
-                character.getConstitution(),
-                character.getIntelligence(),
-                character.getWisdom(),
-                character.getCharisma(),
-                character.getAbilities(),
-                character.getId()
-        );
-
-        return character;
+            int rowsUpdated = jdbcTemplate.update(
+                    sql,
+                    character.getName(),
+                    character.getCreature(),
+                    character.getBackground(),
+                    character.getProfession(),
+                    character.getAbilities(),
+                    character.getStrength(),
+                    character.getDexterity(),
+                    character.getConstitution(),
+                    character.getIntelligence(),
+                    character.getWisdom(),
+                    character.getCharisma(),
+                    character.getId()
+            );
+            if (rowsUpdated > 0) {
+                return character;
+            } else {
+                throw new RuntimeException("Character not found or not updated");
+            }
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating character", e);
+        }
     }
-
     @Override
     public int deleteCharacterById(int id) {
-        // Implement the SQL query to delete a character by ID
         String sql = "DELETE FROM character WHERE id = ?";
         jdbcTemplate.update(sql, id);
         return id;
     }
-
     @Override
     public List<Character> getCharactersByUserId(int userId) {
         List<Character> characters = new ArrayList<>();
@@ -110,7 +111,6 @@ public class JdbcCharacterDao implements CharacterDao {
                 "character_wisdom, character_charisma, vote_id, user_id, image_id " +
                 "FROM character " +
                 "WHERE user_id = ?";
-
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -122,20 +122,22 @@ public class JdbcCharacterDao implements CharacterDao {
         }
         return characters;
     }
-
-
     @Override
-    public boolean doesCharacterBelongToUser(int characterId, int userId) {
-        return false;
+    public Character deleteCharacter(int userId, int characterId) {
+        try {
+            String sql = "DELETE FROM character WHERE user_id = ? AND character_id = ?";
+
+            int rowsDeleted = jdbcTemplate.update(sql, userId, characterId);
+
+            if (rowsDeleted == 0) {
+                throw new RuntimeException("Character not found for deletion");
+            }
+        } catch (DataAccessException e) {
+            throw new DaoException("Error deleting character", e);
+        }
+        return null;
     }
-
-    @Override
-    public void deleteCharacter(int characterId) {
-
-    }
-
     private Character mapRowToCharacter(SqlRowSet rowSet) {
-        // Implement the mapping from SQL row to Character object
         Character character = new Character();
         character.setId(rowSet.getInt("character_id"));
         character.setName(rowSet.getString("character_name"));

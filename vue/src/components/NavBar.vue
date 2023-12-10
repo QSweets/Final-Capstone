@@ -7,6 +7,9 @@
       <router-link to="/profile" v-if="token !== ''">
         <button>Go to My Profile</button>
       </router-link>
+      <router-link to="/social" v-if="token !== ''">
+        <button>Message Board</button>
+      </router-link>
     </div>
   </template>
   
