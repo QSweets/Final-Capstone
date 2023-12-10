@@ -22,8 +22,6 @@ public class JdbcCharacterDao implements CharacterDao {
     public JdbcCharacterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-
     @Override
     public Character getCharacterById(int userId) {
         String sql = "SELECT * FROM character WHERE user_id = ?";
@@ -35,7 +33,6 @@ public class JdbcCharacterDao implements CharacterDao {
 
         return null;
     }
-
     @Override
     public Character createCharacter(Character character) {
         try {
@@ -63,16 +60,12 @@ public class JdbcCharacterDao implements CharacterDao {
             character.setId(newCharacterId);
             return character;
         } catch (DataAccessException e) {
-            // Log the details of the exception
             logger.severe("Error creating character");
-            logger.severe(e.getMessage());  // log the exception message
-            logger.severe(Arrays.toString(e.getStackTrace()));  // log the stack trace
+            logger.severe(e.getMessage());
+            logger.severe(Arrays.toString(e.getStackTrace()));
             throw new RuntimeException("Error creating character", e);
         }
     }
-
-
-
     @Override
     public Character updateCharacter(Character character) {
         try {
@@ -94,8 +87,6 @@ public class JdbcCharacterDao implements CharacterDao {
                     character.getCharisma(),
                     character.getId()
             );
-
-
             if (rowsUpdated > 0) {
                 return character;
             } else {
@@ -106,18 +97,12 @@ public class JdbcCharacterDao implements CharacterDao {
             throw new RuntimeException("Error updating character", e);
         }
     }
-
-
-
-
     @Override
     public int deleteCharacterById(int id) {
-        // Implement the SQL query to delete a character by ID
         String sql = "DELETE FROM character WHERE id = ?";
         jdbcTemplate.update(sql, id);
         return id;
     }
-
     @Override
     public List<Character> getCharactersByUserId(int userId) {
         List<Character> characters = new ArrayList<>();
@@ -126,7 +111,6 @@ public class JdbcCharacterDao implements CharacterDao {
                 "character_wisdom, character_charisma, vote_id, user_id, image_id " +
                 "FROM character " +
                 "WHERE user_id = ?";
-
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -138,11 +122,6 @@ public class JdbcCharacterDao implements CharacterDao {
         }
         return characters;
     }
-
-
-
-
-
     @Override
     public Character deleteCharacter(int userId, int characterId) {
         try {
@@ -158,9 +137,7 @@ public class JdbcCharacterDao implements CharacterDao {
         }
         return null;
     }
-
     private Character mapRowToCharacter(SqlRowSet rowSet) {
-        // Implement the mapping from SQL row to Character object
         Character character = new Character();
         character.setId(rowSet.getInt("character_id"));
         character.setName(rowSet.getString("character_name"));

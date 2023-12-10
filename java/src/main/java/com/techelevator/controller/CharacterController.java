@@ -20,12 +20,10 @@ public class CharacterController {
 
     private final CharacterDao characterDao;
 
-
     public CharacterController(CharacterDao characterDao) {
         this.characterDao = characterDao;
 
     }
-
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
     public List<Character> getCharactersByUserId(@PathVariable int user_id) {
         try {
@@ -43,7 +41,6 @@ public class CharacterController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @PutMapping("/{userId}/{characterId}")
     @ResponseStatus(HttpStatus.OK)
     public Character updateCharacter(@PathVariable int userId, @PathVariable int characterId, @Valid @RequestBody Character updatedCharacter
@@ -57,8 +54,6 @@ public class CharacterController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error updating character", e);
         }
     }
-
-
     @DeleteMapping("/{userId}/{characterId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCharacter(@PathVariable int userId, @PathVariable int characterId) {
