@@ -58,9 +58,6 @@ const routes = [
     path: '/social',
     name: 'social',
     component: SocialView,
-    meta: {
-      requiresAuth: true
-    }
   },
 
 ]; 

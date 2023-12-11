@@ -1,21 +1,22 @@
 <template>
- =
   <div class="social">
     <h1>Let's Talk About It</h1>
     <!-- This is to navigate to the homepage -->
     <router-link to="/" v-if="$store.state.token !== ''">Home</router-link> &nbsp; | &nbsp;
     <!-- navigate to the "logout" route -->
     <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
-  
+    <add-comment />
+    <!-- <comment-list /> -->
   </div>
   <GlobalLogoHeader />
+  
   <main>
-    <router-view />
-    <CommentHomeView />
+    <!-- <router-view /> -->
+    <!-- <CommentHomeView />
     <CommentMessageDetails />
     <CommentMessageForm />
     <CommentMessageSummary /> 
-    <MessageService />
+    <MessageService /> -->
     
   </main>
 
@@ -23,52 +24,56 @@
 
 <script>
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
-import CommentHomeView from '../views/CommentHomeView.vue';
-import CommentMessageDetails from '../components/CommentMessageDetails.vue';
-import CommentMessageForm from '../components/CommentMessageForm.vue'; 
-import CommentMessageSummary from '../components/CommentMessageSummary.vue';
-import MessageService from '../services/MessageService';
+import AddComment from '../components/AddComment.vue';
+// import CommentList from '../components/CommentList.vue';
+// import CommentHomeView from '../views/CommentHomeView.vue';
+// import CommentMessageDetails from '../components/CommentMessageDetails.vue';
+// import CommentMessageForm from '../components/CommentMessageForm.vue'; 
+// import CommentMessageSummary from '../components/CommentMessageSummary.vue';
+// import MessageService from '../services/MessageService';
 
 export default {
   components: {
     GlobalLogoHeader, 
-    CommentHomeView,
-    CommentMessageDetails,
-    CommentMessageForm,
-    CommentMessageSummary,
-    MessageService
+    AddComment,
+    // CommentList
+    // CommentHomeView,
+    // CommentMessageDetails,
+    // CommentMessageForm,
+    // CommentMessageSummary,
+    // MessageService
 
-},
+}
 
-data() {
-      return {
-        message: {
-          id: 0,
-          topicId: Number(this.$route.params.topicId),
-          created: new Date(),
-          title: '',
-          messageText: ''
-        },
-      }
-    },
+// data() {
+//       return {
+//         message: {
+//           id: 0,
+//           topicId: Number(this.$route.params.topicId),
+//           created: new Date(),
+//           title: '',
+//           messageText: ''
+//         },
+//       }
+//     },
 
-  computed: {
-    notification() {
-      return this.$store.state.notification;
-    },
-    notificationClass() {
-      return {
-        'status-message': true,
-        error: this.notification?.type?.toLowerCase() === 'error',
-        success: this.notification?.type?.toLowerCase() === 'success'
-      };
-    }
-  },
-  methods: {
-    clearNotification() {
-      this.$store.commit('CLEAR_NOTIFICATION');
-    }
-  }
+//   computed: {
+//     notification() {
+//       return this.$store.state.notification;
+//     },
+//     notificationClass() {
+//       return {
+//         'status-message': true,
+//         error: this.notification?.type?.toLowerCase() === 'error',
+//         success: this.notification?.type?.toLowerCase() === 'success'
+//       };
+//     }
+//   },
+//   methods: {
+//     clearNotification() {
+//       this.$store.commit('CLEAR_NOTIFICATION');
+//     }
+//   }
 };
 </script>
 

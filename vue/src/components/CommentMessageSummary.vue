@@ -28,7 +28,7 @@
   </script>
   
   <style scoped>
-  .message {
+  /* .message {
     background: rgb(245, 245, 245);
     border: solid 2px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -37,5 +37,5 @@
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
     word-wrap: break-word;
     cursor: pointer;
-  }
+  } */
   </style>

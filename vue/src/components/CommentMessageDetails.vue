@@ -70,7 +70,7 @@
   </script>
   
   <style scoped>
-  .message {
+  /* .message {
     background: rgb(245, 245, 245);
     border: solid 2px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -84,5 +84,5 @@
   }
   .created {
     margin-bottom: 1rem;
-  }
+  } */
   </style>
