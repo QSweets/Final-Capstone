@@ -18,7 +18,6 @@
   </template>
   
   <script>
-  //import topicService from '../services/TopicService.js';
   import CommentMessageSummary from '../components/CommentMessageSummary.vue';
   import TopicService from '../services/TopicService.js';
   
@@ -50,7 +49,7 @@
             .then(response => {
               if(response.status === 200) {
                 this.$store.commit('SET_NOTIFICATION', {message: 'Topic has been deleted.', type: 'success'});
-                this.$router.push({name: 'CommentHomeView'});
+                this.$router.push({name: 'SocialView'});
               }
             })
             .catch(error => {

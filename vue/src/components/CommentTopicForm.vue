@@ -40,19 +40,17 @@
         }
         // Check for add or edit
         if (this.editTopic.id === 0) {
-          // TODO - Do an add, then navigate Home on success.
           // For errors, call handleErrorResponse
           TopicService.create(this.editTopic)
             .then(response => {
               if (response.status == 201) {
-                this.$router.push({name: 'CommentHomeView'});
+                this.$router.push({name: 'SocialView'});
               }
             })
             .catch(error => {
               this.handleErrorResponse(error, 'adding');
             })
         } else {
-          // TODO - Do an edit, then navigate back to Topic Details on success
           // For errors, call handleErrorResponse
           TopicService.update(this.editTopic.id, this.editTopic)
             .then(response => {

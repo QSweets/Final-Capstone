@@ -9,7 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import VoteView from '../views/VoteView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import SocialView from '../views/SocialView.vue';
-import CommentHomeView from '../views/CommentHomeView.vue';
+//import CommentHomeView from '../views/CommentHomeView.vue';
 import CommentTopicDetailsView from '../views/CommentTopicDetailsView.vue';
 import CommentAddMessageView from '../views/CommentAddMessageView.vue';
 import CommentAddTopicView from '../views/CommentAddTopicView.vue';
@@ -71,11 +71,11 @@ const routes = [
     name: "CommentNotFoundView",
     component: CommentNotFoundView
   },
-  {
-    path: '/social',
-    name: 'CommentHomeView',
-    component: CommentHomeView
-  },
+  // {
+  //   path: '/social',
+  //   name: 'CommentHomeView',
+  //   component: CommentHomeView
+  // },
   {
     path: '/social/topic/:topicId',
     name: 'CommentTopicDetailsView',

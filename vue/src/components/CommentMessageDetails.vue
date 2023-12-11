@@ -41,7 +41,7 @@
             .then(response => {
               if (response.status === 200) {
                 this.$store.commit('SET_NOTIFICATION', {message: 'Message has been deleted', type: 'success'});
-                //this.$router.push({name: 'CommentTopicDetailsView', params: {topicId: this.message.topicId}});
+                this.$router.push({name: 'CommentTopicDetailsView', params: {topicId: this.message.topicId}});
               }
             })
             .catch(error => {

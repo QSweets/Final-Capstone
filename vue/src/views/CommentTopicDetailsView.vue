@@ -4,7 +4,7 @@
     </div>
     <div v-else>
       <nav>
-        <router-link v-bind:to="{ name: 'CommentHomeView' }">Back to Topic List</router-link>
+        <router-link v-bind:to="{ name: 'SocialView' }">Back to Topic List</router-link>
       </nav>
       <comment-topic-details v-bind:topic="topic" />
     </div>

@@ -1,8 +1,8 @@
 <template>
-    <div class="loading" v-if="isLoading">
+    <!-- <div class="loading" v-if="isLoading">
       <p>Loading...</p>
-    </div>
-    <div v-else>
+    </div> -->
+    <div >
       <h1>Edit Topic</h1>
       <comment-topic-form v-bind:topic="topic" />
     </div>
