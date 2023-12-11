@@ -10,11 +10,13 @@ DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS monster;
 DROP TABLE IF EXISTS graveyard;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS party;
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+  
 CREATE TABLE users (
    user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
    username varchar(50) NOT NULL,
@@ -22,6 +24,7 @@ CREATE TABLE users (
    role varchar(50) NOT NULL,
    CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
 CREATE SEQUENCE seq_images_id
    INCREMENT BY 1
    NO MINVALUE
@@ -35,6 +38,7 @@ CREATE TABLE images (
    CONSTRAINT PK_images PRIMARY KEY (image_id),
    CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
 CREATE TABLE achievements (
    badge_id serial,
    badge_name varchar(20),
@@ -43,12 +47,7 @@ CREATE TABLE achievements (
    CONSTRAINT PK_badge PRIMARY KEY (badge_id),
    CONSTRAINT FK_badge_images FOREIGN KEY (image_id) REFERENCES images (image_id)
 );
-CREATE TABLE vote (
-   vote_id serial,
-   user_id int,
-   CONSTRAINT PK_vote PRIMARY KEY (vote_id),
-   CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
+
 CREATE TABLE character (
    character_id serial,
    name varchar(25),
@@ -63,14 +62,13 @@ CREATE TABLE character (
    character_intelligence int NOT NULL,
    character_wisdom int NOT NULL,
    character_charisma int NOT NULL,
-   vote_id int,
    user_id int,
    image_id int,
    CONSTRAINT PK_character PRIMARY KEY (character_id),
-   CONSTRAINT FK_character_vote FOREIGN KEY (vote_id) REFERENCES vote (vote_id),
    CONSTRAINT FK_character_user FOREIGN KEY (user_id) REFERENCES users (user_id),
    CONSTRAINT FK_character_image FOREIGN KEY (image_id) REFERENCES images (image_id)
 );
+
 CREATE TABLE monster (
    monster_id serial,
    monster_name varchar(50),
@@ -89,6 +87,25 @@ CREATE TABLE monster (
    CONSTRAINT FK_monster_image FOREIGN KEY (image_id) REFERENCES images (image_id),
    CONSTRAINT FK_monster_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
+CREATE TABLE party (
+	party_id serial, 
+    character_id int, 
+	CONSTRAINT PK_party PRIMARY KEY (party_id), 
+	CONSTRAINT FK_party_character FOREIGN KEY (character_id) REFERENCES character (character_id)
+);
+
+CREATE TABLE vote (
+   vote_id serial,
+   user_id int,
+   party_id int,
+   monster_id int, 		
+   CONSTRAINT PK_vote PRIMARY KEY (vote_id),
+   CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id),
+   CONSTRAINT FK_vote_party FOREIGN KEY (party_id) REFERENCES party (party_id), 
+   CONSTRAINT FK_vote_monster FOREIGN KEY (monster_id) REFERENCES monster (monster_id)	
+);
+
 CREATE TABLE graveyard (
    graveyard_id serial,
    character_id int,
@@ -100,6 +117,7 @@ CREATE TABLE graveyard (
    CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
 CREATE TABLE messages (
 	comment_id serial,
 	user_id int,
@@ -109,4 +127,5 @@ CREATE TABLE messages (
 	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
 	CONSTRAINT FK_comment_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
 COMMIT TRANSACTION;

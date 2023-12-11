@@ -8,6 +8,7 @@ public class Vote {
     private LocalDate date;
     private int voteId;
     private String monsterId;
+
     public Vote(int userId, int partyId, LocalDate date, int voteId, String monsterId){
         this.userId = userId;
         this.partyId = partyId;
