@@ -37,10 +37,12 @@ public class JdbcCharacterDao implements CharacterDao {
     @Override
     public Character createCharacter(Character character) {
         try {
+            byte[] imageData = character.getImage();
+
             String imageSql = "INSERT INTO public.images (user_id, mediatype, data) VALUES (?, ?, ?) RETURNING image_id";
 
             int imageId = jdbcTemplate.queryForObject(
-                    imageSql, int.class, character.getUser_id(), "image/jpg", character.getImage()
+                    imageSql, int.class, character.getUser_id(), "image/jpg", imageData
             );
 
             String characterSql = "INSERT INTO character (name, background, creature, class_profession, " +

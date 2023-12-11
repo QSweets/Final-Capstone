@@ -1,7 +1,9 @@
 package com.techelevator.dao;
 import com.techelevator.model.Comment;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
 public interface CommentDao {
     List<Comment> getAllComments();
     Comment createComment(Comment comment);

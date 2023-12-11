@@ -174,7 +174,7 @@ export default {
 
         const characterData = {
           picture: base64Image,
-          name: this.name,
+          namev: this.name,
           creature: this.creature,
           class_profession: this.class_profession,
           character_strength: this.character_strength,
@@ -199,7 +199,7 @@ export default {
         console.log('Character Saved!');
 
         this.picture = null;
-        this.name = '';
+        this.character_name = '';
         this.creature = '';
         this.class_profession = '';
         this.character_strength = '';
