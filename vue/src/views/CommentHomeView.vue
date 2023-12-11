@@ -1,23 +1,16 @@
 <template>
-    <!-- <div class="loading" v-if="isLoading">
-      <p>Loading...</p>
-    </div> -->
     <div >
-      <header class="flex">
-        <h1>Topics</h1>
-        <button class="btn-add" v-on:click="$router.push({ name: 'CommentAddTopicView' })">Add Topic</button>
-      </header>
-      <comment-topic-list v-bind:topics="topics"/>
+        <button class="btn-add" v-on:click="$router.push({ name: 'CommentAddMessageView' })">Add Topic</button>
+      <message-service v-bind:topics="topics"/>
     </div>
   </template>
   
   <script>
-  import topicService from '../services/TopicService.js';
-  import CommentTopicList from '../components/CommentTopicList.vue';
+  import messageService from '../services/MessageService.js';
   
   export default {
     components: {
-      CommentTopicList
+      messageService,
     },
     data() {
       return {
@@ -27,9 +20,9 @@
     },
     methods: {
       getTopics() {
-        topicService.list()
+        messageService.list()
           .then(response => {
-            this.topics = response.data;
+            this.messages = response.data;
             this.isLoading = false;
           })
           .catch(error => {

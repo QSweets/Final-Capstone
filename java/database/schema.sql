@@ -1,5 +1,4 @@
 BEGIN TRANSACTION;
-
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP TABLE IF EXISTS images;
@@ -10,15 +9,12 @@ DROP TABLE IF EXISTS profession;
 DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS monster;
 DROP TABLE IF EXISTS graveyard;
-
-
+DROP TABLE IF EXISTS messages;
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
-
-
 CREATE TABLE users (
    user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
    username varchar(50) NOT NULL,
@@ -26,13 +22,11 @@ CREATE TABLE users (
    role varchar(50) NOT NULL,
    CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
-
 CREATE SEQUENCE seq_images_id
    INCREMENT BY 1
    NO MINVALUE
    NO MAXVALUE
    CACHE 1;
-
 CREATE TABLE images (
    image_id int DEFAULT nextval('seq_images_id'::regclass) NOT NULL,
    user_id int,
@@ -41,7 +35,6 @@ CREATE TABLE images (
    CONSTRAINT PK_images PRIMARY KEY (image_id),
    CONSTRAINT FK_images_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
 CREATE TABLE achievements (
    badge_id serial,
    badge_name varchar(20),
@@ -50,17 +43,15 @@ CREATE TABLE achievements (
    CONSTRAINT PK_badge PRIMARY KEY (badge_id),
    CONSTRAINT FK_badge_images FOREIGN KEY (image_id) REFERENCES images (image_id)
 );
-
 CREATE TABLE vote (
    vote_id serial,
    user_id int,
    CONSTRAINT PK_vote PRIMARY KEY (vote_id),
    CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
 CREATE TABLE character (
    character_id serial,
-   character_name varchar(25),
+   name varchar(25),
    creature varchar(50),
    class_profession varchar(50),
    background text,
@@ -80,7 +71,6 @@ CREATE TABLE character (
    CONSTRAINT FK_character_user FOREIGN KEY (user_id) REFERENCES users (user_id),
    CONSTRAINT FK_character_image FOREIGN KEY (image_id) REFERENCES images (image_id)
 );
-
 CREATE TABLE monster (
    monster_id serial,
    monster_name varchar(50),
@@ -99,7 +89,6 @@ CREATE TABLE monster (
    CONSTRAINT FK_monster_image FOREIGN KEY (image_id) REFERENCES images (image_id),
    CONSTRAINT FK_monster_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
 CREATE TABLE graveyard (
    graveyard_id serial,
    character_id int,
@@ -111,6 +100,13 @@ CREATE TABLE graveyard (
    CONSTRAINT FK_graveyard_character FOREIGN KEY (character_id) REFERENCES character (character_id),
    CONSTRAINT FK_graveyard_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
-
+CREATE TABLE messages (
+	comment_id serial,
+	user_id int,
+	comment_title varchar(50),
+	comment_box text,
+	comment_timestamp date,
+	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
+	CONSTRAINT FK_comment_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
 COMMIT TRANSACTION;

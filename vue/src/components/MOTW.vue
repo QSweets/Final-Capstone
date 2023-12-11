@@ -64,7 +64,7 @@ export default {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
-  left: 10vh;
+  left: 8.5%;
   padding-left: .5%;
   padding-right: .5%;
 }
@@ -72,7 +72,7 @@ export default {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
-  left: 50vh;
+  left: 40%;
   padding-left: .5%;
   padding-right: .5%;
 }
@@ -80,7 +80,7 @@ export default {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
-  left: 85vh;
+  left: 77.4%;
   padding-left: .5%;
   padding-right: .5%;
 }
@@ -88,7 +88,7 @@ export default {
   border: solid 2px;
   position: absolute;
   top: 14vh;
-  left: 1.5vh;
+  left: 8.5%;
   width: 60vh;
   height: 52.8vh;
   overflow: scroll;
@@ -98,7 +98,7 @@ export default {
   width: 52.7vh;
   position: absolute;
   top: 15.7vh;
-  left: 62.9vh;
+  left: 55.9%;
   height: 53.1vh;
 }
 </style>

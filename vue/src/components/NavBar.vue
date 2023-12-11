@@ -3,10 +3,13 @@
   <div class="blank-box" />
   <div class="navbar">
     <router-link class="vote" to="/vote" v-if="token !== ''">
-      <button>Go to Voting Page</button>
+      <button>Voting</button>
     </router-link>
     <router-link class="profile" to="/profile" v-if="token !== ''">
-      <button>Go to My Profile</button>
+      <button>My Profile</button>
+    </router-link>
+    <router-link class="social" to="/social" v-if="token !== ''">
+      <button>Message Board</button>
     </router-link>
   </div>
 
@@ -26,20 +29,26 @@
 <style>
   .profile { 
   position: absolute;
-  top: 23.8vh;
-  padding: 1vh;
-  width: 14.2vh;
+  top: 23.8%;
+  padding: 1%;
+  width: 14.8%;
 }
 .vote {
   position: absolute;
-  top: 28.9vh;
-  padding: 1vh;
-  width: 14.8vh;
+  top: 28.9%;
+  padding: 1%;
+  width: 14.8%;
+}
+.social {
+  position: absolute;
+  top: 34%;
+  padding: 1%;
+  width: 14.8%;
 }
 .blank-box {
   border: solid 2px;
   position: absolute;
-  width: 12%;
+  width: 10%;
   height: 60%;
   top: 24%;
 }
