@@ -1,7 +1,4 @@
 <template>
-    <!-- <div class="loading" v-if="isLoading">
-      <p>Loading...</p>
-    </div> -->
     <div >
       <h1>Edit Message</h1>
       <comment-message-form v-bind:message="message" />
@@ -51,6 +48,3 @@
     } 
   };
   </script>
-  
-  <style scoped>
-  </style>

@@ -27,7 +27,7 @@
   };
   </script>
   
-  <style scoped>
+  <style>
   /* .message {
     background: rgb(245, 245, 245);
     border: solid 2px rgba(0, 0, 0, 0.5);

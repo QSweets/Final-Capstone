@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <h1 class="home-header">Home</h1>
     <NavBar />
     <MOTW />
