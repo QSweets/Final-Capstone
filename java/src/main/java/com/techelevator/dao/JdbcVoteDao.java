@@ -53,7 +53,8 @@ public class JdbcVoteDao implements VoteDao {
         return null;
     }
 
-
-
-
+    @Override
+    public Vote getVoteByUserId(int userId) {
+        return null;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VoteDao {
 
-    Vote submitVote(Vote vote);
+    Vote submitVote(Vote vote, int userId);
 
     Vote getVoteResultsByMonsterId(int monsterId);
 
