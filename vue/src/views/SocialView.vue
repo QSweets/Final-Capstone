@@ -1,46 +1,53 @@
+
 <template>
-  <div class="social">
-    <header class="app-header" v-on:click="$router.push({name: 'CommentHomeView'})"></header>
-    <h1>Let's Talk About It</h1>
-    <!-- This is to navigate to the homepage -->
-    <router-link to="/" v-if="$store.state.token !== ''">Home</router-link> &nbsp; | &nbsp;
-    <!-- navigate to the "logout" route -->
-    <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
+  <div class="loading" v-if="isLoading">
+    <p>Loading...</p>
   </div>
-  <GlobalLogoHeader />
-  
-  <main>
-    <div v-bind:class="notificationClass" v-show="notification" v-on:click="clearNotification">
-      {{ notification?.message }}
-    </div>
-    <router-view />
-  </main>
+  <div >
+    <header class="flex">
+      <h1>Topics</h1>
+      <button class="btn-add" v-on:click="$router.push({ name: 'CommentAddTopicView' })">Add Topic</button>
+    </header>
+    <comment-topic-list v-bind:topics="topics"/>
+  </div>
 </template>
 
 <script>
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
+import topicService from '../services/TopicService.js';
+import CommentTopicList from '../components/CommentTopicList.vue';
 
 export default {
   components: {
-    GlobalLogoHeader
+    // GlobalLogoHeader,
+    CommentTopicList
 },
-  computed: {
-    notification() {
-      return this.$store.state.notification;
-    },
-    notificationClass() {
-      return {
-        'status-message': true,
-        error: this.notification?.type?.toLowerCase() === 'error',
-        success: this.notification?.type?.toLowerCase() === 'success'
-      };
-    }
+data() {
+    return {
+      topics: [],
+      isLoading: true
+    };
   },
   methods: {
-    clearNotification() {
-      this.$store.commit('CLEAR_NOTIFICATION');
+    getTopics() {
+      topicService.list()
+        .then(response => {
+          this.topics = response.data;
+          this.isLoading = false;
+        })
+        .catch(error => {
+          this.handleError();
+        })
+    },
+    handleErrorResponse() {
+      this.isLoading = false;
+      this.$store.commit('SET_NOTIFICATION', `Could not get topic data from server.`);
     }
+  },
+  created() {
+    this.getTopics();
   }
+ 
 };
 </script>
 
