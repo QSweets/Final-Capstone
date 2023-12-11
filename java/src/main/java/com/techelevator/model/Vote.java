@@ -3,11 +3,11 @@ package com.techelevator.model;
 import java.time.LocalDate;
 
 public class Vote {
+    private int voteId;
     private int userId;
     private int partyId;
-    private LocalDate date;
-    private int voteId;
     private String monsterId;
+    private LocalDate date;
 
     public Vote(int userId, int partyId, LocalDate date, int voteId, String monsterId){
         this.userId = userId;

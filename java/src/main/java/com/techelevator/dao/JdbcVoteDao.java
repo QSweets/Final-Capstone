@@ -22,21 +22,30 @@ public class JdbcVoteDao implements VoteDao {
 
 
     @Override
-    public Vote submitVote(Vote vote) {
+    public Vote submitVote(Vote vote, int userId) {
         Vote newVote = null;
-        String sql = "INSERT into vote (user_id, date, party_id, monster_id) VALUES (?, ?, ?, ?) RETURNING vote_id; ";
+        String sql = "INSERT INTO vote " +
+                     "(vote_id, user_id, party_id, monster_id, vote_date)" +
+                     "VALUES (?, ?, ?, ?, ?)";
         try{
-            int newVoteId = jdbcTemplate.queryForObject(sql, int.class, vote.getUserId(), vote.getDate(), vote.getPartyId(), vote.getMonsterId());
-            return vote;
+            int newVoteId = jdbcTemplate.queryForObject(
+                    sql,
+                    int.class,
+                    vote.getVoteId(),
+                    vote.getPartyId(),
+                    vote.getMonsterId(),
+                    vote.getDate(),
+                    userId);
+            return getVoteByUserId(newVoteId);
         } catch (DataAccessException e) {
-            throw new RuntimeException("Error creating character", e);
+            throw new RuntimeException("Error submitting vote", e);
         }
     }
 
     @Override
-    public Vote getVoteResults() {
-        //This is a method that searches for the character with the most votes in the vote table
-        String sql = "SELECT party_id, COUNT(*) AS vote_count FROM vote GROUP BY party_id ORDER BY vote_count DESC LIMIT 1";
+    public Vote getVoteResultsByMonsterId(int monsterId) {
+        //This is a method that returns the party that appears the most frequently in the table given a monsterId
+        String sql = "SELECT party_id, COUNT(*) AS vote_count FROM vote WHERE monster_id = ? GROUP BY party_id ORDER BY vote_count DESC LIMIT 1";
 //
 //        try{
 //
