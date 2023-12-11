@@ -38,7 +38,7 @@
       },
       handleErrorResponse(error) {
         if (error.response.status == 404) {
-            this.$router.push({name: 'NotFoundView'});
+            this.$router.push({name: 'CommentNotFoundView'});
           } else {
             this.isLoading = false;
             this.$store.commit('SET_NOTIFICATION', `Could not get message data from server.`);

@@ -1,23 +1,14 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
 
-//const NOTIFICATION_TIMEOUT = 3000;
+const NOTIFICATION_TIMEOUT = 3000;
 
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
       user: currentUser || {},
-      //notification: null,
-      nextCommentId: 2,
-      comments: [
-        {
-          id: 1,
-          commenter: 'Goddess',
-          title: 'Welcome',
-          message: 'Let us discuss all things monster and mayhem'
-        }
-      ],
+      notification: null,
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -36,43 +27,39 @@ export function createStore(currentToken, currentUser) {
         state.user = {};
         axios.defaults.headers.common = {};
       },
-      ADD_COMMENT(state, comment) {
-        comment.id = state.nextCommentId++;
-        state.comments.upshift(comment);
-      }
-      // SET_NOTIFICATION(state, notification) {
-      //   // Clear the current notification if one exists
-      //   if (state.notification) {
-      //     this.commit('CLEAR_NOTIFICATION');
-      //   }
+      SET_NOTIFICATION(state, notification) {
+        // Clear the current notification if one exists
+        if (state.notification) {
+          this.commit('CLEAR_NOTIFICATION');
+        }
 
-      //   if (typeof notification === 'string') {
-      //     // If only a string was sent, create a notification object with defaults
-      //     notification = {
-      //       message: notification,
-      //       type: 'error',
-      //       timeout: NOTIFICATION_TIMEOUT
-      //     }
-      //   } else {
-      //     // Else add default values if needed
-      //     notification.type = notification.type || 'error';
-      //     notification.timeout = notification.timeout || NOTIFICATION_TIMEOUT;
-      //   }
+        if (typeof notification === 'string') {
+          // If only a string was sent, create a notification object with defaults
+          notification = {
+            message: notification,
+            type: 'error',
+            timeout: NOTIFICATION_TIMEOUT
+          }
+        } else {
+          // Else add default values if needed
+          notification.type = notification.type || 'error';
+          notification.timeout = notification.timeout || NOTIFICATION_TIMEOUT;
+        }
 
-      //   // Set the notification in state
-      //   state.notification = notification;
+        // Set the notification in state
+        state.notification = notification;
 
-      //   // Clear the message after timeout
-      //   notification.timer = window.setTimeout(() => {
-      //     this.commit('CLEAR_NOTIFICATION');
-      //   }, notification.timeout);
-      // },
-      // CLEAR_NOTIFICATION(state) {
-      //   if (state.notification && state.notification.timer) {
-      //     window.clearTimeout(state.notification.timer);
-      //   }
-      //   state.notification = null;
-      // },
+        // Clear the message after timeout
+        notification.timer = window.setTimeout(() => {
+          this.commit('CLEAR_NOTIFICATION');
+        }, notification.timeout);
+      },
+      CLEAR_NOTIFICATION(state) {
+        if (state.notification && state.notification.timer) {
+          window.clearTimeout(state.notification.timer);
+        }
+        state.notification = null;
+      },
     },
   });
   return store;
