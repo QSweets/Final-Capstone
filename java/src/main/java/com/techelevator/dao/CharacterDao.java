@@ -17,7 +17,7 @@ public interface CharacterDao {
 
     //Using Server Side APIs pt 2 as reference
     //Do we need this method at all since we are implementing this on the front end?
-    Character createCharacter(Character character);
+    Character createCharacter(Character character, int userId);
 
     //Allow a user to update their character
     Character updateCharacter(Character character);

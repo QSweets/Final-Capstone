@@ -23,9 +23,10 @@ public class JdbcCharacterDao implements CharacterDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public Character getCharacterById(int userId) {
-        String sql = "SELECT * FROM character WHERE user_id = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+    public Character getCharacterById(int characterId) {
+        String sql = "SELECT character_id, name, creature, class_profession, background, abilities, created_date, character_strength, character_dexterity, character_constitution, character_intelligence, character_wisdom, character_charisma, user_id, image_id " +
+                     "FROM character WHERE character_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, characterId);
 
         if (result.next()) {
             return mapRowToCharacter(result);
@@ -35,20 +36,12 @@ public class JdbcCharacterDao implements CharacterDao {
     }
 
     @Override
-    public Character createCharacter(Character character) {
+    public Character createCharacter(Character character, int userId) {
         try {
-            byte[] imageData = character.getImage();
-
-            String imageSql = "INSERT INTO public.images (user_id, mediatype, data) VALUES (?, ?, ?) RETURNING image_id";
-
-            int imageId = jdbcTemplate.queryForObject(
-                    imageSql, int.class, character.getUser_id(), "image/jpg", imageData
-            );
-
             String characterSql = "INSERT INTO character (name, background, creature, class_profession, " +
                     "character_strength, character_dexterity, character_constitution, character_intelligence, " +
-                    "character_wisdom, character_charisma, abilities, user_id, image_id, created_date) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
+                    "character_wisdom, character_charisma, abilities, user_id, created_date) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE) RETURNING character_id";
 
             int newCharacterId = jdbcTemplate.queryForObject(
                     characterSql,
@@ -64,10 +57,9 @@ public class JdbcCharacterDao implements CharacterDao {
                     character.getCharacter_wisdom(),
                     character.getCharacter_charisma(),
                     character.getAbilities(),
-                    character.getUser_id(),
-                    imageId
+                    userId
             );
-            return character;
+            return getCharacterById(newCharacterId);
         } catch (DataAccessException e) {
             throw new RuntimeException("Error creating character", e);
         }
@@ -160,8 +152,6 @@ public class JdbcCharacterDao implements CharacterDao {
         character.setCharacter_wisdom(rowSet.getInt("character_wisdom"));
         character.setCharacter_charisma(rowSet.getInt("character_charisma"));
         character.setAbilities(rowSet.getString("abilities"));
-        byte[] imageData = new byte[]{rowSet.getByte("image_data")};
-        character.setImage(imageData);
         return character;
     }
 }

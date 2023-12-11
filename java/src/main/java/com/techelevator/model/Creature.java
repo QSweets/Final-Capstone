@@ -1,7 +1,10 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public abstract class Creature {
     private int id;
+    @JsonProperty("character_name")
     private String name;
     private int image_id;
     public Creature(int id, String name, int image_id) {

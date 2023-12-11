@@ -1,11 +1,13 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CharacterDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Character;
 import com.techelevator.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
@@ -16,12 +18,15 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/characters")
+@PreAuthorize("isAuthenticated()")
 public class CharacterController {
 
     private final CharacterDao characterDao;
+    private UserDao userDao;
 
-    public CharacterController(CharacterDao characterDao) {
+    public CharacterController(CharacterDao characterDao, UserDao userDao) {
         this.characterDao = characterDao;
+        this.userDao = userDao;
 
     }
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
@@ -33,10 +38,10 @@ public class CharacterController {
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/{user_id}", method = RequestMethod.POST)
+    @RequestMapping(path = "", method = RequestMethod.POST)
     public Character createCharacter(@Valid @RequestBody Character character, Principal principal) {
         try {
-            return characterDao.createCharacter(character);
+            return characterDao.createCharacter(character, getCurrentUserId(principal));
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -62,5 +67,9 @@ public class CharacterController {
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting character", e);
         }
+    }
+
+    private int getCurrentUserId(Principal principal){
+        return userDao.getUserByUsername(principal.getName()).getId();
     }
 }
