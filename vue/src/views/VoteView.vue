@@ -1,12 +1,11 @@
 <template>
-    <div class="vote">
+    <div>
       <h1>Ready, Set, Vote!</h1>
       
       <!-- This is to navigate to the homepage -->
-      <router-link v-bind:to="{ name: 'home'}" v-if="$store.state.token !== ''">Home</router-link> &nbsp; | &nbsp;
+       &nbsp; | &nbsp;
       <!-- navigate to the "logout" route -->
       <router-link v-bind:to="{ name: 'logout'}" v-if="$store.state.token !== ''">Logout</router-link>
-      <GlobalLogoHeader />
       </div>
       <main>
       <!-- /*Want to display the MOTW details*/ -->
@@ -18,17 +17,14 @@
   
   <script>
   import Vote from '../components/Vote.vue';
-  import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
   import MOTW from '../components/MOTW.vue';
   import CharacterList from '../components/CharacterList.vue'
 
   export default {
     components: {
-      
-      GlobalLogoHeader, 
-      MOTW, 
-      CharacterList, 
-      Vote, 
+    MOTW, 
+    CharacterList, 
+    Vote, 
   },
 
   data() {
@@ -39,11 +35,3 @@
 };
 
   </script>
-  
-
-  <style>
-
-  </style>
-  
-  
- 

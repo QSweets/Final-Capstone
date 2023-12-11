@@ -1,8 +1,6 @@
 <template>
   <div >
-    <h1 class="home">Home</h1>
-    <router-link class="profile-link" v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''">MyProfile</router-link>
-    <router-link class="logout-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    <h1 class="home-header">Home</h1>
     <NavBar />
     <MOTW />
     <Welcome />

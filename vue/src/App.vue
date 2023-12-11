@@ -1,7 +1,7 @@
 <template>
   <div id="capstone-app">
     <div id="nav" v-if="isLoggedIn">
-      <router-link  v-bind:to="{ name: 'home' }">Home</router-link> &nbsp; | &nbsp;
+       &nbsp; | &nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
@@ -20,15 +20,6 @@ export default {
 </script>
 
 <style>
-.profile-link, .logout-link {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: row;
-  position: relative;
-  left: 93.2%;
-  top: 10.2vh;
-  width: 9vh;
-}
 #welcome {
   display: flex;
   position: absolute;
@@ -37,10 +28,11 @@ export default {
   border-bottom: solid 5px;
   border-color: rgb(33, 156, 144);
 }
-.home{
+.home-header{
   display: flex;
   position: absolute;
-  top: 10.8vh;
+  top: 9.6vh;
+  left: .3%;
   text-decoration: underline rgb(33, 156, 144);
   width: 6%;
 }

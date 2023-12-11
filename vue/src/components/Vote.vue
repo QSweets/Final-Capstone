@@ -8,16 +8,14 @@
 <GlobalLogoHeader />
 </template>
 
-
-
 <script>
 import NavBar from './NavBar.vue';
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
 
 export default {
     components: {
-    NavBar,
-    GlobalLogoHeader,
+        NavBar,
+        GlobalLogoHeader,
     },
 
     data() {
@@ -28,8 +26,6 @@ export default {
 }
 
 </script>
-
-
 
 <style scoped> 
 
