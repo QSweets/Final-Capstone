@@ -1,7 +1,5 @@
 package com.techelevator.model;
 
-import java.util.List;
-
 public class Character extends Creature {
 
     private int user_id;
