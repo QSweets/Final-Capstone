@@ -1,4 +1,3 @@
-
 <template>
   <div class="loading" v-if="isLoading">
     <p>Loading...</p>

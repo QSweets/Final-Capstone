@@ -1,13 +1,10 @@
 <template>
-    <div class="loading" v-if="isLoading">
-      <p>Loading...</p>
-    </div>
-    <div v-else>
+
       <nav>
         <router-link v-bind:to="{ name: 'SocialView' }">Back to Topic List</router-link>
       </nav>
       <comment-topic-details v-bind:topic="topic" />
-    </div>
+
   </template>
   
   <script>
