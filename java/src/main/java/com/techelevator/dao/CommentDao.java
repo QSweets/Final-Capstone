@@ -6,11 +6,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 public interface CommentDao {
     List<Comment> getAllComments();
-    Comment createComment(Comment comment);
+    Comment createComment(Comment comment, int userId);
     Comment updateComment(Comment comment);
     Comment deleteComment(int userId, int commentId);
-    List<Comment> getCommentsByUserId(int userId);
-
-
+    Comment getCommentByCommentId(int commentId);
 
 }

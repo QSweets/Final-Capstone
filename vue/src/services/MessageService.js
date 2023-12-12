@@ -1,25 +1,21 @@
 import axios from 'axios';
 
-const http = axios.create({
-  baseURL: "http://localhost:9000/social"
-});
-
 export default {
 
   get(id) {
-    return http.get(`/messages/${id}`);
+    return axios.get(`/social`);
   },
 
   create(message) {
-    return http.post('/messages', message);
+    return axios.post('/social/addComment', message);
   },
 
-  update(id, message) {
-    return http.put(`/messages/${id}`, message);
-  },
+  // update(id, message) {
+  //   return axios.put(`/social/${user_id}/${comment_id}`, message);
+  // },
 
   delete(id) {
-    return http.delete(`/messages/${id}`);
-  }
+    return axios.delete(`/social/${id}`);
+  },
 
 }

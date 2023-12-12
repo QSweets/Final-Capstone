@@ -27,22 +27,9 @@
             this.message = response.data;
             this.isLoading = false;
           })
-          .catch(error => {
-            if (error.response) {
-              if (error.response.status == 404) {
-                this.$router.push({name: 'CommentNotFoundView'});
-              } else {
-                this.$store.commit('SET_NOTIFICATION',
-                `Error getting message. Response received was "${error.response.statusText}".`);
-              }
-            } else if (error.request) {
-              this.$store.commit('SET_NOTIFICATION', `Error getting message. Server could not be reached.`);
-            } else {
-              this.$store.commit('SET_NOTIFICATION', `Error getting message. Request could not be created.`);
-            }
-          })
       }
     },
+    
     created() {
       this.getMessage(this.$route.params.messageId);
     } 

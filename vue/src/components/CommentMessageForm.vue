@@ -9,7 +9,7 @@
         <textarea id="messageText" name="messageText" v-model="editMessage.messageText" />
       </div>
       <div class="actions">
-        <button class="btn-submit" type="submit">Submit</button>
+        <button class="btn-submit" type="submit">Submit</button> 
         <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
       </div>
     </form>
@@ -30,7 +30,6 @@
         //initialize a new object with the same property values.
         editMessage: {
           id: this.message.id,
-          topicId: this.message.topicId,
           created: this.message.created,
           title: this.message.title,
           messageText: this.message.messageText,
@@ -50,7 +49,7 @@
           messageService.create(this.editMessage)
             .then(response => {
               if(response.status == 201) {
-                this.$router.push({name: 'CommentTopicDetailsView', params: {topicId: this.editMessage.topicId}});
+                this.$router.push({name: 'SocialView'});
               }
             })
             .catch(error => {
@@ -61,7 +60,7 @@
           messageService.update(this.message.id, this.editMessage)
             .then(response => {
               if (response.status == 200) {
-                this.$router.push({name: 'CommentMessageDetailsView', params: {messageId: this.editMessage.id}});
+                this.$router.push({name: 'SocialView'});
               }
             })
             .catch(error => {
@@ -72,19 +71,6 @@
       cancelForm() {
         this.$router.back();
       },
-      handleErrorResponse(error, verb) {
-        if (error.response) {
-          if (error.response.status == 404) {
-            this.$router.push({name: 'CommentNotFoundView'});
-          } else {
-            this.$store.commit('SET_NOTIFICATION',
-            `Error ${verb} message. Response received was "${error.response.statusText}".`);
-          }
-        } else if (error.request) {
-          this.$store.commit('SET_NOTIFICATION', `Error ${verb} message. Server could not be reached.`);
-        } else {
-          this.$store.commit('SET_NOTIFICATION', `Error ${verb} message. Request could not be created.`);
-        }
       },
       validateForm() {
         let msg = '';
@@ -98,15 +84,10 @@
         if (this.editMessage.messageText.length === 0) {
           msg += 'The message must contain message text.';
         }
-  
-        if (msg.length > 0) {
-          this.$store.commit('SET_NOTIFICATION', msg);
-          return false;
-        }
+        
         return true;
       },
-    }
-  };
+    };
   </script>
   
   <style>

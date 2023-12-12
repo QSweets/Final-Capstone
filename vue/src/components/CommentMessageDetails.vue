@@ -41,7 +41,7 @@
             .then(response => {
               if (response.status === 200) {
                 this.$store.commit('SET_NOTIFICATION', {message: 'Message has been deleted', type: 'success'});
-                this.$router.push({name: 'CommentTopicDetailsView', params: {topicId: this.message.topicId}});
+                this.$router.push({name: 'SocialView'});
               }
             })
             .catch(error => {
@@ -49,20 +49,6 @@
                 this.handleErrorResponse(error, 'deleting');
               }
             })
-        }
-      },
-      handleErrorResponse(error, verb) {
-        if (error.response) {
-          if (error.response.status == 404) {
-            this.$router.push({name: 'CommentNotFoundView'});
-          } else {
-            this.$store.commit('SET_NOTIFICATION',
-            `Error ${verb} message. Response received was "${error.response.statusText}".`);
-          }
-        } else if (error.request) {
-          this.$store.commit('SET_NOTIFICATION', `Error ${verb} message. Server could not be reached.`);
-        } else {
-          this.$store.commit('SET_NOTIFICATION', `Error ${verb} message. Request could not be created.`);
         }
       },
     }

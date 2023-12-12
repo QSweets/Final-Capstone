@@ -1,13 +1,10 @@
 <template>
-    <!-- <div class="loading" v-if="isLoading">
-      <p>Loading...</p>
-    </div> -->
-    <div>
+   
       <nav>
-        <router-link v-bind:to="{ name: 'CommentTopicDetailsView', params: { topicId: topicId } }">Back to Topic Details</router-link>
+        <router-link v-bind:to="{ name: 'SocialView' }">Back to Message Board</router-link>
       </nav>
       <comment-message-details v-bind:message="message" />
-    </div>
+
   </template>
   
   <script>
@@ -20,7 +17,6 @@
     },
     data(){
       return {
-        topicId: this.$route.params.topicId,
         message: {},
         isLoading: true
       }
@@ -36,14 +32,6 @@
             this.handleErrorResponse(error);
           });
       },
-      handleErrorResponse(error) {
-        if (error.response.status == 404) {
-            this.$router.push({name: 'CommentNotFoundView'});
-          } else {
-            this.isLoading = false;
-            this.$store.commit('SET_NOTIFICATION', `Could not get message data from server.`);
-          }
-      }
     },
     created() {
       this.getMessage(this.$route.params.messageId);

@@ -1,12 +1,15 @@
 <template>
-  <p>This is my Profile page</p>
-  <h3>My Party</h3>
-  <div class="img">
-    <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a>
+  <h1 class="profile-title">Command your party</h1>
+  
+  <div>
+    <a href="https://www.dnd5eapi.co/"><img class="img" src="src\ProfileImages\ProfileWall.png"></a>
   </div>
-  <div class="Character-creation-form">
-  <button v-on:click="toggleForm">Add Character</button>
+  <h2 class="select-party">My Party</h2>
+  <button class="add-character" v-on:click="toggleForm">Add Character</button>
+  <div class="character-creation-form">
+
   <div v-if="showForm" class="popup-form">
+
   <form v-on:submit.prevent="submitCharacter">
     <!-- <div>
       <label for="picture">Picture:</label>
@@ -15,6 +18,14 @@
     <div>
       <label for="character_name">Character Name:</label>
       <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
+    </div>
+    <div>
+      <label for="background">Background:</label>
+      <textarea v-model="background"></textarea> 
+    </div>
+    <div>
+      <label for="abilities">abilities:</label>
+      <textarea v-model="abilities"></textarea> 
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -63,7 +74,6 @@
       <label for="character_intelligence">Intelligence:</label>
       <input type="text" id="intelligence" name="intelligence" v-model="character_intelligence" disabled/>
     </div>
-
     <div>
       <label for="character_wisdom">Wisdom:</label>
       <input type="text" id="wisdom" name="wisdom"  v-model="character_wisdom" disabled />
@@ -73,19 +83,9 @@
       <input type="text" id="charisma" name="charisma"  v-model="character_charisma" disabled />
     </div>
     <div>
-      <label for="abilities">abilities:</label>
-      <textarea v-model="abilities"></textarea> 
+    <button class="roll-stats" v-on:click="rollAllStats">Roll Stats</button>
     </div>
-    <div>
-      <label for="background">Background:</label>
-      <textarea v-model="background"></textarea> 
-    </div>
-
-    <button type="submit" class="save btn" v-on:click="saveCharacter">Save Character</button>
-    <div>
-    <button v-on:click="rollAllStats">Roll Stats</button>
-    </div>
-
+    <button type="submit" class="save-character" v-on:click="saveCharacter">Save Character</button>
   </form>
   </div>
   </div>
@@ -186,9 +186,56 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <!-- <style>
+=======
+<style>
+.character-creation-form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 8%;
+  height: 65%;
+  top: 18%;
+  right: 5.7%;
+}
+.roll-stats {
+  position: absolute;
+  bottom: 4vh;
+}
+.profile-title {
+  display: flex;
+  position: absolute;
+  bottom: 82.5vh;
+  right: 40%;
+  border-bottom: solid 5px;
+  border-color: rgb(33, 156, 144);
+}
+.save-character {
+  position: absolute;
+  bottom: .8vh;
+}
+.add-character {
+  display: flex;
+  position: absolute;
+  bottom: 10vh;
+  right: 7.3%;
+}
+.select-party {
+  display: flex;
+  position: absolute;
+  top: 32vh;
+  right: 50%;
+  color: white;
+  border-bottom: solid 4px;
+  border-color: rgb(33, 156, 144);
+}
+>>>>>>> 0f6933a716be5b928eb5653e15d766055962ca65
 .img{
-  background-image: url('../loginImages/LoginBG3.png');
-  background-repeat: no-repeat;
+  width: 50%;
+  position: absolute;
+  top: 34vh;
+  left: 22%;
+  height: 35vh;
 }
 </style> -->
