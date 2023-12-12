@@ -9,6 +9,7 @@
   
   import messageService from '../services/MessageService';
   import CommentMessageForm from '../components/CommentMessageForm.vue';
+  import axios from 'axios';
   
   export default {
     components: {

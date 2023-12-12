@@ -9,6 +9,7 @@
   <script>
   import CommentMessageSummary from '../components/CommentMessageSummary.vue';
   import MessageService from '../services/MessageService'
+  import axios from 'axios';
   
   export default {
     components: {
@@ -20,6 +21,7 @@
         type: Object,
         required: true
       },
+    
     }
     };
 

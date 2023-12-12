@@ -10,6 +10,7 @@
   
   <script>
   const MAX_SUMMARY_LENGTH = 100;
+  import axios from 'axios';
   
   export default {
     props: {
