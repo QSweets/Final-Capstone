@@ -1,12 +1,9 @@
 <template>
-  <div id="background">
   <h1 class="profile-title">Command your party</h1>
   <h2 class="select-party">My Party</h2>
   <button class="add-character" v-on:click="toggleForm">Add Character</button>
   <div class="character-creation-form">
-
   <div v-if="showForm" class="popup-form">
-
   <form v-on:submit.prevent="submitCharacter">
     <!-- <div>
       <label for="picture">Picture:</label>
@@ -18,11 +15,11 @@
     </div>
     <div>
       <label for="background">Background:</label>
-      <textarea v-model="background"></textarea> 
+      <textarea v-model="background"></textarea>
     </div>
     <div>
       <label for="abilities">abilities:</label>
-      <textarea v-model="abilities"></textarea> 
+      <textarea v-model="abilities"></textarea>
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -86,16 +83,12 @@
   </form>
   </div>
   </div>
-</div>
 </template>
-
 <script>
 import axios from 'axios';
-
 function generateRandomStat(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 export default {
   data() {
     return {
@@ -135,11 +128,8 @@ export default {
       this.character_wisdom = generateRandomStat(8, 18);
       this.character_charisma = generateRandomStat(8, 18);
     },
-    
     async saveCharacter() {
       try {
-       
-
         const characterData = {
           character_name: this.character_name,
           creature: this.creature,
@@ -154,15 +144,12 @@ export default {
           background: this.background,
           user_id: this.getUserId(),
         };
-
         console.log('Character Data:', characterData);
-
         await axios.post(`http://localhost:9000/characters`, characterData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
-
         console.log('Character Saved!');
         this.character_name = '';
         this.creature = '';
@@ -194,38 +181,6 @@ export default {
   top: 18%;
   right: 5.7%;
   color: white;
-}
-.roll-stats {
-  position: absolute;
-  bottom: 4vh;
-}
-.save-character {
-  position: absolute;
-  bottom: .8vh;
-}
-.add-character {
-  display: flex;
-  position: absolute;
-  bottom: 10vh;
-  right: 7.3%;
-}
-.profile-title {
-  display: flex;
-  position: absolute;
-  bottom: 82.5vh;
-  right: 40%;
-  border-bottom: solid 5px;
-  color: white;
-  border-color: rgb(33, 156, 144);
-}
-.select-party {
-  display: flex;
-  position: absolute;
-  top: 32vh;
-  right: 46.8%;
-  color: white;
-  border-bottom: solid 4px;
-  border-color: rgb(33, 156, 144);
 }
 
 </style>

@@ -1,12 +1,9 @@
 <template>
-  <div class="social">
-    <h1>Let's Talk About It</h1>
-    <!-- This is to navigate to the homepage -->
-    <router-link to="/" v-if="$store.state.token !== ''">Home</router-link> &nbsp; | &nbsp;
-    <!-- navigate to the "logout" route -->
-    <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
+  <div id="background">
+    <h1 class="social-title">Let's Talk About It</h1>
   </div>
   <global-logo-header />
+  <NavBar />
   <social v-bind:message="message" />
 </template>
 
@@ -14,11 +11,13 @@
 import MessageService from '../services/MessageService.js';
 import Social from '../components/Social.vue';
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
+import NavBar from '../components/NavBar.vue';
 
 export default {
 components: {
     Social,
-    GlobalLogoHeader
+    GlobalLogoHeader,
+    NavBar
 },
 data() {
   return {
@@ -28,6 +27,3 @@ data() {
 },
 };
 </script>
-
-<style scoped>
-</style>

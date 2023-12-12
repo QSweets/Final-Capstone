@@ -4,7 +4,9 @@
       <ul>
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
           <div class="image-container">
-            <img :src="getRandomImage()" />
+            <router-link :to="{ name: 'characterDetails', params: { id: character.id } }">
+              <img :src="getRandomImage()" />
+            </router-link>
             <div class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
@@ -23,7 +25,7 @@
       </ul>
     </div>
     <div v-else>
-      <p class="empty">No characters found.</p>
+      <p>No characters found.</p>
     </div>
   </div>
 </template>
@@ -56,6 +58,9 @@ export default {
         console.error('Error fetching characters:', error);
       }
     },
+    goToCharacterDetail(characterId) {
+      this.$router.push({ name: 'characterDetails', params: { id: characterId } });
+    },
     getRandomImage() {
       const randomIndex = Math.floor(Math.random() * this.availableImages.length);
       return this.availableImages[randomIndex];
@@ -66,43 +71,43 @@ export default {
 
 
 <style scoped>
-.empty {
-  position: absolute;
-  bottom: 30%;
-  left: 45%;
-}
-/* .character-container {
-  display: inline-block;
+.character-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .character-item {
   position: relative;
   margin-bottom: 20px;
+  list-style: none; 
+  cursor: pointer;
 }
 
 .image-container {
   position: relative;
   display: inline-block;
-} */
+}
 
 .detailed-stats {
   position: absolute;
   top: 0;
   left: 100%;
-  transform: translateX(10px); /* Adjust the distance from the image */
+  transform: translateX(10px);
   opacity: 0;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
   border: 1px solid #ccc;
+  z-index: 1; 
 }
 
-/* .image-container:hover .detailed-stats {
+.character-item:hover .detailed-stats {
   opacity: 1;
 }
 
 .image-container img {
   width: 100px;
   height: auto;
-} */
+}
 </style>
+
