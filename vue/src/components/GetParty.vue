@@ -3,7 +3,9 @@
     <div v-if="userCharacters.length > 0">
       <ul>
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
-          <div class="character-info">
+          <div class="image-container">
+            <img src="../Character imgs/1.png" />
+            <div class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
             <strong>Profession :</strong> {{ character.class_profession }} |
@@ -15,16 +17,13 @@
             <strong>Intelligence:</strong> {{ character.character_intelligence }} |
             <strong>Wisdom:</strong> {{ character.character_wisdom }} |
             <strong>Charisma:</strong> {{ character.character_charisma }}
-          </div>
-          <div class="character-image-container">
-          </div>
+            </div>
+          </div> 
         </li>
       </ul>
     </div>
     <div v-else>
       <p>No characters found.</p>
-    </div>
-    <div class="detailed-stats">
     </div>
   </div>
 </template>
@@ -55,11 +54,10 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .character-container {
   display: inline-block;
-  position: relative;
-  margin-right: 20px;
 }
 
 .character-item {
@@ -67,29 +65,29 @@ export default {
   margin-bottom: 20px;
 }
 
-.character-image-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.character-item:hover .character-image-container {
-  opacity: 1;
-}
-
-.character-image {
-  width: 100px;
-  height: auto;
+.image-container {
+  position: relative;
+  display: inline-block;
 }
 
 .detailed-stats {
   position: absolute;
   top: 0;
-  left: 100%; /* Adjust this based on your layout */
+  left: 100%;
+  transform: translateX(10px); /* Adjust the distance from the image */
+  opacity: 0;
+  transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
   border: 1px solid #ccc;
+}
+
+.image-container:hover .detailed-stats {
+  opacity: 1;
+}
+
+.image-container img {
+  width: 100px;
+  height: auto;
 }
 </style>

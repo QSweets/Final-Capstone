@@ -186,51 +186,7 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
 <!-- <style>
-=======
-<style>
-.character-creation-form {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 8%;
-  height: 65%;
-  top: 18%;
-  right: 5.7%;
-}
-.roll-stats {
-  position: absolute;
-  bottom: 4vh;
-}
-.profile-title {
-  display: flex;
-  position: absolute;
-  bottom: 82.5vh;
-  right: 40%;
-  border-bottom: solid 5px;
-  border-color: rgb(33, 156, 144);
-}
-.save-character {
-  position: absolute;
-  bottom: .8vh;
-}
-.add-character {
-  display: flex;
-  position: absolute;
-  bottom: 10vh;
-  right: 7.3%;
-}
-.select-party {
-  display: flex;
-  position: absolute;
-  top: 32vh;
-  right: 50%;
-  color: white;
-  border-bottom: solid 4px;
-  border-color: rgb(33, 156, 144);
-}
->>>>>>> 0f6933a716be5b928eb5653e15d766055962ca65
 .img{
   width: 50%;
   position: absolute;
