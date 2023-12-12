@@ -18,12 +18,23 @@
       <button>Logout</button>
     </router-link>
   </div>
+  <div 
+  class="side-panel-button div-button"
+  @click.prevent="toggleSidePanel">
+    Menu
+</div>
 
   </template>
   
   <script>
+
+
   export default {
-  
+    methods: {
+    toggleSidePanel() {
+      this.$store.dispatch("toggleNav")
+    }
+  },
     computed: {
       token() {
         return this.$store.state.token;

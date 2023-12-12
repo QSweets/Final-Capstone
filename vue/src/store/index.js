@@ -9,8 +9,12 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
       notification: null,
+      isMobileNavOpen: false,
     },
     mutations: {
+      TOGGLE_MOBILE_NAV(state) {
+        state.isMobileNavOpen = !state.isMobileNavOpen;
+      },
       SET_AUTH_TOKEN(state, token) {
         state.token = token;
         localStorage.setItem('token', token);
@@ -59,6 +63,11 @@ export function createStore(currentToken, currentUser) {
           window.clearTimeout(state.notification.timer);
         }
         state.notification = null;
+      },
+    },
+    actions: {
+      toggleNav({ commit }) {
+        commit("TOGGLE_MOBILE_NAV");
       },
     },
   });

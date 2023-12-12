@@ -1,9 +1,6 @@
 <template>
+  <div id="background">
   <h1 class="profile-title">Command your party</h1>
-  
-  <div>
-    <a href="https://www.dnd5eapi.co/"><img class="img" src="src\ProfileImages\ProfileWall.png"></a>
-  </div>
   <h2 class="select-party">My Party</h2>
   <button class="add-character" v-on:click="toggleForm">Add Character</button>
   <div class="character-creation-form">
@@ -89,6 +86,7 @@
   </form>
   </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -195,18 +193,11 @@ export default {
   height: 65%;
   top: 18%;
   right: 5.7%;
+  color: white;
 }
 .roll-stats {
   position: absolute;
   bottom: 4vh;
-}
-.profile-title {
-  display: flex;
-  position: absolute;
-  bottom: 82.5vh;
-  right: 40%;
-  border-bottom: solid 5px;
-  border-color: rgb(33, 156, 144);
 }
 .save-character {
   position: absolute;
@@ -218,11 +209,20 @@ export default {
   bottom: 10vh;
   right: 7.3%;
 }
+.profile-title {
+  display: flex;
+  position: absolute;
+  bottom: 82.5vh;
+  right: 40%;
+  border-bottom: solid 5px;
+  color: white;
+  border-color: rgb(33, 156, 144);
+}
 .select-party {
   display: flex;
   position: absolute;
   top: 32vh;
-  right: 50%;
+  right: 46.8%;
   color: white;
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
