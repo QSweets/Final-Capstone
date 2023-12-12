@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS monster;
 DROP TABLE IF EXISTS graveyard;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS party;
+DROP TABLE IF EXISTS partyGroup;
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
   NO MAXVALUE
@@ -89,11 +90,18 @@ CREATE TABLE monster (
 );
 
 CREATE TABLE party (
-	party_id serial, 
     character_id int, 
-	CONSTRAINT PK_party PRIMARY KEY (party_id), 
+	party_name varchar(20),
+	CONSTRAINT PK_party PRIMARY KEY (party_name), 
 	CONSTRAINT FK_party_character FOREIGN KEY (character_id) REFERENCES character (character_id)
 );
+
+CREATE TABLE partyGroup (
+	party_id serial, 
+	party_name varchar(20), 
+	CONSTRAINT PK_partyGroup PRIMARY KEY (party_id), 
+	CONSTRAINT FK_partyGroup_party FOREIGN KEY (party_name) REFERENCES party (party_name)
+	);
 
 CREATE TABLE vote (
    vote_id serial,
@@ -103,7 +111,7 @@ CREATE TABLE vote (
    vote_date date, 
    CONSTRAINT PK_vote PRIMARY KEY (vote_id),
    CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id),
-   CONSTRAINT FK_vote_party FOREIGN KEY (party_id) REFERENCES party (party_id), 
+   CONSTRAINT FK_vote_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id), 
    CONSTRAINT FK_vote_monster FOREIGN KEY (monster_id) REFERENCES monster (monster_id)	
 );
 

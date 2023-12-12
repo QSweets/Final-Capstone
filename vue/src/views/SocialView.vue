@@ -7,7 +7,7 @@
   <social v-bind:message="message" />
 </template>
 
-<script>
+<script>  
 import MessageService from '../services/MessageService.js';
 import Social from '../components/Social.vue';
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';

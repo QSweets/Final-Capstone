@@ -5,9 +5,9 @@
 <div class="voting-actions">
     <button class="vote-btn" v-on:click="voteForSelectedUsers()">Vote</button>
 </div>
-</div>
 <NavBar />
 <GlobalLogoHeader />
+</div>
 </template>
 
 <script>
