@@ -186,6 +186,9 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
+<!-- <style>
+=======
 <style>
 .character-creation-form {
   display: flex;
@@ -227,6 +230,7 @@ export default {
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
 }
+>>>>>>> 0f6933a716be5b928eb5653e15d766055962ca65
 .img{
   width: 50%;
   position: absolute;
@@ -234,4 +238,4 @@ export default {
   left: 22%;
   height: 35vh;
 }
-</style>
+</style> -->
