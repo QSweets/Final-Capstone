@@ -18,11 +18,11 @@
       <button>Logout</button>
     </router-link>
   </div>
-  <div 
+<!-- <div 
   class="side-panel-button div-button"
   @click.prevent="toggleSidePanel">
     Menu
-</div>
+</div> -->
 
   </template>
   
@@ -46,35 +46,36 @@
 <style>
 .home {
   position: absolute;
-  top: 23.8%;
-  padding: 1%;
-  width: 14.8%;
+  top: 25.8%;
+  padding: .2%;
+  left: .8%;
 }
 .profile { 
   position: absolute;
-  top: 28.9%;
-  padding: 1%;
-  width: 14.8%;
+  top: 30.9%;
+  padding: .2%;
+  left: .8%;
 }
 .vote {
   position: absolute;
-  top: 34%;
-  padding: 1%;
-  width: 14.8%;
+  top: 36%;
+  padding: .2%;
+  left: .8%;
 }
 .social {
   position: absolute;
-  top: 39%;
-  padding: 1%;
-  width: 14.8%;
+  top: 41%;
+  padding: .2%;
+  left: .8%;
 }
 
 
 .logout {
   position: absolute;
-  top: 44%;
-  padding: 1%;
-  width: 14.8%;
+  top: 50%;
+  padding: .2%;
+  left: .8%;
+  border: solid 1px;
 }
 .blank-box {
   border: solid 2px;

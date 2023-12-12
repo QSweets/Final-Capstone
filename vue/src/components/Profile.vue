@@ -227,4 +227,5 @@ export default {
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
 }
+
 </style>

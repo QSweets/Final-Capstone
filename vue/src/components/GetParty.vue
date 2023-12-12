@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div v-else>
-      <p>No characters found.</p>
+      <p class="empty">No characters found.</p>
     </div>
   </div>
 </template>
@@ -66,7 +66,12 @@ export default {
 
 
 <style scoped>
-.character-container {
+.empty {
+  position: absolute;
+  bottom: 30%;
+  left: 45%;
+}
+/* .character-container {
   display: inline-block;
 }
 
@@ -78,7 +83,7 @@ export default {
 .image-container {
   position: relative;
   display: inline-block;
-}
+} */
 
 .detailed-stats {
   position: absolute;
@@ -92,12 +97,12 @@ export default {
   border: 1px solid #ccc;
 }
 
-.image-container:hover .detailed-stats {
+/* .image-container:hover .detailed-stats {
   opacity: 1;
 }
 
 .image-container img {
   width: 100px;
   height: auto;
-}
+} */
 </style>
