@@ -4,7 +4,7 @@
       <ul>
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
           <div class="image-container">
-            <img src="../Character imgs/1.png" />
+            <img :src="getRandomImage()" />
             <div class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
@@ -35,6 +35,12 @@ export default {
   data() {
     return {
       userCharacters: [],
+      availableImages: [
+        "../src/Character imgs/1.png",
+        "../src/Character imgs/2.png",
+        "../src/Character imgs/3.png",
+        "../src/Character imgs/4.png",
+      ],
     };
   },
   mounted() {
@@ -50,7 +56,11 @@ export default {
         console.error('Error fetching characters:', error);
       }
     },
-  },
+    getRandomImage() {
+      const randomIndex = Math.floor(Math.random() * this.availableImages.length);
+      return this.availableImages[randomIndex];
+    }
+  }
 };
 </script>
 
