@@ -1,8 +1,10 @@
 <template>
+    <div id="background">
     <div class="voting-form">
     </div>
 <div class="voting-actions">
     <button v-on:click="voteForSelectedUsers()">Vote</button>
+</div>
 </div>
 <NavBar />
 <GlobalLogoHeader />

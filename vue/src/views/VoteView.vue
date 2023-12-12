@@ -1,9 +1,7 @@
 <template>
     <div>
       <h1>Ready, Set, Vote!</h1>
-      <!-- navigate to the "logout" route -->
-      <router-link v-bind:to="{ name: 'logout'}" v-if="$store.state.token !== ''">Logout</router-link>
-      </div>
+    </div>
       <main>
       <!-- /*Want to display the MOTW details*/ -->
       <MOTW />

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="background">
     <h1 class="home-header">Home</h1>
     <NavBar />
     <MOTW />

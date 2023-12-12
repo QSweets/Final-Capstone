@@ -35,11 +35,19 @@ export default {
 </script>
 
 <style>
+#background {
+  background-image: url('src/ProfileImages/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
 #welcome {
   display: flex;
   position: absolute;
   bottom: 82.5vh;
   right: 40%;
+  color: white;
   border-bottom: solid 5px;
   border-color: rgb(33, 156, 144);
 }
@@ -48,6 +56,7 @@ export default {
   position: absolute;
   top: 9.6vh;
   left: .3%;
+  color: white;
   text-decoration: underline rgb(33, 156, 144);
   width: 6%;
 }
