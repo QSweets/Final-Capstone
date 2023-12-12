@@ -4,9 +4,7 @@
   <h2 class="select-party">My Party</h2>
   <button class="add-character" v-on:click="toggleForm">Add Character</button>
   <div class="character-creation-form">
-
   <div v-if="showForm" class="popup-form">
-
   <form v-on:submit.prevent="submitCharacter">
     <!-- <div>
       <label for="picture">Picture:</label>
@@ -18,11 +16,11 @@
     </div>
     <div>
       <label for="background">Background:</label>
-      <textarea v-model="background"></textarea> 
+      <textarea v-model="background"></textarea>
     </div>
     <div>
       <label for="abilities">abilities:</label>
-      <textarea v-model="abilities"></textarea> 
+      <textarea v-model="abilities"></textarea>
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -88,14 +86,11 @@
   </div>
 </div>
 </template>
-
 <script>
 import axios from 'axios';
-
 function generateRandomStat(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 export default {
   data() {
     return {
@@ -135,11 +130,8 @@ export default {
       this.character_wisdom = generateRandomStat(8, 18);
       this.character_charisma = generateRandomStat(8, 18);
     },
-    
     async saveCharacter() {
       try {
-       
-
         const characterData = {
           character_name: this.character_name,
           creature: this.creature,
@@ -154,15 +146,12 @@ export default {
           background: this.background,
           user_id: this.getUserId(),
         };
-
         console.log('Character Data:', characterData);
-
         await axios.post(`http://localhost:9000/characters`, characterData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
-
         console.log('Character Saved!');
         this.character_name = '';
         this.creature = '';
@@ -184,3 +173,16 @@ export default {
 };
 </script>
 
+<style>
+.character-creation-form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 8%;
+  height: 65%;
+  top: 18%;
+  right: 5.7%;
+  color: white;
+}
+
+</style>

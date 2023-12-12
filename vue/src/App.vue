@@ -73,16 +73,6 @@ body{
     sans-serif;
   background-color: #f5f5f5;
 }
-.character-creation-form {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 8%;
-  height: 65%;
-  top: 25%;
-  right: 5.7%;
-  color: white;
-}
 .roll-stats {
   position: absolute;
   bottom: 10vh;
@@ -173,5 +163,62 @@ body{
   position: absolute;
   top: 35.5vh;
   right: 30%;
+}
+.r-monster {
+  display: flex;
+  position: absolute;
+  bottom: 6.5vh;
+  right: 44%;
+}
+  .m-stats {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
+  width: 87%;
+  top: 14.4%;
+  position: absolute;
+  left: 17vh;
+}
+#m-name {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 8.5%;
+  padding-left: .5%;
+  padding-right: .5%;
+}
+#m-size {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 40%;
+  padding-left: .5%;
+  padding-right: .5%;
+}
+#m-challenge {
+  border: solid 2px;
+  position: absolute;
+  top: 7.8vh;
+  left: 77.4%;
+  padding-left: .5%;
+  padding-right: .5%;
+}
+#m-abilities {
+  border: solid 2px;
+  position: absolute;
+  top: 14vh;
+  left: 8.5%;
+  width: 60vh;
+  height: 52.8vh;
+  overflow: scroll;
+  padding-left: .5%;
+}
+#m-img {
+  width: 52.7vh;
+  position: absolute;
+  top: 15.7vh;
+  left: 55.9%;
+  height: 53.1vh;
 }
 </style>
