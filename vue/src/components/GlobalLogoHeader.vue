@@ -1,11 +1,32 @@
 <template>
   <header id="logo">
-    <h1>This <span> is <i>a placement</i> holder for <i>Logo</i></span></h1>
   </header>
   <div class="logo-line"/>
+  <img class="logo-eye2" src="src/ProfileImages/Logoeye.jpg" alt="cyclops ent eye" />
+  <img class="logo-eye1" src="src/ProfileImages/Logoeye.jpg" alt="cyclops ent eye" />
+  <img class="logo-img" src="src\ProfileImages\Logo.jpg" alt="cyclops ent" />
+
 </template>
 
 <style>
+.logo-eye2 {
+  width: 5%;
+  position: absolute;
+  top: .4%;
+  right: .5%;
+}
+.logo-eye1 {
+  width: 5%;
+  position: absolute;
+  top: .4%;
+  left: .5%;
+}
+.logo-img {
+  width: 14%;
+  position: absolute;
+  left: 44%;
+  top: 1%;
+}
 #logo {
   display: flex;
   position: absolute;

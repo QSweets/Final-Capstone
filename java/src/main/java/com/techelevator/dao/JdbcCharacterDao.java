@@ -107,7 +107,7 @@ public class JdbcCharacterDao implements CharacterDao {
     public List<Character> getCharactersByUserId(int userId) {
         List<Character> characters = new ArrayList<>();
         String sql = "SELECT  character_id,name, creature, class_profession, background, abilities, character_strength, " +
-                     "character_dexterity, character_constitution, character_intelligence, character_wisdom, character_charisma FROM character WHERE user_id = ?;";
+                     "character_dexterity, character_constitution, character_intelligence, character_wisdom, character_charisma, user_id FROM character WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -148,6 +148,7 @@ public class JdbcCharacterDao implements CharacterDao {
         character.setCharacter_wisdom(rowSet.getInt("character_wisdom"));
         character.setCharacter_charisma(rowSet.getInt("character_charisma"));
         character.setAbilities(rowSet.getString("abilities"));
+        character.setUser_id(rowSet.getInt("user_id"));
         return character;
     }
 }
