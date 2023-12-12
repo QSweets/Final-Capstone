@@ -13,7 +13,7 @@ import SocialView from '../views/SocialView.vue';
 import CommentAddMessageView from '../views/CommentAddMessageView.vue';
 import CommentEditMessageView from '../views/CommentEditMessageView.vue';
 import CommentMessageDetailsView from '../views/CommentMessageDetailsView.vue';
-import CharacterDetail from '../views/CharacterView.vue';
+import CharacterView from '../views/CharacterView.vue';
 
 
 const routes = [
@@ -86,9 +86,9 @@ const routes = [
     component: CommentEditMessageView
   },
   {
-    path: '/profile/characterDetails',
+    path: '/character/:id',
     name: 'characterDetails',
-    component: CharacterDetail,
+    component: CharacterView,
   },
 
 ]; 
