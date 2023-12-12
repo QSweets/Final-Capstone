@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
+
 @Component
 public class JdbcCommentDao implements CommentDao{
     private List<Comment> comments = new ArrayList<>();
@@ -23,20 +26,20 @@ public class JdbcCommentDao implements CommentDao{
     }
 
     @Override
-    public Comment createComment(Comment comment) {
+    public Comment createComment(Comment comment, int userId) {
         try {
-            String commentSql = "INSERT INTO public.messages(\n" +
-                    "\tcomment_title, comment_box, comment_timestamp)\n" +
-                    "\tVALUES (?, ?, CURRENT_DATE); RETURNING comment_id";
+            String commentSql = "INSERT INTO messages " +
+                                "(user_id, comment_title, comment_box, comment_timestamp) " +
+                                "VALUES (?, ?, ?, CURRENT_DATE) RETURNING comment_id;";
 
             int newCommentId = jdbcTemplate.queryForObject(
                     commentSql,
                     int.class,
-                    comment.getUserId(),
+                    comment.getCommentTitle(),
                     comment.getCommentBox(),
-                    comment.getCommentTitle()
+                    userId
             );
-            return comment;
+            return getCommentByCommentId(newCommentId);
         } catch (DataAccessException e) {
             throw new RuntimeException("Error creating comment", e);
         }
@@ -80,21 +83,18 @@ public class JdbcCommentDao implements CommentDao{
         return null;
     }
 
-    public List<Comment> getCommentsByUserId(int userId) {
-        List<Comment> comments = new ArrayList<>();
-        String sql = "SELECT comment_id, comment_title, comment_box, comment_timestamp " +
-                "FROM messages " +
-                "WHERE user_id = ?";
-        try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-            while (results.next()) {
-                Comment comment = mapRowToComment(results);
-                comments.add(comment);
+    public Comment getCommentByCommentId(int commentId) {
+        String sql = "SELECT comment_id, user_id, comment_title, comment_box, comment_timestamp " +
+                     "FROM messages " +
+                     "WHERE comment_id = ?";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, commentId);
+
+        if (result.next()) {
+                return mapRowToComment(result);
             }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-        return comments;
+
+        return null;
     }
 
     private Comment mapRowToComment(SqlRowSet rowSet) {

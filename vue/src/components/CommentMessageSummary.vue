@@ -1,6 +1,6 @@
 <template>
     <div class="message" 
-        v-on:click="$router.push({ name: 'CommentMessageDetailsView', params: { messageId: message.id } })">
+        v-on:click="$router.push({ name: 'SocialView'})">
       <header>
         <h3>{{ message.title }}</h3>
       </header>
@@ -10,6 +10,7 @@
   
   <script>
   const MAX_SUMMARY_LENGTH = 100;
+  import axios from 'axios';
   
   export default {
     props: {

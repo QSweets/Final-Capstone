@@ -227,11 +227,4 @@ export default {
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
 }
-.img{
-  width: 50%;
-  position: absolute;
-  top: 34vh;
-  left: 22%;
-  height: 35vh;
-}
 </style>
