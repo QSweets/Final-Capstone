@@ -186,9 +186,9 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style>
 .img{
   background-image: url('../loginImages/LoginBG3.png');
   background-repeat: no-repeat;
 }
-</style>
+</style> -->
