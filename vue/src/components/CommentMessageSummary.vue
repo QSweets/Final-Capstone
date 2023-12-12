@@ -1,6 +1,6 @@
 <template>
     <div class="message" 
-        v-on:click="$router.push({ name: 'CommentMessageDetailsView', params: { messageId: message.id } })">
+        v-on:click="$router.push({ name: 'SocialView'})">
       <header>
         <h3>{{ message.title }}</h3>
       </header>

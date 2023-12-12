@@ -2,10 +2,12 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.CommentDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,11 +17,15 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/social")
+@PreAuthorize("isAuthenticated()")
 public class CommentController {
 
-    private final CommentDao commentDao;
-    public CommentController(CommentDao commentDao) {
+    private CommentDao commentDao;
+    private UserDao userDao;
+
+    public CommentController(CommentDao commentDao, UserDao userDao) {
         this.commentDao = commentDao;
+        this.userDao = userDao;
 
     }
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -30,11 +36,12 @@ public class CommentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/addComment", method = RequestMethod.POST)
     public Comment createComment(@Valid @RequestBody Comment comment, Principal principal) {
         try {
-            return commentDao.createComment(comment);
+            return commentDao.createComment(comment, getCurrentUserId(principal));
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -53,11 +60,24 @@ public class CommentController {
     }
     @DeleteMapping("/{user_id}/{comment_id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCharacter(@PathVariable int userId, @PathVariable int commentId) {
+    public void deleteComment(@PathVariable int userId, @PathVariable int commentId) {
         try {
             commentDao.deleteComment(userId, commentId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting comment", e);
         }
+    }
+
+    @RequestMapping(value = "/{comment_id}", method = RequestMethod.GET)
+    public Comment getCommentByCommentId(@PathVariable int commentId) {
+        try {
+            return commentDao.getCommentByCommentId(commentId);
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private int getCurrentUserId(Principal principal){
+        return userDao.getUserByUsername(principal.getName()).getId();
     }
 }

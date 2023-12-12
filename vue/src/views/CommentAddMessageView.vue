@@ -1,5 +1,5 @@
 <template>
-    <h1>Add New Message</h1>
+    <h1>Add New Comment</h1>
     <comment-message-form v-bind:message="message" />
   </template>
   
@@ -14,7 +14,6 @@
       return {
         message: {
           id: 0,
-          topicId: Number(this.$route.params.topicId),
           created: new Date(),
           title: '',
           messageText: ''
