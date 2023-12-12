@@ -67,6 +67,8 @@ export default {
   left: 8.5%;
   padding-left: .5%;
   padding-right: .5%;
+  color: white;
+  
 }
 #m-size {
   border: solid 2px;
@@ -75,6 +77,7 @@ export default {
   left: 40%;
   padding-left: .5%;
   padding-right: .5%;
+  color: white;
 }
 #m-challenge {
   border: solid 2px;
@@ -83,6 +86,7 @@ export default {
   left: 77.4%;
   padding-left: .5%;
   padding-right: .5%;
+  color: white;
 }
 #m-abilities {
   border: solid 2px;
@@ -93,6 +97,8 @@ export default {
   height: 52.8vh;
   overflow: scroll;
   padding-left: .5%;
+  color: white;
+  background-color: black;
 }
 #m-img {
   width: 52.7vh;
@@ -100,5 +106,6 @@ export default {
   top: 15.7vh;
   left: 55.9%;
   height: 53.1vh;
+
 }
 </style>
