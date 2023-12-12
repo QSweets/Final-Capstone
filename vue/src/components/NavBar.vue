@@ -69,7 +69,7 @@
   border: solid 2px;
   position: absolute;
   width: 10%;
-  height: 60%;
+  height: 30%;
   top: 24%;
 }
 </style>
