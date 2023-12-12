@@ -6,6 +6,7 @@
           <div class="image-container">
             <img :src="getRandomImage()" />
             <div class="detailed-stats">
+              <button @click="editCharacter(character)">Edit</button>
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
             <strong>Profession :</strong> {{ character.class_profession }} |
@@ -56,6 +57,9 @@ export default {
         console.error('Error fetching characters:', error);
       }
     },
+    editCharacter(character) {
+      console.log('Editing character:', character);
+    },
     getRandomImage() {
       const randomIndex = Math.floor(Math.random() * this.availableImages.length);
       return this.availableImages[randomIndex];
@@ -67,7 +71,8 @@ export default {
 
 <style scoped>
 .character-container {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .character-item {
@@ -84,7 +89,7 @@ export default {
   position: absolute;
   top: 0;
   left: 100%;
-  transform: translateX(10px); /* Adjust the distance from the image */
+  transform: translateX(10px);
   opacity: 0;
   transition: opacity 0.3s ease;
   background: white;
