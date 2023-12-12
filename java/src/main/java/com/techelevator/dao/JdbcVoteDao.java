@@ -53,7 +53,7 @@ public class JdbcVoteDao implements VoteDao {
     }
 
     @Override
-    public Vote getVoteByUserId(int userId) {
+    public Vote getVoteByUserId(int userId) {   
         return null;
     }
 }
