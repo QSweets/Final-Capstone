@@ -75,7 +75,6 @@
   top: 50%;
   padding: .2%;
   left: .8%;
-  border: solid 1px;
 }
 .blank-box {
   border: solid 2px;
