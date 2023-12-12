@@ -63,7 +63,7 @@ export default {
 html {
   font: 62.5% / 1.15 sans-serif;
 }
-body{
+body {
   width: 100%;
   margin: 0 auto;
   font:
@@ -100,7 +100,7 @@ body{
   display: flex;
   position: absolute;
   top: 32vh;
-  right: 47.8%;
+  right: 46.5%;
   color: white;
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
@@ -144,7 +144,12 @@ body{
 .image-container:hover .detailed-stats {
   opacity: 1;
 }
-
+.no-character {
+  display: flex;
+  position: absolute;
+  top: 55vh;
+  right: 45%;
+}
 .image-container img {
   width: 100px;
   height: auto;

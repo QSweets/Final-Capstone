@@ -18,12 +18,6 @@
       <button>Logout</button>
     </router-link>
   </div>
-<!-- <div 
-  class="side-panel-button div-button"
-  @click.prevent="toggleSidePanel">
-    Menu
-</div> -->
-
   </template>
   
   <script>
