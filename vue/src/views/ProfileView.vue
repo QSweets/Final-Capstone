@@ -1,13 +1,7 @@
 <template>
   <div>
     <h1>ProfilePage</h1>
-
-    <!-- This is to navigate to the homepage -->
-    <router-link to="/" v-if="$store.state.token !== ''">Home</router-link>
-
-    <!-- navigate to the "logout" route -->
-    <router-link to="/logout" v-if="$store.state.token !== ''">Logout</router-link>
-    
+    <NavBar />
     <Profile />
     <GetParty />
     <GlobalLogoHeader />
@@ -20,10 +14,12 @@ import axios from 'axios';
 import Profile from '../components/Profile.vue'
 import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
 import CharacterList from '../components/CharacterList.vue';
-import GetParty from '../components/GetParty.vue'
+import GetParty from '../components/GetParty.vue';
+import NavBar from '../components/NavBar.vue';
 
 export default {
   components: {
+    NavBar,
     Profile,
     GlobalLogoHeader,
     CharacterList,
@@ -31,7 +27,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Add your styles here */
-</style>

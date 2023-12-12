@@ -1,20 +1,31 @@
 <template>
-  <p>This is my Profile page</p>
-  <h3>My Party</h3>
-  <div class="img">
-    <a href="https://www.dnd5eapi.co/"><img src="src\ProfileImages\ProfileWall.png"></a>
+  <h1 class="profile-title">Command your party</h1>
+  
+  <div>
+    <a href="https://www.dnd5eapi.co/"><img class="img" src="src\ProfileImages\ProfileWall.png"></a>
   </div>
-  <div class="Character-creation-form">
-  <button v-on:click="toggleForm">Add Character</button>
+  <h2 class="select-party">My Party</h2>
+  <button class="add-character" v-on:click="toggleForm">Add Character</button>
+  <div class="character-creation-form">
+
   <div v-if="showForm" class="popup-form">
+
   <form v-on:submit.prevent="submitCharacter">
-    <div>
+    <!-- <div>
       <label for="picture">Picture:</label>
       <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
+    </div> -->
+    <div>
+      <label for="character_name">Character Name:</label>
+      <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
     </div>
     <div>
-      <label for="name">Character Name:</label>
-      <input type="text" id="name" name="name" v-model="name" required/>
+      <label for="background">Background:</label>
+      <textarea v-model="background"></textarea> 
+    </div>
+    <div>
+      <label for="abilities">abilities:</label>
+      <textarea v-model="abilities"></textarea> 
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -63,7 +74,6 @@
       <label for="character_intelligence">Intelligence:</label>
       <input type="text" id="intelligence" name="intelligence" v-model="character_intelligence" disabled/>
     </div>
-
     <div>
       <label for="character_wisdom">Wisdom:</label>
       <input type="text" id="wisdom" name="wisdom"  v-model="character_wisdom" disabled />
@@ -73,19 +83,9 @@
       <input type="text" id="charisma" name="charisma"  v-model="character_charisma" disabled />
     </div>
     <div>
-      <label for="abilities">abilities:</label>
-      <textarea v-model="abilities"></textarea> 
+    <button class="roll-stats" v-on:click="rollAllStats">Roll Stats</button>
     </div>
-    <div>
-      <label for="background">Background:</label>
-      <textarea v-model="background"></textarea> 
-    </div>
-
-    <button type="submit" class="save btn" v-on:click="saveCharacter">Save Character</button>
-    <div>
-    <button v-on:click="rollAllStats">Roll Stats</button>
-    </div>
-
+    <button type="submit" class="save-character" v-on:click="saveCharacter">Save Character</button>
   </form>
   </div>
   </div>
@@ -102,8 +102,7 @@ export default {
   data() {
     return {
       showForm: false,
-      imageFile: null,
-      name: '',
+      character_name: '',
       creature: '',
       class_profession: '',
       character_strength: generateRandomStat(8, 18),
@@ -138,43 +137,13 @@ export default {
       this.character_wisdom = generateRandomStat(8, 18);
       this.character_charisma = generateRandomStat(8, 18);
     },
-    onFileChange(event) {
-      const selectedFile = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageFile = e.target.result;
-      };
-      reader.readAsDataURL(selectedFile);
-    },
-    dataURLtoBlob(dataURL) {
-      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
-      const arr = dataURL.split(',');
-      const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
-      let n = bstr.length;
-      const u8arr = new Uint8Array(n);
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-      }
-      return new Blob([u8arr], { type: mime });
-    },
-    blobToBase64(blob) {
-      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    },
+    
     async saveCharacter() {
       try {
-        const imageBlob = this.dataURLtoBlob(this.imageFile);
-        const base64Image = await this.blobToBase64(imageBlob);
+       
 
         const characterData = {
-          picture: base64Image,
-          namev: this.name,
+          character_name: this.character_name,
           creature: this.creature,
           class_profession: this.class_profession,
           character_strength: this.character_strength,
@@ -190,15 +159,13 @@ export default {
 
         console.log('Character Data:', characterData);
 
-        await axios.post(`http://localhost:9000/characters/${this.getUserId()}`, characterData, {
+        await axios.post(`http://localhost:9000/characters`, characterData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
         console.log('Character Saved!');
-
-        this.picture = null;
         this.character_name = '';
         this.creature = '';
         this.class_profession = '';
@@ -220,8 +187,51 @@ export default {
 </script>
 
 <style>
+.character-creation-form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 8%;
+  height: 65%;
+  top: 18%;
+  right: 5.7%;
+}
+.roll-stats {
+  position: absolute;
+  bottom: 4vh;
+}
+.profile-title {
+  display: flex;
+  position: absolute;
+  bottom: 82.5vh;
+  right: 40%;
+  border-bottom: solid 5px;
+  border-color: rgb(33, 156, 144);
+}
+.save-character {
+  position: absolute;
+  bottom: .8vh;
+}
+.add-character {
+  display: flex;
+  position: absolute;
+  bottom: 10vh;
+  right: 7.3%;
+}
+.select-party {
+  display: flex;
+  position: absolute;
+  top: 32vh;
+  right: 50%;
+  color: white;
+  border-bottom: solid 4px;
+  border-color: rgb(33, 156, 144);
+}
 .img{
-  background-image: url('../loginImages/LoginBG3.png');
-  background-repeat: no-repeat;
+  width: 50%;
+  position: absolute;
+  top: 34vh;
+  left: 22%;
+  height: 35vh;
 }
 </style>
