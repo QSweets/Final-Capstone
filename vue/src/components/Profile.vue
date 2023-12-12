@@ -18,21 +18,21 @@
       <textarea v-model="background"></textarea>
     </div>
     <div>
-      <label for="abilities">abilities:</label>
+      <label for="abilities">Abilities:</label>
       <textarea v-model="abilities"></textarea>
     </div>
     <div>
       <label for="creature">Creature:</label>
       <select id="creature" v-model="creature" required>
-         <option value="Dwarves">Dwarves</option>
-         <option value="Elves">Elves</option>
-         <option value="Halflings">Halflings</option>
-         <option value="Humans">Humans</option>
-         <option value="Dragonborns">Dragonborns</option>
-         <option value="Gnomes">Gnomes</option>
-         <option value="Half-elves">Half-elves</option>
-         <option value="Half-orcs">Half-orcs</option>
-         <option value="Tieflings">Tieflings</option>
+         <option value="Dwarves">Dwarve</option>
+         <option value="Elves">Elven</option>
+         <option value="Halflings">Halfling</option>
+         <option value="Humans">Human</option>
+         <option value="Dragonborns">Dragonborn</option>
+         <option value="Gnomes">Gnome</option>
+         <option value="Half-elves">Half-elve</option>
+         <option value="Half-orcs">Half-orc</option>
+         <option value="Tieflings">Tiefling</option>
       </select>
     </div>
     <div>
