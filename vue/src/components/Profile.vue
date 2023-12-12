@@ -8,13 +8,13 @@
   <button v-on:click="toggleForm">Add Character</button>
   <div v-if="showForm" class="popup-form">
   <form v-on:submit.prevent="submitCharacter">
-    <div>
+    <!-- <div>
       <label for="picture">Picture:</label>
       <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
-    </div>
+    </div> -->
     <div>
-      <label for="name">Character Name:</label>
-      <input type="text" id="name" name="name" v-model="name" required/>
+      <label for="character_name">Character Name:</label>
+      <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
     </div>
     <div>
       <label for="creature">Creature:</label>
@@ -102,8 +102,7 @@ export default {
   data() {
     return {
       showForm: false,
-      imageFile: null,
-      name: '',
+      character_name: '',
       creature: '',
       class_profession: '',
       character_strength: generateRandomStat(8, 18),
@@ -138,43 +137,13 @@ export default {
       this.character_wisdom = generateRandomStat(8, 18);
       this.character_charisma = generateRandomStat(8, 18);
     },
-    onFileChange(event) {
-      const selectedFile = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageFile = e.target.result;
-      };
-      reader.readAsDataURL(selectedFile);
-    },
-    dataURLtoBlob(dataURL) {
-      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
-      const arr = dataURL.split(',');
-      const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
-      let n = bstr.length;
-      const u8arr = new Uint8Array(n);
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-      }
-      return new Blob([u8arr], { type: mime });
-    },
-    blobToBase64(blob) {
-      // referance: https://stackoverflow.com/questions/12168909/blob-from-dataurl
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    },
+    
     async saveCharacter() {
       try {
-        const imageBlob = this.dataURLtoBlob(this.imageFile);
-        const base64Image = await this.blobToBase64(imageBlob);
+       
 
         const characterData = {
-          picture: base64Image,
-          namev: this.name,
+          character_name: this.character_name,
           creature: this.creature,
           class_profession: this.class_profession,
           character_strength: this.character_strength,
@@ -190,15 +159,13 @@ export default {
 
         console.log('Character Data:', characterData);
 
-        await axios.post(`http://localhost:9000/characters/${this.getUserId()}`, characterData, {
+        await axios.post(`http://localhost:9000/characters`, characterData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
         console.log('Character Saved!');
-
-        this.picture = null;
         this.character_name = '';
         this.creature = '';
         this.class_profession = '';
