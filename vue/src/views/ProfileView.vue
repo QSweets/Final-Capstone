@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="background">
     <h1>ProfilePage</h1>
     <NavBar />
     <Profile />

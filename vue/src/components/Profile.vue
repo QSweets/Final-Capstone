@@ -1,5 +1,4 @@
 <template>
-  <div id="background">
   <h1 class="profile-title">Command your party</h1>
   <h2 class="select-party">My Party</h2>
   <button class="add-character" v-on:click="toggleForm">Add Character</button>
@@ -84,7 +83,6 @@
   </form>
   </div>
   </div>
-</div>
 </template>
 <script>
 import axios from 'axios';

@@ -29,6 +29,14 @@ public class CharacterController {
         this.userDao = userDao;
 
     }
+    @RequestMapping(path = "/{characterid}", method = RequestMethod.GET)
+    public Character getCharactersId(Principal principal) {
+        try {
+            return characterDao.getCharacterById(getCurrentUserId(principal));
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Character> getCharactersByUserId(Principal principal) {
         try {

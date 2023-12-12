@@ -4,7 +4,9 @@
       <ul>
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
           <div class="image-container">
-            <img :src="getRandomImage()" />
+            <router-link :to="{ name: 'characterDetails', params: { id: character.id } }">
+              <img :src="getRandomImage()" />
+            </router-link>
             <div class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
@@ -56,6 +58,9 @@ export default {
         console.error('Error fetching characters:', error);
       }
     },
+    goToCharacterDetail(characterId) {
+      this.$router.push({ name: 'characterDetails', params: { id: characterId } });
+    },
     getRandomImage() {
       const randomIndex = Math.floor(Math.random() * this.availableImages.length);
       return this.availableImages[randomIndex];
@@ -74,6 +79,8 @@ export default {
 .character-item {
   position: relative;
   margin-bottom: 20px;
+  list-style: none; 
+  cursor: pointer;
 }
 
 .image-container {
@@ -91,9 +98,10 @@ export default {
   background: white;
   padding: 10px;
   border: 1px solid #ccc;
+  z-index: 1; 
 }
 
-.image-container:hover .detailed-stats {
+.character-item:hover .detailed-stats {
   opacity: 1;
 }
 
@@ -102,3 +110,4 @@ export default {
   height: auto;
 }
 </style>
+
