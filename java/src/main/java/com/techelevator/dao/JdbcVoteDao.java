@@ -20,7 +20,6 @@ public class JdbcVoteDao implements VoteDao {
     }
 
 
-
     @Override
     public Vote submitVote(Vote vote, int userId) {
         Vote newVote = null;

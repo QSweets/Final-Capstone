@@ -9,7 +9,7 @@
         <textarea id="messageText" name="messageText" v-model="editMessage.messageText" />
       </div>
       <div class="actions">
-        <button class="btn-submit" type="submit">Submit</button> 
+        <button class="btn-submit" type="button">Submit</button> 
         <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
       </div>
     </form>
@@ -17,6 +17,7 @@
   
   <script>
   import messageService from '../services/MessageService';
+  import axios from 'axios';
   
   export default {
     props: {
@@ -84,6 +85,11 @@
         if (this.editMessage.messageText.length === 0) {
           msg += 'The message must contain message text.';
         }
+
+        if (msg.length > 0) {
+        this.$store.commit('SET_NOTIFICATION', msg);
+        return false;
+      }
         
         return true;
       },
