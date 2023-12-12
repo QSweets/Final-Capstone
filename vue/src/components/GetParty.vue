@@ -8,7 +8,6 @@
             <strong>Profession :</strong> {{ character.class_profession }} |
             <strong>Image:</strong> 
             <strong>Image:</strong>
-            <img :src="'data:image/jpeg;base64,' + arrayBufferToBase64(character.image)" alt="Character Image">|
             <strong>abilities:</strong> {{ character.abilities }} |
             <strong>background:</strong> {{ character.background }} |
             <strong>Strength:</strong> {{ character.character_strength }} |
@@ -43,28 +42,14 @@
       async fetchCharacters() {
         try {
             const userId = this.$store.state.user.id;
-          const response = await axios.get(`http://localhost:9000/characters/${userId}`);
+          const response = await axios.get(`http://localhost:9000/characters`);
           this.userCharacters = response.data;
         } catch (error) {
           console.error('Error fetching characters:', error);
         }
       },
-      arrayBufferToBase64(buffer) {
-      let binary = '';
-      let bytes = new Uint8Array(buffer);
-      let len = bytes.byteLength;
-
-      for (let i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-      }
-
-      const base64String = btoa(binary);
-      console.log('Base64 Image:', base64String.substring(0, 50)); // Log the first 50 characters
-
-      return base64String;
-    },
+    }
   }
-}
 </script>
 
   
