@@ -26,7 +26,7 @@ public class PartyController {
     private PartyDao partyDao;
     private UserDao userDao;
 
-    private PartyController(CharacterDao characterDao, PartyDao partyDao, UserDao userDao) {
+    public PartyController(CharacterDao characterDao, PartyDao partyDao, UserDao userDao) {
         this.characterDao = characterDao;
         this.partyDao = partyDao;
         this.userDao = userDao;
