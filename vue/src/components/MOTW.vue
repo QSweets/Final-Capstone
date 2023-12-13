@@ -59,7 +59,7 @@ export default {
   bottom: 6.5vh;
   right: 44%;
 }
-  .m-stats {
+.m-stats {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -77,7 +77,6 @@ export default {
   padding-left: .5%;
   padding-right: .5%;
   color: white;
-  
 }
 .m-size {
   border: solid 2px;

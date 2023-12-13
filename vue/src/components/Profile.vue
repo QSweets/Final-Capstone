@@ -19,33 +19,33 @@
     </div>
     <div>
       <label id="custom-font" for="creature">Creature:</label>
-      <select id="creature" v-model="creature" required>
-         <option id="custom-font" value="Dwarves">Dwarve</option>
-         <option id="custom-font" value="Elves">Elven</option>
-         <option id="custom-font" value="Halflings">Halfling</option>
-         <option id="custom-font" value="Humans">Human</option>
-         <option id="custom-font" value="Dragonborns">Dragonborn</option>
-         <option id="custom-font" value="Gnomes">Gnome</option>
-         <option id="custom-font" value="Half-elves">Half-elve</option>
-         <option id="custom-font" value="Half-orcs">Half-orc</option>
-         <option id="custom-font" value="Tieflings">Tiefling</option>
+      <select id="custom-font" v-model="creature" required>
+         <option value="Dwarves">Dwarve</option>
+         <option value="Elves">Elven</option>
+         <option value="Halflings">Halfling</option>
+         <option value="Humans">Human</option>
+         <option value="Dragonborns">Dragonborn</option>
+         <option value="Gnomes">Gnome</option>
+         <option value="Half-elves">Half-elve</option>
+         <option value="Half-orcs">Half-orc</option>
+         <option value="Tieflings">Tiefling</option>
       </select>
     </div>
     <div>
       <label id="custom-font" for="class_profession">Profession:</label>
-      <select v-model="class_profession" id="profession" required>
-        <option id="custom-font" value="Barbarian">Barbarian</option>
-        <option id="custom-font" value="Bard">Bard</option>
-        <option id="custom-font" value="Cleric">Cleric</option>
-        <option id="custom-font" value="Druid">Druid</option>
-        <option id="custom-font" value="Fighter">Fighter</option>
-        <option id="custom-font" value="Monk">Monk</option>
-        <option id="custom-font" value="Paladin">Paladin</option>
-        <option id="custom-font" value="Ranger">Ranger</option>
-        <option id="custom-font" value="Rogue">Rogue</option>
-        <option id="custom-font" value="Sorcerer">Sorcerer</option>
-        <option id="custom-font" value="warlock">Warlock</option>
-        <option id="custom-font" value="Wizard">Wizard</option>
+      <select id="custom-font" v-model="class_profession" required>
+        <option value="Barbarian">Barbarian</option>
+        <option value="Bard">Bard</option>
+        <option value="Cleric">Cleric</option>
+        <option value="Druid">Druid</option>
+        <option value="Fighter">Fighter</option>
+        <option value="Monk">Monk</option>
+        <option value="Paladin">Paladin</option>
+        <option value="Ranger">Ranger</option>
+        <option value="Rogue">Rogue</option>
+        <option value="Sorcerer">Sorcerer</option>
+        <option value="warlock">Warlock</option>
+        <option value="Wizard">Wizard</option>
       </select>
     </div>
     <div>

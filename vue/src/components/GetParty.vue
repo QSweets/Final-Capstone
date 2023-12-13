@@ -5,9 +5,11 @@
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
           <div class="image-container">
             <router-link :to="{ name: 'characterDetails', params: { id: character.id } }">
-              <img class="random-img" :src="getRandomImage()" />
+              <div class="random-img">
+              <img :src="getRandomImage()" />
+              </div>
             </router-link>
-            <div class="detailed-stats">
+            <div id="custom-font" class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
             <strong>Profession :</strong> {{ character.class_profession }} |
@@ -71,13 +73,13 @@ export default {
 
 
 <style scoped>
-.character-container {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 
 .character-item {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
   margin-bottom: 20px;
   list-style: none; 
   cursor: pointer;
