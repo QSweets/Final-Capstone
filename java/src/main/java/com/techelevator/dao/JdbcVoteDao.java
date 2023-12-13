@@ -43,8 +43,11 @@ public class JdbcVoteDao implements VoteDao {
 
     @Override
     public Vote getVoteResultsByMonsterId(int monsterId) {
-        //This is a method that returns the party that appears the most frequently in the table given a monsterId
-        String sql = "SELECT party_id, COUNT(*) AS vote_count FROM vote WHERE monster_id = ? GROUP BY party_id ORDER BY vote_count DESC LIMIT 1";
+        //This is a method that returns the party id that appears the most frequently in the table
+        String sql = "SELECT vote.party_id, party_name, COUNT(*) AS vote_count FROM vote \n" +
+                "JOIN partygroup ON partygroup.party_id = vote.party_id\n" +
+                "GROUP BY vote.party_id, partygroup.party_name\n" +
+                "ORDER BY vote_count DESC LIMIT 1;";
 //
 //        try{
 //
@@ -52,6 +55,7 @@ public class JdbcVoteDao implements VoteDao {
         return null;
     }
 
+    //only really need this method if we want a user to see what they've voted on
     @Override
     public Vote getVoteByUserId(int userId) {   
         return null;

@@ -12,7 +12,7 @@
       <button>My Profile</button>
     </router-link>
     <router-link class="social" to="/social" v-if="token !== ''">
-      <button>Message Board</button>
+      <button>Party</button>
     </router-link>
     <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
       <button>Logout</button>
@@ -76,5 +76,6 @@
   width: 10%;
   height: 30%;
   top: 24%;
+  box-shadow:  10px 10px 10px rgb(238, 5, 5);
 }
 </style>

@@ -149,6 +149,7 @@ body {
   position: absolute;
   top: 55vh;
   right: 45%;
+  color: white;
 }
 .image-container img {
   width: 100px;

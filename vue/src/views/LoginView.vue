@@ -1,11 +1,11 @@
 <template>
   <div id="login" class="login-container">
     <form v-on:submit.prevent="login">
-      <h1 class="register" id="signInText">Who enters the dungeon!</h1>
-      <div role="alert" v-if="invalidCredentials">
+      <h1 class="register" id="signInText">WHO ENTERS THE DUNGEON?!</h1>
+      <div class="alert" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div role="alert" v-if="this.$route.query.registration">
+      <div class="alert" role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
       <div class="form-input-group" id="user">
@@ -17,9 +17,8 @@
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <div>
-        <!-- <img class="container" src="../loginImages/LoginBG3.png" alt="big ol dude fr" /> -->
       </div>
-      <button class="register" type="submit">Sign in</button>
+      <button id="sign-in-btn" class="register" type="submit">Sign in</button>
       <p>
       <router-link class="register" v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
@@ -68,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+#sign-in-btn {
+  color: black;
+}
 .login-container {
   background-image: url('../loginImages/LoginBG2.png');
   background-size: cover;
@@ -82,20 +84,30 @@ export default {
   border: solid 2px;
 }
 #signInText {
-  width: 22vh;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 54vh;
+  left: 20%;
+  width: 60%;
 }
 .register {
   position: relative;
   left: 42.5%;
-  top: 55vh;
+  top: 65vh;
+  color: white;
 }
 #user {
+  position: relative;
+  top: 62vh;
   display: grid;
   grid-template-columns: 15%;
   color: white;
   justify-content: center;
 }
 #pass {
+  position: relative;
+  top: 62vh;
   display: grid;
   grid-template-columns: 15%;
   color: white;
@@ -108,6 +120,13 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+.alert {
+  color: yellow;
+  font-size: larger;
+  position: relative;
+  left: 40.6%;
+  top: 61vh;
 }
 </style>
 
