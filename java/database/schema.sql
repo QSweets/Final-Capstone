@@ -89,19 +89,17 @@ CREATE TABLE monster (
    CONSTRAINT FK_monster_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
-CREATE TABLE party (
-    character_id int, 
-	party_name varchar(20),
-	CONSTRAINT PK_party PRIMARY KEY (party_name), 
-	CONSTRAINT FK_party_character FOREIGN KEY (character_id) REFERENCES character (character_id)
-);
-
 CREATE TABLE partyGroup (
 	party_id serial, 
 	party_name varchar(20), 
-	CONSTRAINT PK_partyGroup PRIMARY KEY (party_id), 
-	CONSTRAINT FK_partyGroup_party FOREIGN KEY (party_name) REFERENCES party (party_name)
-	);
+	CONSTRAINT PK_partyGroup PRIMARY KEY (party_id)
+);
+
+CREATE TABLE party (
+	party_id int,
+    character_id int, 
+	CONSTRAINT FK_party_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id)
+);
 
 CREATE TABLE vote (
    vote_id serial,
@@ -111,8 +109,8 @@ CREATE TABLE vote (
    vote_date date, 
    CONSTRAINT PK_vote PRIMARY KEY (vote_id),
    CONSTRAINT FK_vote_user FOREIGN KEY (user_id) REFERENCES users (user_id),
-   CONSTRAINT FK_vote_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id), 
-   CONSTRAINT FK_vote_monster FOREIGN KEY (monster_id) REFERENCES monster (monster_id)	
+   CONSTRAINT FK_vote_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id)
+--    CONSTRAINT FK_vote_monster FOREIGN KEY (monster_id) REFERENCES monster (monster_id)	
 );
 
 CREATE TABLE graveyard (

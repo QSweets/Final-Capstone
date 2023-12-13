@@ -77,6 +77,8 @@ public class CharacterController {
         }
     }
 
+
+
     private int getCurrentUserId(Principal principal){
         return userDao.getUserByUsername(principal.getName()).getId();
     }

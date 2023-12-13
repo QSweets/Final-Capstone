@@ -8,9 +8,9 @@ public interface PartyDao {
 
     Party createParty(Party party, int characterId);
 
-    Party getPartyByPartyId(int partyId);
-
     List<Party> getAllParties();
+
+    Party getPartyByPartyId(int partyId);
 
 //    For future scalability
 //    Party deleteParty(int partyId);

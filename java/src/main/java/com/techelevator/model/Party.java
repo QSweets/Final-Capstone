@@ -12,6 +12,8 @@ public class Party {
         this.partyName = partyName;
     }
 
+    public Party(){};
+
     public int getPartyId() {
         return partyId;
     }

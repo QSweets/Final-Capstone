@@ -4,6 +4,7 @@ import com.techelevator.dao.CharacterDao;
 import com.techelevator.dao.PartyDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Character;
 import com.techelevator.model.Party;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class PartyController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path= "", method = RequestMethod.GET)
+    @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Party> getAllParties() {
         try {
             return partyDao.getAllParties();
@@ -41,19 +42,27 @@ public class PartyController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path="/createParty", method = RequestMethod.POST)
-    public Party createParty(@RequestBody Party party, Principal principal) {
+    @RequestMapping(path = "/createParty", method = RequestMethod.POST)
+    public Party createParty(@RequestBody Party party, int characterId) {
         try {
-//            return partyDao.createParty(party, getCurrentPartyId(principal));
-            return null;
+            return partyDao.createParty(party, characterId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    };
 
-//    private int getCurrentPartyId(Principal principal){
-//        return partyDao.getPartyByPartyId(principal.getName()).getId();
+//    @RequestMapping(path = "", method = RequestMethod.GET)
+//    public Party getPartyById() {
+//        try {
+//             return partyDao.getPartyById().getPartyId();
+//        } catch (DaoException e){
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
 //    }
+
+//    private int getCurrentPartyId(){
+//        return partyDao.getPartyById().getPartyId();
+//    }
+}
 
 

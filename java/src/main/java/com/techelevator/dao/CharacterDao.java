@@ -24,4 +24,5 @@ public interface CharacterDao {
 
 
     Character deleteCharacter(int userId, int characterId);
+
 }
