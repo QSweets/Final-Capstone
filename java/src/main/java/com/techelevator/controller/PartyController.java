@@ -43,9 +43,9 @@ public class PartyController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/createParty", method = RequestMethod.POST)
-    public Party createParty(@RequestBody Party party, int characterId) {
+    public Party createParty(@RequestBody Party party) {
         try {
-            return partyDao.createParty(party, characterId);
+            return partyDao.createParty(party);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }

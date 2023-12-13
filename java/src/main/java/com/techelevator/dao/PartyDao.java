@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PartyDao {
 
-    Party createParty(Party party, int characterId);
+    Party createParty(Party party);
 
     List<Party> getAllParties();
 

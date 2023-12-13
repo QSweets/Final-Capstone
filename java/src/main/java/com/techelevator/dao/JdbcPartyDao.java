@@ -22,27 +22,23 @@ public class JdbcPartyDao implements PartyDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //split this into two methods
-    //create party method and add characters to party method
     @Override
-    public Party createParty(Party party, int characterId) {
+    public Party createParty(Party party) {
         try {
-            String partySql = "INSERT INTO party " +
-                    "(character_id, party_name) " +
-                    "VALUES (?, ?);";
+            String partyGroupSql = "INSERT INTO partygroup(party_name) VALUES (?);";
+            jdbcTemplate.update(partyGroupSql, party.getPartyName());
 
-            String partyGroupSql = "INSERT INTO partygroup " +
-                    "(party_name) VALUES (?) RETURNING party_id";
+            String selectPartyIdSql = "SELECT party_id FROM partygroup WHERE party_name = ?;";
+            int newPartyId = jdbcTemplate.queryForObject(selectPartyIdSql, Integer.class, party.getPartyName());
 
-            int newPartyId = jdbcTemplate.queryForObject(
-                    partySql,
-                    int.class,
-                    party.getPartyName());
+            String partySql = "INSERT INTO party(party_id, character_id) VALUES (?, ?);";
+            for (Integer characterId : party.getCharacterId()) {
+                jdbcTemplate.update(partySql, newPartyId, characterId);
+            }
 
             return getPartyByPartyId(newPartyId);
-        } catch (
-                DataAccessException e) {
-            throw new RuntimeException("Error creating character", e);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Error creating party", e);
         }
     }
 
@@ -79,10 +75,9 @@ public class JdbcPartyDao implements PartyDao {
     //in characterDao, add a method of getAllCharactersByPartyId()
 
     private Party mapRowToParty(SqlRowSet rowSet) {
-        Party party = new Party();
-        party.setPartyId(rowSet.getInt("party_id"));
-        party.setPartyName(rowSet.getString("party_name"));
-        return party;
+        int partyId = rowSet.getInt("party_id");
+        String partyName = rowSet.getString("party_name");
+        return new Party(partyId, partyName, new ArrayList<Integer>());
     }
 
     }
