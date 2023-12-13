@@ -12,7 +12,7 @@
           </li>
         </ul>
       </div>
-      <img class="m-img" :src="monsterImageUrl" alt="Monster Image" v-on:error="handleImageError" />
+      <img v-if="monsterImageUrl" class="m-img" :src="monsterImageUrl"  onerror="this.onerror=null; 'this.src=https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png'" alt="Monster Image"  />
     </div>
     <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
   </div>
@@ -61,7 +61,7 @@ export default {
   bottom: 6.5vh;
   right: 44%;
 }
-  .m-stats {
+.m-stats {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -79,7 +79,6 @@ export default {
   padding-left: .5%;
   padding-right: .5%;
   color: white;
-  
 }
 .m-size {
   border: solid 2px;

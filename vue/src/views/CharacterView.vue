@@ -3,6 +3,7 @@
     <h1 class="character-details">Character Details</h1>
     <CharacterDetail v-bind:character="character"/>
     <NavBar />
+    <GlobalLogoHeader />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import axios from 'axios';
 import CharacterDetail from '../components/CharacterDetail.vue';
 import NavBar from '../components/NavBar.vue';
+import GlobalLogoHeader from '../components/GlobalLogoHeader.vue'
 
 
 
@@ -22,7 +24,8 @@ data(){
 },
 components: {
     CharacterDetail,
-    NavBar
+    NavBar,
+    GlobalLogoHeader
 },
 methods: {
     async fetchCharacterDetails() {

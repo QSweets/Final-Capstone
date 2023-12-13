@@ -39,16 +39,6 @@ export default {
 #custom-font {
   font-family: 'Pixelify Sans', sans-serif;
 }
-.random-img {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: space-evenly;
-  position: relative;
-  top: 40vh;
-  left: 650%;
-}
 #background {
   background-image: url('src/ProfileImages/background.jpg');
   background-size: cover;
@@ -87,15 +77,6 @@ body {
     sans-serif;
   background-color: #f5f5f5;
 }
-.character-details {
-  display: flex;
-  position: absolute;
-  bottom: 82.5vh;
-  right: 40%;
-  color: white;
-  border-bottom: solid 5px;
-  border-color: rgb(33, 156, 144);
-}
 .roll-stats {
   position: absolute;
   bottom: 11%;
@@ -108,6 +89,14 @@ body {
   position: absolute;
   bottom: 10vh;
   right: 7.9%;
+}
+.random-img {
+  display: grid;
+  grid-template-rows: 15%;
+  border: solid 1px;
+  position: relative;
+  top: 40vh;
+  left: 650%;
 }
 .profile-title {
   display: flex;
@@ -141,31 +130,6 @@ body {
   bottom: 6.5vh;
   right: 40%;
 }
-.character-item {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.image-container {
-  position: relative;
-  display: inline-block;
-}
-
-.detailed-stats {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  transform: translateX(10px); /* Adjust the distance from the image */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.image-container:hover .detailed-stats {
-  opacity: 1;
-}
 .no-character {
   display: flex;
   position: absolute;
@@ -173,9 +137,9 @@ body {
   right: 45%;
   color: white;
 }
-.image-container img {
-  width: 100px;
-  height: auto;
+.image-container {
+  display: flex;
+  flex-direction: row;
 }
 .social-title {
   display: flex;
@@ -198,7 +162,7 @@ body {
   bottom: 6.5vh;
   right: 44%;
 }
-  .m-stats {
+.m-stats {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -249,7 +213,46 @@ body {
   left: 55.9%;
   height: 53.1vh;
 }
-.detail-details {
-  
+.character-details {
+  display: flex;
+  position: absolute;
+  top: 20vh;
+  right: 40%;
+  color: white;
+  border-bottom: solid 5px;
+  border-color: rgb(33, 156, 144);
+}
+.detail-set1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  bottom: 43%;
+  left: 44%;
+  color: white;
+}
+.detail-set2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  bottom: 43%;
+  right: 40%;
+  color: white;
+}
+.detail-name {
+  position: absolute;
+  top: 27vh;
+  left: 46%;
+  color: white;
+}
+.detail-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: 13%;
+  bottom: 40vh;
+  left: 44%;
 }
 </style>
