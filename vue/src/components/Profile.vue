@@ -1,5 +1,5 @@
 <template>
-  <h1 id="custom-font" class="profile-title">Command your party</h1>
+  <h1 id="custom-font" class="profile-title">Command Your Party</h1>
   <h2 id="custom-font" class="select-party">My Party</h2>
   <button id="custom-font" class="add-character" v-on:click="toggleForm">Add Character</button>
   <div class="character-creation-form">

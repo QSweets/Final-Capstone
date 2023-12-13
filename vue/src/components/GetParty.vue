@@ -5,7 +5,7 @@
         <li v-for="character in userCharacters" :key="character.id" class="character-item">
           <div class="image-container">
             <router-link :to="{ name: 'characterDetails', params: { id: character.id } }">
-              <img :src="getRandomImage()" />
+              <img class="random-img" :src="getRandomImage()" />
             </router-link>
             <div class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |

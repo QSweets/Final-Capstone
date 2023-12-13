@@ -24,8 +24,8 @@ public class JdbcVoteDao implements VoteDao {
     public Vote submitVote(Vote vote, int userId) {
         Vote newVote = null;
         String sql = "INSERT INTO vote " +
-                     "(vote_id, user_id, party_id, monster_id, vote_date)" +
-                     "VALUES (?, ?, ?, ?, ?)";
+                     "(vote_id, user_id, party_id, vote_date)" +
+                     "VALUES (?, ?, ?, ?)";
         try{
             int newVoteId = jdbcTemplate.queryForObject(
                     sql,
@@ -44,9 +44,9 @@ public class JdbcVoteDao implements VoteDao {
     @Override
     public Vote getVoteResultsByMonsterId(int monsterId) {
         //This is a method that returns the party id that appears the most frequently in the table
-        String sql = "SELECT vote.party_id, party_name, COUNT(*) AS vote_count FROM vote \n" +
-                "JOIN partygroup ON partygroup.party_id = vote.party_id\n" +
-                "GROUP BY vote.party_id, partygroup.party_name\n" +
+        String sql = "SELECT vote.party_id, party_name, COUNT(*) AS vote_count FROM vote " +
+                "JOIN partygroup ON partygroup.party_id = vote.party_id " +
+                "GROUP BY vote.party_id, partygroup.party_name " +
                 "ORDER BY vote_count DESC LIMIT 1;";
 //
 //        try{
@@ -55,9 +55,9 @@ public class JdbcVoteDao implements VoteDao {
         return null;
     }
 
-    //only really need this method if we want a user to see what they've voted on
     @Override
-    public Vote getVoteByUserId(int userId) {   
+    public Vote getVoteByUserId(int userId) {
         return null;
     }
+
 }

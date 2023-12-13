@@ -35,10 +35,20 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
-  #custom-font {
-    font-family: 'Pixelify Sans', sans-serif;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+#custom-font {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+.random-img {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-evenly;
+  position: relative;
+  top: 40vh;
+  left: 650%;
+}
 #background {
   background-image: url('src/ProfileImages/background.jpg');
   background-size: cover;
@@ -77,16 +87,24 @@ body {
     sans-serif;
   background-color: #f5f5f5;
 }
+.character-details {
+  display: flex;
+  position: absolute;
+  bottom: 82.5vh;
+  right: 40%;
+  color: white;
+  border-bottom: solid 5px;
+  border-color: rgb(33, 156, 144);
+}
 .roll-stats {
   position: absolute;
-  bottom: 7vh;
+  bottom: 11%;
 }
 .save-character {
   position: absolute;
-  bottom: 3vh;
+  bottom: 5%;
 }
 .add-character {
-  display: flex;
   position: absolute;
   bottom: 10vh;
   right: 7.9%;

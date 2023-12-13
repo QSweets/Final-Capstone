@@ -26,7 +26,6 @@ public class JdbcPartyDao implements PartyDao {
     //create party method and add characters to party method
     @Override
     public Party createParty(Party party, int characterId) {
-        //Insert into party table, set that
         try {
             String partySql = "INSERT INTO party " +
                     "(character_id, party_name) " +
@@ -45,15 +44,13 @@ public class JdbcPartyDao implements PartyDao {
                 DataAccessException e) {
             throw new RuntimeException("Error creating character", e);
         }
-
     }
 
     @Override
-        public Party getPartyByPartyId (int partyId) {
+    public Party getPartyByPartyId (int partyId) {
+        String sql = "SELECT party_name FROM partygroup WHERE party_id=?;";
 
-            String sql = "SELECT party_name FROM partygroup WHERE party_id=?;";
-
-            return null;
+        return null;
         }
 
     @Override
@@ -74,7 +71,12 @@ public class JdbcPartyDao implements PartyDao {
         return null;
     }
 
-    //in characterDao, getAllCharactersByPartyId()
+    @Override
+    public Party deleteParty() {
+        return null;
+    }
+
+    //in characterDao, add a method of getAllCharactersByPartyId()
 
     private Party mapRowToParty(SqlRowSet rowSet) {
         Party party = new Party();

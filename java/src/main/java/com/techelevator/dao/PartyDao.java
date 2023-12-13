@@ -12,6 +12,6 @@ public interface PartyDao {
 
     Party getPartyByPartyId(int partyId);
 
-
+    Party deleteParty();
 
 }

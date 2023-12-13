@@ -1,4 +1,5 @@
 <template>
+  <div id="background">
     <div class="character-detail">
       <div v-if="!editing">
         <p>
@@ -51,6 +52,7 @@
         <button type="submit" class="save-character" v-on:click="editCharacter">Save</button>
       </form>
     </div>
+  </div>
 </template>
 
 <script>
