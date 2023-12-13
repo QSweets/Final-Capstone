@@ -91,12 +91,10 @@ body {
   right: 7.9%;
 }
 .random-img {
-  display: grid;
-  grid-template-rows: 15%;
   border: solid 1px;
-  position: relative;
+  position: absolute;
   top: 40vh;
-  left: 650%;
+  left: 50%;
 }
 .profile-title {
   display: flex;
@@ -136,10 +134,6 @@ body {
   top: 55vh;
   right: 45%;
   color: white;
-}
-.image-container {
-  display: flex;
-  flex-direction: row;
 }
 .social-title {
   display: flex;

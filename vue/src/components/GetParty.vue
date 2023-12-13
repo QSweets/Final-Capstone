@@ -76,9 +76,6 @@ export default {
 
 
 .character-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: absolute;
   margin-bottom: 20px;
   list-style: none; 
@@ -86,21 +83,17 @@ export default {
 }
 
 .image-container {
-  position: relative;
   display: inline-block;
 }
 
 .detailed-stats {
   position: absolute;
-  top: 0;
-  left: 100%;
   transform: translateX(10px);
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
-  border: 1px solid #ccc;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .character-item:hover .detailed-stats {
@@ -108,8 +101,7 @@ export default {
 }
 
 .image-container img {
-  width: 100px;
-  height: auto;
+  width: 15vh;
 }
 </style>
 
