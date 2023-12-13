@@ -4,7 +4,14 @@
       <p class="m-name">Name: {{ randomMonster.name }}</p>
       <p class="m-size">Size: {{ randomMonster.details.size }}</p>
       <p class="m-challenge">Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
-      <p class="m-abilities">Special Abilities: {{ randomMonster.details.special_abilities }}</p>
+      <div class="m-abilities">
+        <p>Special Abilities:</p>
+        <ul>
+          <li v-for="(ability, index) in randomMonster.details.special_abilities" :key="index">
+            <strong>{{ ability.name }}:</strong> {{ ability.desc }}
+          </li>
+        </ul>
+      </div>
       <img class="m-img" :src="monsterImageUrl" alt="Monster Image" />
     </div>
     <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
