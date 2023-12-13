@@ -14,8 +14,6 @@ public class Monster extends Creature {
     public List<String> specialAbilities;
 
 
-
-    //POJO constructors
     public Monster(int id, String name, Byte image, String url, String index, String size, double challengeRating, List<String> specialAbilities) {
         super(id, name, image);
         this.url = url;
@@ -27,8 +25,6 @@ public class Monster extends Creature {
 
     public Monster(){};
 
-    //Getters
-
     public String getIndex() {
         return index;
     }
@@ -36,7 +32,6 @@ public class Monster extends Creature {
     public String getUrl() {
         return url;
     }
-
 
     public String getSize(){
         return size;
@@ -49,8 +44,6 @@ public class Monster extends Creature {
     public List<String> getSpecialAbilities(){
         return specialAbilities;
     }
-
-    //Setters
 
     public void setIndex(String index) {
         this.index = index;

@@ -51,45 +51,57 @@ const routes = [
   },
   {
     path: '/vote',
-    name: 'Vote',
+    name: 'vote',
     component: VoteView,
   },
+
   {
     path: '/profile',
     name: 'profile',
     component: ProfileView,
   },
+
   {
-    path: '/social',
-    name: 'social',
-    component: SocialView,
+    path: '/character/:id',
+    name: 'characterDetails',
+    component: CharacterView,
   },
+
+  // {
+  //   path: '/party', 
+  //   name: 'party', 
+  //   component: PartyView,
+  // }
+
+
+
+  // {
+  //   path: '/social',
+  //   name: 'social',
+  //   component: SocialView,
+  // },
 
   // {
   //   path: '/social',
   //   name: 'CommentHomeView',
   //   component: CommentHomeView
   // },
-  {
-    path: '/social/:messageId',
-    name: 'CommentMessageDetailsView',
-    component: CommentMessageDetailsView
-  },
-  {
-    path: '/social/addComment',
-    name: 'CommentAddMessageView',
-    component: CommentAddMessageView
-  },
-  {
-    path: '/social/:userId/:messageId',
-    name: 'CommentEditMessageView',
-    component: CommentEditMessageView
-  },
-  {
-    path: '/character/:id',
-    name: 'characterDetails',
-    component: CharacterView,
-  },
+  // {
+  //   path: '/social/:messageId',
+  //   name: 'CommentMessageDetailsView',
+  //   component: CommentMessageDetailsView
+  // },
+  // {
+  //   path: '/social/addComment',
+  //   name: 'CommentAddMessageView',
+  //   component: CommentAddMessageView
+  // },
+  // {
+  //   path: '/social/:userId/:messageId',
+  //   name: 'CommentEditMessageView',
+  //   component: CommentEditMessageView
+  // },
+
 
 ]; 
 

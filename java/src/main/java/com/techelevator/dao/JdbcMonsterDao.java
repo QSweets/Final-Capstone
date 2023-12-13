@@ -12,7 +12,6 @@ public class JdbcMonsterDao implements MonsterDao {
     public JdbcMonsterDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    //Do we need this? If so we need to change some stuff
     //We will need for archive for later
     @Override
     public List<Monster> getAllMonsters() {
