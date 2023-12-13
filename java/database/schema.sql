@@ -98,7 +98,8 @@ CREATE TABLE partyGroup (
 CREATE TABLE party (
 	party_id int,
     character_id int, 
-	CONSTRAINT FK_party_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id)
+	CONSTRAINT FK_party_partyGroup FOREIGN KEY (party_id) REFERENCES partyGroup (party_id),
+	CONSTRAINT FK_party_character FOREIGN KEY (character_id) REFERENCES character (character_id)
 );
 
 CREATE TABLE vote (
