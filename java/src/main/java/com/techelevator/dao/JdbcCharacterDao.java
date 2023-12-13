@@ -7,7 +7,6 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -33,8 +32,6 @@ public class JdbcCharacterDao implements CharacterDao {
 
         return null;
     }
-
-    //We need to add a getAllCharacters() method
 
     @Override
     public Character createCharacter(Character character, int userId) {

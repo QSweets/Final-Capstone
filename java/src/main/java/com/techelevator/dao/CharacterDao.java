@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Character;
-import com.techelevator.model.CharacterDto;
 
 import java.util.List;
 
@@ -14,6 +13,7 @@ public interface CharacterDao {
     //We want a method that will get the characters for a specific user
     //allowing a user to click on their character list and see all their characters
     List<Character> getCharactersByUserId(int userId);
+
     List<Character> getAllCharacters();
 
     Character getCharacterById(int userId);
