@@ -12,9 +12,6 @@ public interface PartyDao {
 
     Party getPartyByPartyId(int partyId);
 
-//    For future scalability
-//    Party deleteParty(int partyId);
-//    Party updateParty(int partyId);
 
 
 }

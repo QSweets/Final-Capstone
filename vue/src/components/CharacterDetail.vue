@@ -13,7 +13,7 @@
         <strong>Intelligence:</strong> {{ character.character_intelligence }} |
         <strong>Wisdom:</strong> {{ character.character_wisdom }} |
         <strong>Charisma:</strong> {{ character.character_charisma }}
-        <button @click="startEditing">Edit</button>
+        <button v-on:click="startEditing">Edit</button>
         <button class="btn-delete" v-on:click="deleteMessage">Delete</button>
         </p>
       </div>
@@ -32,7 +32,8 @@
             <textarea v-model="abilities"></textarea>
         </div>
         <div>
-        <label for="class_profession">Profession:</label>
+            
+        <!-- <label for="class_profession">Profession:</label>
         <select v-model="class_profession" id="profession" required>
             <option value="Barbarian">Barbarian</option>
             <option value="Bard">Bard</option>
@@ -46,7 +47,7 @@
             <option value="Sorcerer">Sorcerer</option>
             <option value="Warlock">Warlock</option>
             <option value="Wizard">Wizard</option>
-        </select>
+        </select> -->
         </div>
         <button type="submit" class="save-character" v-on:click="editCharacter">Save</button>
       </form>
@@ -71,12 +72,19 @@ export default {
   },
   methods: {
     async editCharacter() {
-      try {
-        const characterData = {
-          character_name: this.character_name,
-          class_profession: this.class_profession,
-          abilities: this.abilities,
-          background: this.background,
+  try {
+    const characterData = {
+        character_name: this.character_name,
+        creature: this.character.creature,
+        class_profession: this.class_profession || this.character.class_profession,
+        character_strength: this.character.character_strength,
+        character_dexterity: this.character.character_dexterity,
+        character_constitution: this.character.character_constitution,
+        character_intelligence: this.character.character_intelligence,
+        character_wisdom: this.character.character_wisdom,
+        character_charisma: this.character.character_charisma,
+        abilities: this.abilities,
+        background: this.background,
         };
 
         console.log('Character Data:', characterData);
@@ -87,11 +95,6 @@ export default {
           },
         });
 
-        this.editing = false;
-        this.character_name = '';
-        this.class_profession = '';
-        this.abilities = '';
-        this.background = '';
       } catch (error) {
         console.error('Error editing character:', error);
       }
@@ -110,7 +113,7 @@ export default {
       try {
         await axios.delete(`http://localhost:9000/characters/${this.$route.params.id}`);
         
-        this.$router.push('/profile');
+        this.$router.push('/characters');
 
       } catch (error) {
         console.error('Error deleting character:', error);
