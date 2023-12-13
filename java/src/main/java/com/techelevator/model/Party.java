@@ -1,18 +1,26 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Party {
     private int partyId;
-    private int characterId;
-
+    private List<Integer> characterId;
     private String partyName;
 
-    public Party(int partyId, int characterId, String partyName){
+    public Party() {
+        this.characterId = new ArrayList<>();
+    }
+
+    public Party(int partyId, List<Integer> characterId, String partyName) {
         this.partyId = partyId;
         this.characterId = characterId;
         this.partyName = partyName;
     }
 
-    public Party(){};
+    public Party(int partyId, String partyName, ArrayList<Integer> integers) {
+
+    }
 
     public int getPartyId() {
         return partyId;
@@ -22,11 +30,11 @@ public class Party {
         this.partyId = partyId;
     }
 
-    public int getCharacterId() {
+    public List<Integer> getCharacterId() {
         return characterId;
     }
 
-    public void setCharacterId(int characterId) {
+    public void setCharacterId(List<Integer> characterId) {
         this.characterId = characterId;
     }
 
@@ -37,5 +45,5 @@ public class Party {
     public void setPartyName(String partyName) {
         this.partyName = partyName;
     }
-
 }
+
