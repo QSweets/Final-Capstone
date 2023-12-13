@@ -2,20 +2,20 @@
 <template>
   <div class="blank-box" />
   <div class="navbar">
-    <router-link class="home" to="/" v-if="token !== ''">
-      <button>Home</button>
+    <router-link id="nav-btn" class="home" to="/" v-if="token !== ''">
+      <button id="custom-font">Home</button>
     </router-link>
-    <router-link class="vote" to="/vote" v-if="token !== ''">
-      <button>Voting</button>
+    <router-link id="nav-btn" class="vote" to="/vote" v-if="token !== ''">
+      <button id="custom-font">Voting</button>
     </router-link>
-    <router-link class="profile" to="/profile" v-if="token !== ''">
-      <button>My Profile</button>
+    <router-link id="nav-btn" class="profile" to="/profile" v-if="token !== ''">
+      <button id="custom-font">My Profile</button>
     </router-link>
-    <router-link class="social" to="/social" v-if="token !== ''">
-      <button>Party</button>
+    <router-link id="nav-btn" class="social" to="/social" v-if="token !== ''">
+      <button id="custom-font">Party</button>
     </router-link>
-    <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
-      <button>Logout</button>
+    <router-link id="nav-btn" class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
+      <button id="custom-font">Logout</button>
     </router-link>
   </div>
   </template>
@@ -38,6 +38,9 @@
   </script>
   
 <style>
+#nav-btn:hover {
+  box-shadow: 5px 5px 5px rgb(33, 156, 144);
+}
 .home {
   position: absolute;
   top: 25.8%;

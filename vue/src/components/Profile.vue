@@ -1,85 +1,81 @@
 <template>
-  <h1 class="profile-title">Command your party</h1>
-  <h2 class="select-party">My Party</h2>
-  <button class="add-character" v-on:click="toggleForm">Add Character</button>
+  <h1 id="custom-font" class="profile-title">Command your party</h1>
+  <h2 id="custom-font" class="select-party">My Party</h2>
+  <button id="custom-font" class="add-character" v-on:click="toggleForm">Add Character</button>
   <div class="character-creation-form">
   <div v-if="showForm" class="popup-form">
   <form v-on:submit.prevent="submitCharacter">
-    <!-- <div>
-      <label for="picture">Picture:</label>
-      <input type="file" id="picture" name="picture" v-on:change="onFileChange" />
-    </div> -->
     <div>
-      <label for="character_name">Character Name:</label>
+      <label id="custom-font" for="character_name">Character Name:</label>
       <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
     </div>
     <div>
-      <label for="background">Background:</label>
+      <label id="custom-font" for="background">Background:</label>
       <textarea v-model="background"></textarea>
     </div>
     <div>
-      <label for="abilities">Abilities:</label>
+      <label id="custom-font" for="abilities">Abilities:</label>
       <textarea v-model="abilities"></textarea>
     </div>
     <div>
-      <label for="creature">Creature:</label>
+      <label id="custom-font" for="creature">Creature:</label>
       <select id="creature" v-model="creature" required>
-         <option value="Dwarves">Dwarve</option>
-         <option value="Elves">Elven</option>
-         <option value="Halflings">Halfling</option>
-         <option value="Humans">Human</option>
-         <option value="Dragonborns">Dragonborn</option>
-         <option value="Gnomes">Gnome</option>
-         <option value="Half-elves">Half-elve</option>
-         <option value="Half-orcs">Half-orc</option>
-         <option value="Tieflings">Tiefling</option>
+         <option id="custom-font" value="Dwarves">Dwarve</option>
+         <option id="custom-font" value="Elves">Elven</option>
+         <option id="custom-font" value="Halflings">Halfling</option>
+         <option id="custom-font" value="Humans">Human</option>
+         <option id="custom-font" value="Dragonborns">Dragonborn</option>
+         <option id="custom-font" value="Gnomes">Gnome</option>
+         <option id="custom-font" value="Half-elves">Half-elve</option>
+         <option id="custom-font" value="Half-orcs">Half-orc</option>
+         <option id="custom-font" value="Tieflings">Tiefling</option>
       </select>
     </div>
     <div>
-      <label for="class_profession">Profession:</label>
+      <label id="custom-font" for="class_profession">Profession:</label>
       <select v-model="class_profession" id="profession" required>
-        <option value="Barbarian">Barbarian</option>
-        <option value="Bard">Bard</option>
-        <option value="Cleric">Cleric</option>
-        <option value="Druid">Druid</option>
-        <option value="Fighter">Fighter</option>
-        <option value="Monk">Monk</option>
-        <option value="Paladin">Paladin</option>
-        <option value="Ranger">Ranger</option>
-        <option value="Rogue">Rogue</option>
-        <option value="Sorcerer">Sorcerer</option>
-        <option value="Warlock">Warlock</option>
-        <option value="Wizard">Wizard</option>
+        <option id="custom-font" value="Barbarian">Barbarian</option>
+        <option id="custom-font" value="Bard">Bard</option>
+        <option id="custom-font" value="Cleric">Cleric</option>
+        <option id="custom-font" value="Druid">Druid</option>
+        <option id="custom-font" value="Fighter">Fighter</option>
+        <option id="custom-font" value="Monk">Monk</option>
+        <option id="custom-font" value="Paladin">Paladin</option>
+        <option id="custom-font" value="Ranger">Ranger</option>
+        <option id="custom-font" value="Rogue">Rogue</option>
+        <option id="custom-font" value="Sorcerer">Sorcerer</option>
+        <option id="custom-font" value="warlock">Warlock</option>
+        <option id="custom-font" value="Wizard">Wizard</option>
       </select>
     </div>
     <div>
-      <label for="character_strength">Strength:</label>
+      <label id="custom-font" for="character_strength">Strength:</label>
       <input type="text" id="strength" name="strength" v-model="character_strength" disabled />
     </div>
     <div>
-      <label for="character_dexterity">Dexterity:</label>
+      <label id="custom-font" for="character_dexterity">Dexterity:</label>
       <input type="text" id="dexterity" name="dexterity"  v-model="character_dexterity" disabled />
     </div>
     <div>
-      <label for="character_constitution">Constitution:</label>
+      <label id="custom-font" for="character_constitution">Constitution:</label>
       <input type="text" id="constitution" name="constitution"  v-model="character_constitution" disabled />
     </div>
     <div>
-      <label for="character_intelligence">Intelligence:</label>
+      <label id="custom-font" for="character_intelligence">Intelligence:</label>
       <input type="text" id="intelligence" name="intelligence" v-model="character_intelligence" disabled/>
     </div>
     <div>
-      <label for="character_wisdom">Wisdom:</label>
+      <label id="custom-font" for="character_wisdom">Wisdom:</label>
       <input type="text" id="wisdom" name="wisdom"  v-model="character_wisdom" disabled />
     </div>
     <div>
-      <label for="character_charisma">Charisma:</label>
+      <label id="custom-font" for="character_charisma">Charisma:</label>
       <input type="text" id="charisma" name="charisma"  v-model="character_charisma" disabled />
     </div>
     <div>
-    <button class="roll-stats" v-on:click="rollAllStats">Roll Stats</button>
+    <button id="custom-font" class="roll-stats" v-on:click="rollAllStats">Roll Stats</button>
     </div>
-    <button type="submit" class="save-character" v-on:click="saveCharacter">Save Character</button>
+    <button id="custom-font" type="submit" class="save-character" v-on:click="saveCharacter">Save Character</button>
   </form>
   </div>
   </div>

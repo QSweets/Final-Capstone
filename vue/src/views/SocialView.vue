@@ -1,6 +1,6 @@
 <template>
   <div id="background">
-    <h1 class="social-title">Let's Talk About It</h1>
+    <h1 id="custom-font" class="social-title">Let's Talk About It</h1>
   </div>
   <global-logo-header />
   <NavBar />

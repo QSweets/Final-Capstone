@@ -1,5 +1,5 @@
 <template>
-      <button class="btn-add" v-on:click="$router.push({ name: 'CommentAddMessageView' })">Add Comment</button>
+      <button id="custom-font" class="btn-add" v-on:click="$router.push({ name: 'CommentAddMessageView' })">Add Comment</button>
     <comment-message-summary v-for="message in messages" v-bind:key="message.id" v-bind:message="message" />
   </template>
   

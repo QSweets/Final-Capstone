@@ -25,7 +25,7 @@
       </ul>
     </div>
     <div v-else>
-      <p class="no-character">No characters found.</p>
+      <p id="custom-font" class="no-character">No characters found.</p>
     </div>
   </div>
 </template>

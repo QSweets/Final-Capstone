@@ -1,12 +1,13 @@
 <template>
     <div>
-      <h1>Ready, Set, Vote!</h1>
+
     </div>
       <main>
       <!-- /*Want to display the MOTW details*/ -->
       <MOTW />
       <CharacterList />
       <Vote />
+      <GlobalLogoHeader/>
     </main>
   </template>
   
@@ -14,13 +15,16 @@
   import Vote from '../components/Vote.vue';
   import MOTW from '../components/MOTW.vue';
   import CharacterList from '../components/CharacterList.vue'
+  import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
+
 
   export default {
     components: {
-    MOTW, 
-    CharacterList, 
-    Vote, 
-  },
+    MOTW,
+    CharacterList,
+    Vote,
+    GlobalLogoHeader,
+},
 
   data() {
     return {

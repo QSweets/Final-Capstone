@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+  #custom-font {
+    font-family: 'Pixelify Sans', sans-serif;
+  }
 #background {
   background-image: url('src/ProfileImages/background.jpg');
   background-size: cover;
@@ -42,7 +46,7 @@ export default {
   background-repeat: no-repeat;
   min-height: 100vh;
 }
-#welcome {
+.welcome {
   display: flex;
   position: absolute;
   bottom: 82.5vh;
@@ -75,11 +79,11 @@ body {
 }
 .roll-stats {
   position: absolute;
-  bottom: 10vh;
+  bottom: 7vh;
 }
 .save-character {
   position: absolute;
-  bottom: 6vh;
+  bottom: 3vh;
 }
 .add-character {
   display: flex;

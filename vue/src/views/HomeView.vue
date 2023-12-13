@@ -1,6 +1,6 @@
 <template>
   <div id="background">
-    <h1 class="home-header">Home</h1>
+    <h1 id="custom-font" class="home-header">Home</h1>
     <NavBar />
     <MOTW />
     <Welcome />
