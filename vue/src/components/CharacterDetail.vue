@@ -31,9 +31,8 @@
             <label for="abilities">Abilities:</label>
             <textarea v-model="abilities"></textarea>
         </div>
-        <div>
-            
-        <!-- <label for="class_profession">Profession:</label>
+        <div>  
+        <label for="class_profession">Profession:</label>
         <select v-model="class_profession" id="profession" required>
             <option value="Barbarian">Barbarian</option>
             <option value="Bard">Bard</option>
@@ -47,7 +46,7 @@
             <option value="Sorcerer">Sorcerer</option>
             <option value="Warlock">Warlock</option>
             <option value="Wizard">Wizard</option>
-        </select> -->
+        </select>
         </div>
         <button type="submit" class="save-character" v-on:click="editCharacter">Save</button>
       </form>
@@ -113,7 +112,7 @@ export default {
       try {
         await axios.delete(`http://localhost:9000/characters/${this.$route.params.id}`);
         
-        this.$router.push('/characters');
+        this.$router.push('/profile');
 
       } catch (error) {
         console.error('Error deleting character:', error);
