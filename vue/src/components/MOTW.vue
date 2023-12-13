@@ -12,7 +12,7 @@
           </li>
         </ul>
       </div>
-      <img class="m-img" :src="monsterImageUrl" alt="Monster Image" />
+      <img class="m-img" :src="monsterImageUrl" alt="Monster Image" v-on:error="handleImageError" />
     </div>
     <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
   </div>
@@ -25,16 +25,18 @@ export default {
   data() {
     return {
       randomMonster: null,
+      imageUrl: "https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png",
     };
   },
   computed: {
-  monsterImageUrl() {
-    const index = this.randomMonster ? this.randomMonster.index.toLowerCase() : "adult-black-dragon";
-    const imageUrl = `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
-    console.log('Image URL:', imageUrl);
-    return `https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png`;
+    monsterImageUrl() {
+      if (this.randomMonster && this.randomMonster.index) {
+        const index = this.randomMonster.index.toLowerCase();
+        return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
+      }
+      return this.imageUrl;
+    },
   },
-},
   methods: {
     getRandomMonster() {
       axios.get('/api/monsters/random')
@@ -46,6 +48,9 @@ export default {
         });
     },
   },
+  handleImageError() {
+      this.imageUrl = "https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png";
+    },
 };
 </script>
 
