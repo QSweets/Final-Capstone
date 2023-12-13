@@ -8,7 +8,6 @@
       <CharacterList />
       <Vote />
       <GlobalLogoHeader/>
-      <Navbar />
     </main>
   </template>
   
@@ -17,7 +16,7 @@
   import MOTW from '../components/MOTW.vue';
   import CharacterList from '../components/CharacterList.vue'
   import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
-  import Navbar from '../components/navbar.vue';
+
 
   export default {
     components: {
@@ -25,7 +24,6 @@
     CharacterList,
     Vote,
     GlobalLogoHeader,
-    Navbar
 },
 
   data() {
