@@ -1,7 +1,6 @@
-<!-- Updated template -->
 <template>
     <div class="character-detail">
-      <div v-if="character && !editing">
+      <div v-if="!editing">
         <p>
         <strong>Name:</strong> {{ character.character_name }} |
         <strong>Creature:</strong> {{ character.creature }} |
@@ -15,47 +14,66 @@
         <strong>Wisdom:</strong> {{ character.character_wisdom }} |
         <strong>Charisma:</strong> {{ character.character_charisma }}
         <button @click="startEditing">Edit</button>
+        <button class="btn-delete" v-on:click="deleteMessage">Delete</button>
         </p>
       </div>
   
-      <form v-if="editing" @submit.prevent="saveCharacter">
-        <label for="character_name">Name:</label>
-        <input v-model="character_name" type="text" id="character_name" required />
-  
-        <label for="creature">Creature:</label>
-        <input v-model="creature" type="text" id="creature" required />
-  
+      <form v-if="editing" @submit="saveCharacter">
+        <div>
+            <label for="character_name">Character Name:</label>
+            <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
+        </div>
+        <div>
+            <label for="background">Background:</label>
+            <textarea v-model="background"></textarea>
+        </div>
+        <div>
+            <label for="abilities">Abilities:</label>
+            <textarea v-model="abilities"></textarea>
+        </div>
+        <div>
         <label for="class_profession">Profession:</label>
-        <input v-model="class_profession" type="text" id="class_profession" required />
-  
-        <button type="submit">Save</button>
+        <select v-model="class_profession" id="profession" required>
+            <option value="Barbarian">Barbarian</option>
+            <option value="Bard">Bard</option>
+            <option value="Cleric">Cleric</option>
+            <option value="Druid">Druid</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Monk">Monk</option>
+            <option value="Paladin">Paladin</option>
+            <option value="Ranger">Ranger</option>
+            <option value="Rogue">Rogue</option>
+            <option value="Sorcerer">Sorcerer</option>
+            <option value="Warlock">Warlock</option>
+            <option value="Wizard">Wizard</option>
+        </select>
+        </div>
+        <button type="submit" class="save-character" v-on:click="editCharacter">Save</button>
       </form>
     </div>
-  </template>
-  <script>
+</template>
+
+<script>
 import axios from 'axios';
 
 export default {
-    props: {
-  character: Object
- },
+  props: {
+    character: Object,
+  },
   data() {
     return {
       character_name: '',
-      creature: '',
       class_profession: '',
       abilities: '',
       background: '',
-      editing: false
+      editing: false,
     };
   },
-
   methods: {
     async editCharacter() {
       try {
         const characterData = {
           character_name: this.character_name,
-          creature: this.creature,
           class_profession: this.class_profession,
           abilities: this.abilities,
           background: this.background,
@@ -63,47 +81,41 @@ export default {
 
         console.log('Character Data:', characterData);
 
-        await axios.put(`http://localhost:9000/characters/${this.characterId}`, characterData, {
+        await axios.put(`http://localhost:9000/characters/${this.$route.params.id}`, characterData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
+
+        this.editing = false;
+        this.character_name = '';
+        this.class_profession = '';
+        this.abilities = '';
+        this.background = '';
       } catch (error) {
         console.error('Error editing character:', error);
       }
     },
-    async saveCharacter() {
+
+    startEditing() {
+      this.editing = true;
+
+      this.character_name = this.character.character_name;
+      this.abilities = this.character.abilities;
+      this.class_profession = this.character.class_profession;
+      this.background = this.character.background;
+    },
+
+    async deleteMessage() {
       try {
-        console.log('Saving character...');
+        await axios.delete(`http://localhost:9000/characters/${this.$route.params.id}`);
+        
+        this.$router.push('/profile');
 
-        const characterData = {
-        character_name: this.character_name,
-        creature: this.creature,
-        class_profession: this.class_profession,
-        abilities: this.abilities,
-        background: this.background,
-        };
-
-        console.log('Character Data:', characterData);
-
-        const response = await axios.put(`http://localhost:9000/characters/${this.characterId}`, characterData, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        });
-            console.log('Character saved successfully:', response.data);
-
-        this.character.character_name = this.character_name;
-        this.character.creature = this.creature;
-        this.character.class_profession = this.class_profession;
-        this.character.abilities = this.abilities;
-        this.character.background = this.background,
-
-        this.editing = false;
-    } catch (error) {
-        console.error('Error saving character:', error);
+      } catch (error) {
+        console.error('Error deleting character:', error);
+      }
     }
-    }
-  },
-};
+  }
+}
 </script>
