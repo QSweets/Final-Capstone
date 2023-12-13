@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class PartyController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/createParty", method = RequestMethod.POST)
-    public Party createParty(@RequestBody Party party) {
+    public Party createParty(@Valid @RequestBody Party party) {
         try {
             return partyDao.createParty(party);
         } catch (DaoException e) {

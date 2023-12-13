@@ -5,15 +5,19 @@ import java.util.List;
 
 public class Party {
     private int partyId;
-    private List<Integer> characterId;
+    private List<Integer> characterId = new ArrayList<>();
     private String partyName;
 
     public Party() {
-        this.characterId = new ArrayList<>();
     }
 
     public Party(int partyId, List<Integer> characterId, String partyName) {
         this.partyId = partyId;
+        this.characterId = characterId;
+        this.partyName = partyName;
+    }
+
+    public Party(List<Integer> characterId, String partyName){
         this.characterId = characterId;
         this.partyName = partyName;
     }

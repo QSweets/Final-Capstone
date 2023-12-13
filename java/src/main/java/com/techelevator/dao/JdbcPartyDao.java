@@ -25,15 +25,15 @@ public class JdbcPartyDao implements PartyDao {
     @Override
     public Party createParty(Party party) {
         try {
-            String partyGroupSql = "INSERT INTO partygroup(party_name) VALUES (?);";
-            jdbcTemplate.update(partyGroupSql, party.getPartyName());
+            String partyGroupSql = "INSERT INTO partygroup(party_name) VALUES (?) RETURNING party_id;";
+            // jdbcTemplate.queryForObject(partyGroupSql, party.getPartyName());
 
             String selectPartyIdSql = "SELECT party_id FROM partygroup WHERE party_name = ?;";
-            int newPartyId = jdbcTemplate.queryForObject(selectPartyIdSql, Integer.class, party.getPartyName());
+            int newPartyId = jdbcTemplate.queryForObject(partyGroupSql, int.class, party.getPartyName());
 
-            String partySql = "INSERT INTO party(party_id, character_id) VALUES (?, ?);";
-            for (Integer characterId : party.getCharacterId()) {
-                jdbcTemplate.update(partySql, newPartyId, characterId);
+            String partySql = "INSERT INTO party(party_id, character_id) VALUES (?, ?) RETURNING 1;";
+            for (int characterId : party.getCharacterId()){
+                jdbcTemplate.queryForObject(partySql, int.class, newPartyId, characterId);
             }
 
             return getPartyByPartyId(newPartyId);
