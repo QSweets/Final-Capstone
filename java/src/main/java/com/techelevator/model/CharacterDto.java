@@ -16,19 +16,19 @@ public class CharacterDto {
     private int wisdom;
     private int charisma;
 
-//    public Character(){
-//    }
+
     public byte[] getPortrait(){
         return portrait;
     }
+
     public String getBackground(){
         return background;
     }
+
     public List<String> getAbilities() {
         return abilities;
     }
 
-//    @Override
     public String getName() {
         return name;
     }
@@ -41,32 +41,26 @@ public class CharacterDto {
         return profession;
     }
 
-//    @Override
     public int getStrength() {
         return strength;
     }
 
-//    @Override
     public int getDexterity() {
         return dexterity;
     }
 
-//    @Override
     public int getConstitution() {
         return constitution;
     }
 
-//    @Override
     public int getIntelligence() {
         return intelligence;
     }
 
-//    @Override
     public int getWisdom() {
         return wisdom;
     }
 
-//    @Override
     public int getCharisma() {
         return charisma;
     }
@@ -83,7 +77,6 @@ public class CharacterDto {
         this.abilities = abilities;
     }
 
-//    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -96,32 +89,26 @@ public class CharacterDto {
         this.profession = profession;
     }
 
-//    @Override
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-//    @Override
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
-//    @Override
     public void setConstitution(int constitution) {
         this.constitution = constitution;
     }
 
-//    @Override
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-//    @Override
     public void setWisdom(int wisdom) {
         this.wisdom = wisdom;
     }
 
-//    @Override
     public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
