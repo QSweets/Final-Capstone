@@ -28,13 +28,13 @@ export default {
     };
   },
   computed: {
-  monsterImageUrl() {
-    if (this.randomMonster) {
-      const index = this.randomMonster.index.toLowerCase();
-      return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
-    }
-    return '';
-  },
+    monsterImageUrl() {
+        const index = this.randomMonster ? this.randomMonster.index.toLowerCase() : "adult-black-dragon";
+        const imageUrl = `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
+        console.log('Image URL:', imageUrl);
+        return `https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png`;;
+      },
+
 },
   methods: {
     getRandomMonster() {
