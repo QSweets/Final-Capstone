@@ -1,15 +1,16 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Vote {
     private int voteId;
     private int userId;
     private int partyId;
-    private String monsterId;
-    private LocalDate date;
+    private int monsterId;
+    private Date date;
 
-    public Vote(int userId, int partyId, LocalDate date, int voteId, String monsterId){
+    public Vote(int userId, int partyId, Date date, int voteId, int monsterId){
         this.userId = userId;
         this.partyId = partyId;
         this.date = date;
@@ -35,11 +36,11 @@ public class Vote {
         this.partyId = partyId;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -52,11 +53,11 @@ public class Vote {
         this.voteId = voteId;
     }
 
-    public String getMonsterId() {
+    public int getMonsterId() {
         return monsterId;
     }
 
-    public void setMonsterId(String monsterId) {
+    public void setMonsterId(int monsterId) {
         this.monsterId = monsterId;
     }
 }

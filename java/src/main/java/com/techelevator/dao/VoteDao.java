@@ -11,10 +11,8 @@ public interface VoteDao {
 
     Vote submitVote(Vote vote, int userId);
 
-    Vote getVoteResultsByMonsterId(int monsterId);
+    Vote getVoteResults();
 
-    Vote getVoteByUserId(int userId);
-
-
+    Vote getVoteByVoteId(int userId);
 
 }

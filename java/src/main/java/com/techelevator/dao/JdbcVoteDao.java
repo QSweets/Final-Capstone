@@ -23,41 +23,56 @@ public class JdbcVoteDao implements VoteDao {
     @Override
     public Vote submitVote(Vote vote, int userId) {
         Vote newVote = null;
-        String sql = "INSERT INTO vote " +
-                     "(vote_id, user_id, party_id, vote_date)" +
-                     "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO vote(user_id, party_id, vote_date) " +
+                     "VALUES (?, ?, CURRENT_DATE) RETURNING vote_id;";
+
         try{
             int newVoteId = jdbcTemplate.queryForObject(
                     sql,
                     int.class,
-                    vote.getVoteId(),
+                    vote.getUserId(),
                     vote.getPartyId(),
-                    vote.getMonsterId(),
                     vote.getDate(),
-                    userId);
-            return getVoteByUserId(newVoteId);
+                    userId
+                    );
+            return getVoteByVoteId(newVoteId);
         } catch (DataAccessException e) {
             throw new RuntimeException("Error submitting vote", e);
         }
     }
 
     @Override
-    public Vote getVoteResultsByMonsterId(int monsterId) {
+    public Vote getVoteResults() {
         //This is a method that returns the party id that appears the most frequently in the table
         String sql = "SELECT vote.party_id, party_name, COUNT(*) AS vote_count FROM vote " +
                 "JOIN partygroup ON partygroup.party_id = vote.party_id " +
                 "GROUP BY vote.party_id, partygroup.party_name " +
                 "ORDER BY vote_count DESC LIMIT 1;";
-//
-//        try{
-//
-//        }
         return null;
     }
 
     @Override
-    public Vote getVoteByUserId(int userId) {
+    public Vote getVoteByVoteId(int voteId) {
+        String sql = "SELECT vote_id, user_id, party_id, monster_id, vote_date" +
+                     "FROM vote WHERE vote_id = ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, voteId);
+
+        if (result.next()) {
+            return mapRowToVote(result);
+        }
+
         return null;
     }
 
+
+    private Vote mapRowToVote(SqlRowSet rowSet) {
+        Vote vote = new Vote();
+        vote.setVoteId(rowSet.getInt("vote_id"));
+        vote.setUserId(rowSet.getInt("user_id"));
+        vote.setPartyId(rowSet.getInt("party_id"));
+        vote.setMonsterId(rowSet.getInt("monster_id"));
+        vote.setDate(rowSet.getDate("vote_date"));
+        return vote;
+    }
 }
