@@ -2,21 +2,28 @@
   <div id="background">
     <div class="character-detail">
       <div v-if="!editing">
-        <p class="detail-details">
-        <strong class="detail-name" >Name:</strong> {{ character.character_name }} |
-        <strong class="detail-creature" >Creature:</strong> {{ character.creature }} |
-        <strong class="detail-profession" >Profession :</strong> {{ character.class_profession }} |
-        <strong class="detail-abilities" >abilities:</strong> {{ character.abilities }} |
-        <strong class="detail-background" >background:</strong> {{ character.background }} |
-        <strong class="detail-strength" >Strength:</strong> {{ character.character_strength }} |
-        <strong class="detail-dexterity" >Dexterity:</strong> {{ character.character_dexterity }} |
-        <strong class="detail-constitution" >Constitution:</strong> {{ character.character_constitution }} |
-        <strong class="detail-intelligence" >Intelligence:</strong> {{ character.character_intelligence }} |
-        <strong class="detail-wisdom" >Wisdom:</strong> {{ character.character_wisdom }} |
-        <strong class="detail-charisma" >Charisma:</strong> {{ character.character_charisma }}
-        <button class="edit-detail" v-on:click="startEditing">Edit</button>
-        <button class="delete-detail" v-on:click="deleteMessage">Delete</button>
+        <h2 class="detail-name">
+        <strong >Name:</strong> {{ character.character_name }}
+        </h2>
+        <p class="detail-set1">
+        <strong >Profession :</strong> {{ character.class_profession }}
+        <strong >background:</strong> {{ character.background }}
+        <strong >Dexterity:</strong> {{ character.character_dexterity }}
+        <strong >Intelligence:</strong> {{ character.character_intelligence }}
+        <strong >Charisma:</strong> {{ character.character_charisma }}
+    
         </p>
+        <p class="detail-set2">
+          <strong >Creature:</strong> {{ character.creature }}
+          <strong >abilities:</strong> {{ character.abilities }}
+          <strong >Strength:</strong> {{ character.character_strength }}
+          <strong >Constitution:</strong> {{ character.character_constitution }}
+          <strong >Wisdom:</strong> {{ character.character_wisdom }}
+        </p>
+        <div class="detail-option">
+        <button v-on:click="startEditing">Edit</button>
+        <button v-on:click="deleteMessage">Delete</button>
+        </div>
       </div>
 
       <form v-if="editing" @submit="saveCharacter">
