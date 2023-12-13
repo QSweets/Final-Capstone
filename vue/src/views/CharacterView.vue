@@ -1,12 +1,16 @@
 <template>
-    <h1>Character Details</h1>
+  <div id="custom-font">
+    <h1 class="character-details">Character Details</h1>
     <CharacterDetail v-bind:character="character"/>
+    <NavBar />
+  </div>
 </template>
 
 
 <script>
 import axios from 'axios';
 import CharacterDetail from '../components/CharacterDetail.vue';
+import NavBar from '../components/NavBar.vue';
 
 
 
@@ -17,7 +21,8 @@ data(){
     }
 },
 components: {
-    CharacterDetail
+    CharacterDetail,
+    NavBar
 },
 methods: {
     async fetchCharacterDetails() {
