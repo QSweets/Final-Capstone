@@ -1,16 +1,10 @@
 package com.techelevator.model;
 
 public class Character extends Creature {
-
     private int user_id;
-
     private String background;
-
-    //Spells is an ability
     private String abilities;
-    //Creature is race
     private String creature;
-    //Profession is character class
     private String class_profession;
     private int character_strength;
     private int character_dexterity;
@@ -36,10 +30,7 @@ public class Character extends Creature {
         this.character_charisma = character_charisma;
     }
 
-    public Character() {
-
-    }
-
+    public Character() {}
     public byte[] getImage() {
         return image;
     }
@@ -47,6 +38,7 @@ public class Character extends Creature {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
     public int getUser_id() {
         return user_id;
     }
@@ -137,4 +129,5 @@ public class Character extends Creature {
 
     public void setCharacter_id(int newCharacterId) {
     }
+
 }

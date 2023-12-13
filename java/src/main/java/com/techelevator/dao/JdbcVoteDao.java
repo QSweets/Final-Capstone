@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Character;
+import com.techelevator.model.Party;
 import com.techelevator.model.Vote;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,16 +23,15 @@ public class JdbcVoteDao implements VoteDao {
 
     @Override
     public Vote submitVote(Vote vote, int userId) {
-        Vote newVote = null;
-        String sql = "INSERT INTO vote(user_id, party_id, vote_date) " +
-                     "VALUES (?, ?, CURRENT_DATE) RETURNING vote_id;";
-
+        String sql = "INSERT INTO vote(user_id, party_id, monster_id, vote_date) " +
+                     "VALUES (?, ?, ?, CURRENT_DATE) RETURNING vote_id;";
         try{
             int newVoteId = jdbcTemplate.queryForObject(
                     sql,
                     int.class,
                     vote.getUserId(),
                     vote.getPartyId(),
+                    vote.getMonsterId(),
                     vote.getDate(),
                     userId
                     );
@@ -42,12 +42,25 @@ public class JdbcVoteDao implements VoteDao {
     }
 
     @Override
-    public Vote getVoteResults() {
-        //This is a method that returns the party id that appears the most frequently in the table
+    public String getVoteResults() {
+        //This is a method that returns the party name that appears the most frequently in the table
+        String winner;
+
         String sql = "SELECT vote.party_id, party_name, COUNT(*) AS vote_count FROM vote " +
                 "JOIN partygroup ON partygroup.party_id = vote.party_id " +
                 "GROUP BY vote.party_id, partygroup.party_name " +
                 "ORDER BY vote_count DESC LIMIT 1;";
+        try {
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        if (results.next()) {
+            winner = results.getString("party_name");
+            return winner;
+        }
+
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating character", e);
+        }
         return null;
     }
 

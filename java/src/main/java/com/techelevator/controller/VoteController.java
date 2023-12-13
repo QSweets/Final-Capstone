@@ -3,14 +3,18 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.dao.VoteDao;
+import com.techelevator.exception.DaoException;
+import com.techelevator.model.Character;
 import com.techelevator.model.Party;
 import com.techelevator.model.User;
 import com.techelevator.model.Vote;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -22,20 +26,31 @@ public class VoteController {
     private UserDao userDao;
 
 
-
     public VoteController(VoteDao voteDao, UserDao userDao) {
         this.voteDao = voteDao;
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public Party getVoteByMonsterId(){
-        return null;
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public Vote submitVote(@RequestBody Vote vote, Principal principal){
+        try {
+            return voteDao.submitVote(vote, getCurrentUserId(principal));
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
+    @RequestMapping(path = "/results", method = RequestMethod.GET)
+    public String getVoteResults() {
+        try {
+            return voteDao.getVoteResults();
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-
-
-
-
+    private int getCurrentUserId(Principal principal){
+        return userDao.getUserByUsername(principal.getName()).getId();
+    }
 }

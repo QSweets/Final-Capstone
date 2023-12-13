@@ -11,8 +11,8 @@ public interface VoteDao {
 
     Vote submitVote(Vote vote, int userId);
 
-    Vote getVoteResults();
+    String getVoteResults();
 
-    Vote getVoteByVoteId(int userId);
+    Vote getVoteByVoteId(int voteId);
 
 }
