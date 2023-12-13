@@ -28,13 +28,6 @@ methods: {
         console.error('Error fetching character details:', error);
       }
     },
-    async startEditing() {
-      this.editing = true;
-
-      this.character_name = this.character.character_name;
-      this.creature = this.character.creature;
-      this.class_profession = this.character.class_profession;
-    },
   },
   created() {
     this.fetchCharacterDetails();

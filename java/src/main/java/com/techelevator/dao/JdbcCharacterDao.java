@@ -9,7 +9,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -65,30 +64,30 @@ public class JdbcCharacterDao implements CharacterDao {
         }
     }
 
-
     @Override
-    public Character updateCharacter(Character character) {
+    public Character updateCharacter(int characterId, Character updatedCharacter) {
         try {
-            String sql = "UPDATE character SET name = ?, creature=?, class_profession=?, background=?, abilities=?, character_strength=?, \n" +
-                    "character_dexterity=?, character_constitution=?, character_intelligence=?, character_wisdom=?, character_charisma=? WHERE character_id=?;\n";
+            String sql = "UPDATE character SET name = ?, creature=?, class_profession=?, background=?, abilities=?, character_strength=?, " +
+                         "character_dexterity=?, character_constitution=?, character_intelligence=?, character_wisdom=?, character_charisma=? WHERE character_id=?";
 
             int rowsUpdated = jdbcTemplate.update(
                     sql,
-                    character.getCharacter_name(),
-                    character.getCreature(),
-                    character.getBackground(),
-                    character.getClass_profession(),
-                    character.getAbilities(),
-                    character.getCharacter_strength(),
-                    character.getCharacter_dexterity(),
-                    character.getCharacter_constitution(),
-                    character.getCharacter_intelligence(),
-                    character.getCharacter_wisdom(),
-                    character.getCharacter_charisma(),
-                    character.getId()
+                    updatedCharacter.getCharacter_name(),
+                    updatedCharacter.getCreature(),
+                    updatedCharacter.getClass_profession(),
+                    updatedCharacter.getBackground(),
+                    updatedCharacter.getAbilities(),
+                    updatedCharacter.getCharacter_strength(),
+                    updatedCharacter.getCharacter_dexterity(),
+                    updatedCharacter.getCharacter_constitution(),
+                    updatedCharacter.getCharacter_intelligence(),
+                    updatedCharacter.getCharacter_wisdom(),
+                    updatedCharacter.getCharacter_charisma(),
+                    characterId
             );
+
             if (rowsUpdated > 0) {
-                return character;
+                return updatedCharacter;
             } else {
                 throw new RuntimeException("Character not found or not updated");
             }
@@ -97,9 +96,11 @@ public class JdbcCharacterDao implements CharacterDao {
             throw new RuntimeException("Error updating character", e);
         }
     }
+
+
     @Override
     public int deleteCharacterById(int id) {
-        String sql = "DELETE FROM character WHERE id = ?";
+        String sql = "DELETE FROM character WHERE character_id = ?;";
         jdbcTemplate.update(sql, id);
         return id;
     }
@@ -119,21 +120,7 @@ public class JdbcCharacterDao implements CharacterDao {
         }
         return characters;
     }
-    @Override
-    public Character deleteCharacter(int userId, int characterId) {
-        try {
-            String sql = "DELETE FROM character WHERE user_id = ? AND character_id = ?";
 
-            int rowsDeleted = jdbcTemplate.update(sql, userId, characterId);
-
-            if (rowsDeleted == 0) {
-                throw new RuntimeException("Character not found for deletion");
-            }
-        } catch (DataAccessException e) {
-            throw new DaoException("Error deleting character", e);
-        }
-        return null;
-    }
     private Character mapRowToCharacter(SqlRowSet rowSet) {
         Character character = new Character();
         character.setId(rowSet.getInt("character_id"));
