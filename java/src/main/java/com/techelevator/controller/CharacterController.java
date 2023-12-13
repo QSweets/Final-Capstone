@@ -54,28 +54,25 @@ public class CharacterController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/{userId}/{characterId}")
-    @ResponseStatus(HttpStatus.OK)
-    public Character updateCharacter(@PathVariable int userId, @PathVariable int characterId, @Valid @RequestBody Character updatedCharacter
-    ) {
-        updatedCharacter.setId(characterId);
-
+    @RequestMapping(path = "/{characterId}", method = RequestMethod.PUT)
+    public Character update(@PathVariable int characterId, @Valid @RequestBody Character character) {
         try {
-            return characterDao.updateCharacter(updatedCharacter);
-        } catch (DaoException e) {
-
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error updating character", e);
+            return characterDao.updateCharacter(characterId, character);
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/{userId}/{characterId}")
+    @DeleteMapping("/{characterId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCharacter(@PathVariable int userId, @PathVariable int characterId) {
+    public void deleteCharacter( @PathVariable int characterId) {
         try {
-            characterDao.deleteCharacter(userId, characterId);
+            characterDao.deleteCharacterById(characterId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting character", e);
         }
     }
+
+
 
     private int getCurrentUserId(Principal principal){
         return userDao.getUserByUsername(principal.getName()).getId();

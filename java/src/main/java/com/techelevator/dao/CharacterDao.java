@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CharacterDao {
 
+    Character updateCharacter(int characterId, Character updatedCharacter);
+
     int deleteCharacterById(int id);
 
     //We want a method that will get the characters for a specific user
@@ -19,9 +21,4 @@ public interface CharacterDao {
     //Do we need this method at all since we are implementing this on the front end?
     Character createCharacter(Character character, int userId);
 
-    //Allow a user to update their character
-    Character updateCharacter(Character character);
-
-
-    Character deleteCharacter(int userId, int characterId);
 }
