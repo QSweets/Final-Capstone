@@ -10,22 +10,22 @@
 
 <style>
 .logo-eye2 {
-  width: 5%;
+  width: 3%;
   position: absolute;
-  top: .4%;
-  right: .5%;
+  top: .8%;
+  right: 1%;
 }
 .logo-eye1 {
-  width: 5%;
+  width: 3%;
   position: absolute;
-  top: .4%;
-  left: .5%;
+  top: .8%;
+  left: 1%;
 }
 .logo-img {
-  width: 14%;
+  width: 10%;
   position: absolute;
-  left: 44%;
-  top: 1%;
+  left: 45%;
+  top: 1.5%;
 }
 #logo {
   display: flex;

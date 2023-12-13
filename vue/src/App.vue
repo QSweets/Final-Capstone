@@ -249,4 +249,7 @@ body {
   left: 55.9%;
   height: 53.1vh;
 }
+.detail-details {
+  
+}
 </style>
