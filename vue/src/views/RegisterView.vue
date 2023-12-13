@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="login-container">
+  <div id="custom-font" class="login-container">
     <form v-on:submit.prevent="register">
       <h1 class="register" id="signInText">Create Account</h1>
       <div role="alert" id="alertId" v-if="registrationErrors">

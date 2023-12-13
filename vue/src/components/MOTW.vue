@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div id="custom-font">
     <div class="m-stats" v-if="randomMonster">
-      <p id="m-name">Name: {{ randomMonster.name }}</p>
-      <p id="m-size">Size: {{ randomMonster.details.size }}</p>
-      <p id="m-challenge">Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
-      <p id="m-abilities">Special Abilities: {{ randomMonster.details.special_abilities }}</p>
-      <img id="m-img" :src="monsterImageUrl" alt="Monster Image" />
+      <p class="m-name">Name: {{ randomMonster.name }}</p>
+      <p class="m-size">Size: {{ randomMonster.details.size }}</p>
+      <p class="m-challenge">Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
+      <p class="m-abilities">Special Abilities: {{ randomMonster.details.special_abilities }}</p>
+      <img class="m-img" :src="monsterImageUrl" alt="Monster Image" />
     </div>
-    <button class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
+    <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
   position: absolute;
   left: 17vh;
 }
-#m-name {
+.m-name {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
@@ -70,7 +70,7 @@ export default {
   color: white;
   
 }
-#m-size {
+.m-size {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
@@ -79,7 +79,7 @@ export default {
   padding-right: .5%;
   color: white;
 }
-#m-challenge {
+.m-challenge {
   border: solid 2px;
   position: absolute;
   top: 7.8vh;
@@ -88,7 +88,7 @@ export default {
   padding-right: .5%;
   color: white;
 }
-#m-abilities {
+.m-abilities {
   border: solid 2px;
   position: absolute;
   top: 14vh;
@@ -100,7 +100,7 @@ export default {
   color: white;
   background-color: black;
 }
-#m-img {
+.m-img {
   width: 52.7vh;
   position: absolute;
   top: 15.7vh;

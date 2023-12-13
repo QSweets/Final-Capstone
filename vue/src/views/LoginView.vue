@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="login-container">
+  <div id="custom-font" class="login-container">
     <form v-on:submit.prevent="login">
       <h1 class="register" id="signInText">WHO ENTERS THE DUNGEON?!</h1>
       <div class="alert" role="alert" v-if="invalidCredentials">

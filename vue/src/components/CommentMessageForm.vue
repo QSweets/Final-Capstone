@@ -1,4 +1,5 @@
 <template>
+  <div id="custom-font">
     <form v-on:submit.prevent="submitForm">
       <div class="field">
         <label for="title">Title</label>
@@ -9,10 +10,11 @@
         <textarea id="messageText" name="messageText" v-model="editMessage.messageText" />
       </div>
       <div class="actions">
-        <button class="btn-submit" type="button">Submit</button> 
-        <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
+        <button id="custom-font" class="btn-submit" type="button">Submit</button> 
+        <button id="custom-font" class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
       </div>
     </form>
+    </div>
   </template>
   
   <script>

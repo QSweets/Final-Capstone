@@ -3,22 +3,21 @@
     <div class="voting-form">
     </div>
 <div class="voting-actions">
-    <button class="vote-btn" v-on:click="voteForSelectedUsers()">Vote</button>
+    <button id="custom-font" class="vote-btn" v-on:click="voteForSelectedUsers()">Vote</button>
 </div>
 <NavBar />
-<GlobalLogoHeader />
 </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
-import GlobalLogoHeader from '../components/GlobalLogoHeader.vue';
+
+
 
 export default {
     components: {
-        NavBar,
-        GlobalLogoHeader,
-    },
+    NavBar
+},
 
     data() {
         return {
