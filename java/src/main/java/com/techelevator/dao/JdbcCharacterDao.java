@@ -34,6 +34,8 @@ public class JdbcCharacterDao implements CharacterDao {
         return null;
     }
 
+    //We need to add a getAllCharacters() method
+
     @Override
     public Character createCharacter(Character character, int userId) {
         try {
