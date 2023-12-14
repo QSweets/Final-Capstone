@@ -120,7 +120,7 @@ body {
   display: flex;
   position: absolute;
   bottom: 6.5vh;
-  right: 40%;
+  right: 50%;
 }
 .no-character {
   display: flex;

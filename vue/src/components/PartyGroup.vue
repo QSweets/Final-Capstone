@@ -1,39 +1,44 @@
 <template>
-    <div>
-      <label for="partyName">Party Name:</label>
-      <input v-model="partyName" type="text" id="partyName" />
-  
-      <div>
-        <h3>Select Characters for the Party:</h3>
-        <ul>
-            <li v-for="character in userCharacters" :key="character.character_id">
-                <input
-                type="checkbox"
-                :id="'characterCheckbox_' + character.character_id"
-                :value="character.character_id"
-                :checked="selectedCharacters.includes(character.character_id)"
-                @change="toggleCharacterSelection(character)"
-                />
-                <label :for="'characterCheckbox_' + character.character_id">
-                {{ character.character_name }} | {{ character.creature }} | {{ character.class_profession }} | Strength: {{ character.character_strength }} | 
-                Dexterity: {{ character.character_dexterity }} | Constitution: {{ character.character_constitution }} | Intelligence: {{ character.character_intelligence }} |
-                Wisdom: {{ character.character_wisdom }} | Charisma: {{ character.character_charisma }}
-            </label>
-          </li>
-        </ul>
-      </div>
-  
-      <div>
+  <div id="custom-font">
+    <div class="party-container">
+      <form class="party-on" v:on:submit.prevent="createParty">
+        <label for="partyName">Party Name: </label>
+        <input v-model="partyName" type="text" id="partyName" />
+    
+        <div>
+          <h3>Select Characters for the Party:</h3>
+          <ul>
+              <li v-for="character in userCharacters" :key="character.character_id">
+                  <input
+                  type="checkbox"
+                  :id="'characterCheckbox_' + character.character_id"
+                  :value="character.character_id"
+                  :checked="selectedCharacters.includes(character.character_id)"
+                  @change="toggleCharacterSelection(character)"
+                  />
+                  <label :for="'characterCheckbox_' + character.character_id">
+                  {{ character.character_name }} | {{ character.creature }} | {{ character.class_profession }} | Strength: {{ character.character_strength }} | 
+                  Dexterity: {{ character.character_dexterity }} | Constitution: {{ character.character_constitution }} | Intelligence: {{ character.character_intelligence }} |
+                  Wisdom: {{ character.character_wisdom }} | Charisma: {{ character.character_charisma }}
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div>
       
-        <ul>
-          <li v-for="characterId in selectedCharacters" :key="characterId">
-            {{ getCharacterName(characterId) }}
-          </li>
-        </ul>
-      </div>
+          <ul>
+            <li v-for="characterId in selectedCharacters" :key="characterId">
+              {{ getCharacterName(characterId) }}
+            </li>
+          </ul>
+        </div>
+
+        <button @click="createParty">Create Party</button>
+      </form>
   
-      <button @click="createParty">Create Party</button>
+      
     </div>
+  </div>
   </template>
   
   <script>
@@ -84,7 +89,15 @@
             .catch(error => {
               console.error('Error creating party:', error);
             });
+
+          this.resetForm();
+        
         },
+        resetForm() {
+            this.partyName = '';
+            this.selectedCharacters = [];
+            this.userCharacters = [];
+          },
       async fetchCharacters() {
         try {
           const response = await axios.get(`http://localhost:9000/characters/all`);
@@ -94,10 +107,25 @@
           console.error('Error fetching characters:', error);
         }
       },
-      getCharacterName(characterId) {
-        const character = this.userCharacters.find(char => char.character_id === characterId);
-        return character ? character.character_name : 'Unknown Character';
-      },
+      // getCharacterName(characterId) {
+      //   const character = this.userCharacters.find(char => char.character_id === characterId);
+      //   return character ? character.character_name : 'Unknown Character';
+      // },
     },
   };
 </script>
+
+<style>
+.party-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-areas: "party-on"
+                       ;
+  justify-content: center; 
+  align-items: center;  
+  position: relative;
+  bottom: 700px;
+  width: -700px;
+  color: white;
+}
+</style>

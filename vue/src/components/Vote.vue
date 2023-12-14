@@ -1,22 +1,24 @@
 <template>
-    <div id="background">
+  <h1 id="custom-font" class="profile-title">Let's Battle!</h1>
+     <div id="custom-font">
       <div class="voting-form">
-        <div v-for="party in parties" :key="party.partyId">
-          <h3>{{ party.partyName }}</h3>
-          <p>Party ID: {{ party.partyId }}</p>
-          <p>Number of Characters: {{ party.characterIds.length }}</p>
-          <ul>
-            <li v-for="characterId in party.characterIds" :key="characterId">
-              {{ getCharacterName(characterId) }}
+        <div class="pick-party">
+          <h3>Select Who You Want To Battle The Monster</h3>
+          <ul class="party-name">
+            <li v-for="party in filteredparties" v-bind:key="party.name"
+                v-bind:class="{ finished: party.selected }">
+              <input name="selected-checkbox" type="checkbox" v-model="party.selected" />
+              {{ party.name }}
             </li>
           </ul>
+          <div>
+            <button id="custom-font" class="vote-btn" v-on:click="resetForm()">Vote</button>
+          </div>
         </div>
       </div>
-    <div class="voting-actions">
-    <button id="custom-font" class="vote-btn" v-on:click="voteForSelectedUsers()">Vote</button>
+      
     </div>
-<NavBar />
-    </div>
+    <NavBar />
 </template>
   
 <script>
@@ -29,29 +31,73 @@ import axios from 'axios';
     },
     data() {
       return {
-        parties: [],
+        filterText: '',
+        parties: [
+          {
+            name: "Scout's Honor",
+            selected: false
+          }
+        ],
       };
     },
-    mounted() {
-      this.fetchParties();
+    // mounted() {
+    //   this.fetchParties();
+    // },
+    computed: {
+      filteredparties() {
+      return this.parties.filter((party) => {
+        return party.name.includes(this.filterText);
+      });
+    }
     },
+    // methods: {
+    //   async fetchParties() {
+    //     try {
+    //       const response = await axios.get('/api/parties');
+    //       this.parties = response.data;
+    //     } catch (error) {
+    //       console.error('Error fetching parties:', error);
+    //     }
+    //   },
+    //   voteForSelectedUsers() {
+    //   },
+    //   getCharacterName(characterId) {
+    //   },
+    // },
     methods: {
-      async fetchParties() {
-        try {
-          const response = await axios.get('/api/parties');
-          this.parties = response.data;
-        } catch (error) {
-          console.error('Error fetching parties:', error);
-        }
-      },
-      voteForSelectedUsers() {
-      },
-      getCharacterName(characterId) {
-      },
-    },
+      resetForm() {
+            this.filterText = '';
+            this.parties = [];
+          },
+    }
   };
   </script>
   
   <style>
+  .pick-party {
+    grid-area: pick-party;
+  }
+  .party-name {
+    grid-area: party-name;
+  }
+  .voting-form {
+    /* width: 450px;
+    background: #fff;
+    margin: 50px auto;
+    padding-bottom: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 10px; */
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "pick-party"
+                         "party-name";
+    justify-content: center; 
+    align-items: center;  
+    position: relative;
+    bottom: -300px;
+    width: -700px;
+    color: white;
+  }
+  
   </style>
   

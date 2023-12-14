@@ -68,10 +68,10 @@ const routes = [
   },
 
   // {
-  //   path: '/party', 
+  //   path: 'profile/party', 
   //   name: 'party', 
-  //   component: PartyView,
-  // }
+  //   component: ProfileView,
+  // },
 
 
 
