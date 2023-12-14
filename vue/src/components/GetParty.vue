@@ -13,8 +13,8 @@
             <strong>Name:</strong> {{ character.character_name }} |
             <strong>Creature:</strong> {{ character.creature }} |
             <strong>Profession :</strong> {{ character.class_profession }} |
-            <strong>abilities:</strong> {{ character.abilities }} |
-            <strong>background:</strong> {{ character.background }} |
+            <strong>Abilities:</strong> {{ character.abilities }} |
+            <strong>Background:</strong> {{ character.background }} |
             <strong>Strength:</strong> {{ character.character_strength }} |
             <strong>Dexterity:</strong> {{ character.character_dexterity }} |
             <strong>Constitution:</strong> {{ character.character_constitution }} |
