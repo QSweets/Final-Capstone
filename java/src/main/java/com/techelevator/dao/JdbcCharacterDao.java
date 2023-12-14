@@ -120,9 +120,9 @@ public class JdbcCharacterDao implements CharacterDao {
         return characters;
     }
 
-    public List<Character> getAllCharacters(){
+    public List<Character> getAllCharacters() {
         List<Character> characters = new ArrayList<>();
-        String sql = "SELECT  character_id,name, creature, class_profession, background, abilities, character_strength, " +
+        String sql = "SELECT character_id, name, creature, class_profession, background, abilities, character_strength, " +
                 "character_dexterity, character_constitution, character_intelligence, character_wisdom, character_charisma, user_id FROM character;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -130,11 +130,19 @@ public class JdbcCharacterDao implements CharacterDao {
                 Character character = mapRowToCharacter(results);
                 characters.add(character);
             }
+            System.out.println(characters);
+            return characters;
         } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
+            System.err.println("Error getting JDBC connection");
+            e.printStackTrace();
+            throw new DaoException("Unable to connect to the database", e);
+        } catch (Exception e) {
+            System.err.println("Unexpected error while fetching characters");
+            e.printStackTrace();
+            throw new DaoException("Unexpected error while fetching characters", e);
         }
-        return characters;
     }
+
 
     private Character mapRowToCharacter(SqlRowSet rowSet) {
         Character character = new Character();

@@ -75,11 +75,11 @@ const routes = [
 
 
 
-  // {
-  //   path: '/social',
-  //   name: 'social',
-  //   component: SocialView,
-  // },
+  {
+    path: '/social',
+    name: 'social',
+    component: SocialView,
+  },
 
   // {
   //   path: '/social',

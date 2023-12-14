@@ -243,18 +243,43 @@ body {
   bottom: 40vh;
   left: 44%;
 }
+.edit-character {
+  /* display: flex;
+  position: relative;
+  right: 0px;
+  bottom: -300px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 30px; */
+  display: flex;
+  position: relative;
+  right: -850px;
+  bottom: -300px;
+  width: 90%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+}
+
 
 
 
 
 .random-img {
-  border: solid 1px;
-  position: absolute;
+  /* border: solid 1px; */
+  /* position: absolute; */
   top: 40vh;
   left: 50%;
 }
 .character-item {
-  position: absolute;
+  position: relative;
+  right: -150px;
+  bottom: -300px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 20px;
   list-style: none; 
   cursor: pointer;
@@ -263,8 +288,9 @@ body {
   display: inline-block;
 }
 .detailed-stats {
-  position: absolute;
-  transform: translateX(10px);
+
+  /* position: absolute; */
+  transform: translateX(60px);
   opacity: 0;
   transition: opacity 0.3s ease;
   background: white;

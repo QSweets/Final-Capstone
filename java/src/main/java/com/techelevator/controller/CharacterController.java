@@ -5,6 +5,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Character;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -67,6 +68,17 @@ public class CharacterController {
             characterDao.deleteCharacterById(characterId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting character", e);
+        }
+    }
+
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Character>> getAllCharacters() {
+        try {
+            List<Character> characters = characterDao.getAllCharacters();
+            return ResponseEntity.ok(characters);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error getting all characters", e);
         }
     }
 
