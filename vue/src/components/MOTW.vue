@@ -1,60 +1,62 @@
 <template>
   <div id="custom-font">
-    <div class="m-stats" v-if="randomMonster">
-      <p class="m-name">Name: {{ randomMonster.name }}</p>
-      <p class="m-size">Size: {{ randomMonster.details.size }}</p>
-      <p class="m-challenge">Challenge Rating: {{ randomMonster.details.challenge_rating }}</p>
+    <div class="m-stats" v-if="singleMonster">
+      <p class="m-name">Name: {{ singleMonster.name }}</p>
+      <p class="m-size">Size: {{ singleMonster.size }}</p>
+      <p class="m-challenge">Challenge Rating: {{ singleMonster.challenge_rating }}</p>
       <div class="m-abilities">
         <p>Special Abilities:</p>
         <ul>
-          <li v-for="(ability, index) in randomMonster.details.special_abilities" :key="index">
+          <li v-for="(ability, index) in singleMonster.special_abilities" :key="index">
             <strong>{{ ability.name }}:</strong> {{ ability.desc }}
+          </li>
+        </ul>
+        <p>Attacks:</p>
+        <ul>
+          <li v-for="(actions, index) in singleMonster.special_abilities" :key="index">
+            <strong>{{ actions.name }}:</strong> {{ actions.desc }}
           </li>
         </ul>
       </div>
   <img class="m-img" :src="monsterImageUrl" alt="Monster Image" @error="handleImageError" />
     </div>
-    <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
+    <button id="custom-font" class="r-monster" v-on:click="getSingleMonster">Get Random Monster</button>
   </div>
   <!-- <img :src="monsterImageUrl()" /> -->
 </template>
-
 <script>
 import axios from 'axios';
-
 export default {
   data() {
     return {
-      randomMonster: null,
+      singleMonster: null,
       imageUrl: "https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png",
-
     };
   },
   computed: {
-  // monsterImageUrl() {
-  //   if (this.randomMonster.index) {
-  //     const index = this.randomMonster.index.toLowerCase();
-  //     return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
-  //   } else {
-  //     return "https://www.freeiconspng.com/thumbs/werewolf/primate-photograph-monster-drawing-clip-art-image-werewolf-7.png"
-  //   }
-  //   // return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
-  // },
-},
-  methods: {
-    getRandomMonster() {
-      axios.get('/api/monsters/adult-black-dragon')
-        .then(response => {
-          this.randomMonster = response.data;
-        })
-        .catch(error => {
-          console.error('Error fetching random monster:', error);
-        });
-    },
+  monsterImageUrl() {
+    if (this.singleMonster.index) {
+      const index = this.singleMonster.index.toLowerCase();
+      return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
+    }else
+      return '';
+    // return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
+    }
   },
+  methods: {
+  async getSingleMonster() {
+    try {
+      const index = 'adult-black-dragon';
+      const response = await axios.get(`/api/monsters/${index}`);
+      this.singleMonster = response.data;
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching monster:', error);
+    }
+  },
+},
 };
 </script>
-
 <style>
 .r-monster {
   display: flex;
@@ -117,6 +119,5 @@ export default {
   top: 15.7vh;
   left: 55.9%;
   height: 53.1vh;
-
 }
 </style>

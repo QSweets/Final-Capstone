@@ -2,10 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.services.MonsterService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -39,6 +36,10 @@ public class MonsterController {
             }
         }
         return randomMonster;
+    }
+    @GetMapping("/{index}")
+    public Map<String, Object> getMonsterDetails(@PathVariable(name = "index") String index) {
+        return monsterService.fetchMonsterDetails(index);
     }
 }
 
