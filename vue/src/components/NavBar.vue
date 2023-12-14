@@ -55,13 +55,13 @@
 }
 .vote {
   position: absolute;
-  top: 36%;
+  top: 41%;
   padding: .2%;
   left: .8%;
 }
 .social {
   position: absolute;
-  top: 41%;
+  top: 36%;
   padding: .2%;
   left: .8%;
 }
