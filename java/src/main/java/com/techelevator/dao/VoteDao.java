@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VoteDao {
 
-    Vote submitVote(Vote vote, int userId);
+    Vote submitVote(Vote vote);
 
     String getVoteResults();
 

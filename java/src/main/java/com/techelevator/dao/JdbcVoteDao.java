@@ -22,7 +22,7 @@ public class JdbcVoteDao implements VoteDao {
 
 
     @Override
-    public Vote submitVote(Vote vote, int userId) {
+    public Vote submitVote(Vote vote) {
         String sql = "INSERT INTO vote(user_id, party_id, monster_id, vote_date) " +
                      "VALUES (?, ?, ?, CURRENT_DATE) RETURNING vote_id;";
         try{
@@ -31,10 +31,9 @@ public class JdbcVoteDao implements VoteDao {
                     int.class,
                     vote.getUserId(),
                     vote.getPartyId(),
-                    vote.getMonsterId(),
-                    vote.getDate(),
-                    userId
+                    vote.getMonsterId()
                     );
+            System.out.println(newVoteId);
             return getVoteByVoteId(newVoteId);
         } catch (DataAccessException e) {
             throw new RuntimeException("Error submitting vote", e);
@@ -66,7 +65,7 @@ public class JdbcVoteDao implements VoteDao {
 
     @Override
     public Vote getVoteByVoteId(int voteId) {
-        String sql = "SELECT vote_id, user_id, party_id, monster_id, vote_date" +
+        String sql = "SELECT vote_id, user_id, party_id, monster_id, vote_date " +
                      "FROM vote WHERE vote_id = ?;";
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, voteId);
