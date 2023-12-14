@@ -22,7 +22,7 @@ export default {
     Profile,
     GlobalLogoHeader,
     CharacterList,
-    GetParty
+    GetParty,
   },
 };
 </script>

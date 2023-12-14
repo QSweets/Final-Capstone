@@ -31,8 +31,10 @@ public class JdbcPartyDao implements PartyDao {
             String selectPartyIdSql = "SELECT party_id FROM partygroup WHERE party_name = ?;";
             int newPartyId = jdbcTemplate.queryForObject(partyGroupSql, int.class, party.getPartyName());
 
-            String partySql = "INSERT INTO party(party_id, character_id) VALUES (?, ?) RETURNING 1;";
+            String partySql = "INSERT INTO party(party_id, character_id) VALUES (?, ?);";
+
             for (int characterId : party.getCharacterId()){
+                System.out.println("Number of Characters: " + party.getCharacterId().size());
                 jdbcTemplate.queryForObject(partySql, int.class, newPartyId, characterId);
             }
 
