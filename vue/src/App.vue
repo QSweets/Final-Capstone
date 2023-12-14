@@ -265,7 +265,7 @@ body {
 .detailed-stats {
   position: absolute;
   transform: translateX(10px);
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
