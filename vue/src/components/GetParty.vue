@@ -11,10 +11,10 @@
             </router-link>
             <div id="custom-font" class="detailed-stats">
             <strong>Name:</strong> {{ character.character_name }} |
+            <strong class="detail-backround">Background:</strong> {{ character.background }} |
+            <strong>Abilities:</strong> {{ character.abilities }} |
             <strong>Creature:</strong> {{ character.creature }} |
             <strong>Profession :</strong> {{ character.class_profession }} |
-            <strong>Abilities:</strong> {{ character.abilities }} |
-            <strong>Background:</strong> {{ character.background }} |
             <strong>Strength:</strong> {{ character.character_strength }} |
             <strong>Dexterity:</strong> {{ character.character_dexterity }} |
             <strong>Constitution:</strong> {{ character.character_constitution }} |
@@ -85,7 +85,7 @@ export default {
 
 .character-container {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas: "random-img"
                        "detailed-stats";
   justify-content: center;                    

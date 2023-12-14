@@ -102,8 +102,8 @@ body {
 .select-party {
   display: flex;
   position: absolute;
-  top: 32vh;
-  right: 46.5%;
+  top: 18vh;
+  left: 20%;
   color: white;
   border-bottom: solid 4px;
   border-color: rgb(33, 156, 144);
@@ -213,19 +213,19 @@ body {
 .detail-set1 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  bottom: 43%;
-  left: 44%;
+  max-width: 8%;
+  position: relative;
+  top: 32vh;
+  left: 78.5vh;
   color: white;
 }
 .detail-set2 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  bottom: 43%;
-  right: 40%;
+  max-width: 30%;
+  position: relative;
+  top: 8.6vh;
+  left: 95.5vh;
   color: white;
 }
 .detail-name {
@@ -244,13 +244,6 @@ body {
   left: 44%;
 }
 .edit-character {
-  /* display: flex;
-  position: relative;
-  right: 0px;
-  bottom: -300px;
-  align-items: flex-start;
-  justify-content: center;
-  margin-left: 30px; */
   display: flex;
   position: relative;
   right: -850px;
@@ -267,15 +260,13 @@ body {
 
 
 .random-img {
-  /* border: solid 1px; */
-  /* position: absolute; */
   top: 40vh;
   left: 50%;
 }
 .character-item {
   position: relative;
-  right: -150px;
-  bottom: -300px;
+  left: 20%;
+  top: 30vh;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -288,10 +279,12 @@ body {
   display: inline-block;
 }
 .detailed-stats {
-
-  /* position: absolute; */
-  transform: translateX(60px);
-  opacity: 0;
+  max-width: 70%;
+  border: solid 4px;
+  position: relative;
+  bottom: 15vh;
+  left: 36%;
+  opacity: 1;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
@@ -301,6 +294,19 @@ body {
   opacity: 1;
 }
 .image-container img {
-  width: 15vh;
+  position: relative;
+  left: 21%;
+  bottom: 3vh;
+  width: 10vh;
+}
+.edit-character {
+  position: absolute;
+  top: 30%;
+  left: 43%;
+  color: black;
+}
+.save-character {
+  position: relative;
+  top: 50%;
 }
 </style>

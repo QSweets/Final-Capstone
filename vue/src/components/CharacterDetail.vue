@@ -29,7 +29,7 @@
       <form class="edit-character" v-if="editing" @submit="saveCharacter">
         <div>
             <label for="character_name">Character Name:</label>
-            <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
+            <input type="text" name="character_name" v-model="character_name" required/>
         </div>
         <div>
             <label for="background">Background:</label>
@@ -56,10 +56,13 @@
           <option value="Wizard">Wizard</option>
         </select>
         </div>
+        <router-link to="/profile">
         <button type="submit" class="save-character" v-on:click="editCharacter">Save</button>
+      </router-link>
       </form>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -102,7 +105,7 @@ export default {
             'Content-Type': 'application/json',
           },
         });
-
+        
       } catch (error) {
         console.error('Error editing character:', error);
       }

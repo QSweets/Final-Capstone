@@ -1,10 +1,10 @@
 <template>
   <header id="logo">
   </header>
-  <div class="logo-line"/>
+  <div class="logo-line"> </div>
   <img class="logo-eye2" src="src/ProfileImages/Logoeye.jpg" alt="cyclops ent eye" />
   <img class="logo-eye1" src="src/ProfileImages/Logoeye.jpg" alt="cyclops ent eye" />
-  <img class="logo-img" src="src\ProfileImages\Logo.jpg" alt="cyclops ent" />
+  <img class="logo-img" src="src/ProfileImages/Logo.jpg" alt="cyclops ent" />
 
 </template>
 
