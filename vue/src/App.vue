@@ -90,14 +90,6 @@ body {
   bottom: 10vh;
   right: 7.9%;
 }
-.random-img {
-  display: grid;
-  grid-template-rows: 15%;
-  border: solid 1px;
-  position: relative;
-  top: 40vh;
-  left: 650%;
-}
 .profile-title {
   display: flex;
   position: absolute;
@@ -136,10 +128,6 @@ body {
   top: 55vh;
   right: 45%;
   color: white;
-}
-.image-container {
-  display: flex;
-  flex-direction: row;
 }
 .social-title {
   display: flex;
@@ -254,5 +242,39 @@ body {
   width: 13%;
   bottom: 40vh;
   left: 44%;
+}
+
+
+
+
+.random-img {
+  border: solid 1px;
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+}
+.character-item {
+  position: absolute;
+  margin-bottom: 20px;
+  list-style: none; 
+  cursor: pointer;
+}
+.image-container {
+  display: inline-block;
+}
+.detailed-stats {
+  position: absolute;
+  transform: translateX(10px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  background: white;
+  padding: 10px;
+  z-index: 1;
+}
+.character-item:hover .detailed-stats {
+  opacity: 1;
+}
+.image-container img {
+  width: 15vh;
 }
 </style>

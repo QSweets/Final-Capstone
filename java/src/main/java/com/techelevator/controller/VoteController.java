@@ -35,7 +35,8 @@ public class VoteController {
     @RequestMapping(path = "", method = RequestMethod.POST)
     public Vote submitVote(@RequestBody Vote vote, Principal principal){
         try {
-            return voteDao.submitVote(vote, getCurrentUserId(principal));
+            vote.setUserId(getCurrentUserId(principal));
+            return voteDao.submitVote(vote);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }

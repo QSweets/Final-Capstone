@@ -7,7 +7,7 @@
         </h2>
         <p class="detail-set1">
         <strong >Profession :</strong> {{ character.class_profession }}
-        <strong >background:</strong> {{ character.background }}
+        <strong >Background:</strong> {{ character.background }}
         <strong >Dexterity:</strong> {{ character.character_dexterity }}
         <strong >Intelligence:</strong> {{ character.character_intelligence }}
         <strong >Charisma:</strong> {{ character.character_charisma }}
@@ -15,7 +15,7 @@
         </p>
         <p class="detail-set2">
           <strong >Creature:</strong> {{ character.creature }}
-          <strong >abilities:</strong> {{ character.abilities }}
+          <strong >Abilities:</strong> {{ character.abilities }}
           <strong >Strength:</strong> {{ character.character_strength }}
           <strong >Constitution:</strong> {{ character.character_constitution }}
           <strong >Wisdom:</strong> {{ character.character_wisdom }}
