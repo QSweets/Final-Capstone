@@ -16,6 +16,7 @@
     </div>
     <button id="custom-font" class="r-monster" v-on:click="getRandomMonster">Get Random Monster</button>
   </div>
+  <!-- <img :src="monsterImageUrl()" /> -->
 </template>
 
 <script>
@@ -34,8 +35,10 @@ export default {
     if (this.randomMonster.index) {
       const index = this.randomMonster.index.toLowerCase();
       return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
+    } else {
+      return "https://www.freeiconspng.com/thumbs/werewolf/primate-photograph-monster-drawing-clip-art-image-werewolf-7.png"
     }
-    return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
+    // return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
   },
 },
   methods: {

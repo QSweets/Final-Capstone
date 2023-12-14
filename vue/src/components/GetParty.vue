@@ -74,7 +74,23 @@ export default {
 
 <style scoped>
 
+.random-img {
+  grid-area: random-img;
 
+}
+
+.detailed-stats {
+  grid-area: detailed-stats;
+}
+
+.character-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "random-img"
+                       "detailed-stats";
+  justify-content: center;                    
+        
+}
 
 </style>
 
