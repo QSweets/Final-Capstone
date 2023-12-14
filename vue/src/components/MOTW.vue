@@ -31,19 +31,19 @@ export default {
     };
   },
   computed: {
-  monsterImageUrl() {
-    if (this.randomMonster.index) {
-      const index = this.randomMonster.index.toLowerCase();
-      return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
-    } else {
-      return "https://www.freeiconspng.com/thumbs/werewolf/primate-photograph-monster-drawing-clip-art-image-werewolf-7.png"
-    }
-    // return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
-  },
+  // monsterImageUrl() {
+  //   if (this.randomMonster.index) {
+  //     const index = this.randomMonster.index.toLowerCase();
+  //     return `https://www.dnd5eapi.co/api/images/monsters/${index}.png`;
+  //   } else {
+  //     return "https://www.freeiconspng.com/thumbs/werewolf/primate-photograph-monster-drawing-clip-art-image-werewolf-7.png"
+  //   }
+  //   // return 'https://www.dnd5eapi.co/api/images/monsters/adult-black-dragon.png';
+  // },
 },
   methods: {
     getRandomMonster() {
-      axios.get('/api/monsters/random')
+      axios.get('/api/monsters/adult-black-dragon')
         .then(response => {
           this.randomMonster = response.data;
         })

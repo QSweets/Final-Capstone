@@ -75,12 +75,15 @@
     <div>
     <button id="custom-font" class="roll-stats" v-on:click="rollAllStats">Roll Stats</button>
     </div>
+    <router-link to="/profile">
     <button id="custom-font" type="submit" class="save-character" v-on:click="saveCharacter">Save Character</button>
+   </router-link>
   </form>
   </div>
   </div>
 </template>
 <script>
+
 import axios from 'axios';
 function generateRandomStat(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
