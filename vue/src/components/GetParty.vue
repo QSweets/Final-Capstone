@@ -75,33 +75,6 @@ export default {
 <style scoped>
 
 
-.character-item {
-  position: absolute;
-  margin-bottom: 20px;
-  list-style: none; 
-  cursor: pointer;
-}
 
-.image-container {
-  display: inline-block;
-}
-
-.detailed-stats {
-  position: absolute;
-  transform: translateX(10px);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  background: white;
-  padding: 10px;
-  z-index: 1;
-}
-
-.character-item:hover .detailed-stats {
-  opacity: 1;
-}
-
-.image-container img {
-  width: 15vh;
-}
 </style>
 
