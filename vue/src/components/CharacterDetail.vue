@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <form v-if="editing" @submit="saveCharacter">
+      <form class="edit-character" v-if="editing" @submit="saveCharacter">
         <div>
             <label for="character_name">Character Name:</label>
             <input type="text" id="character_name" name="character_name" v-model="character_name" required/>
