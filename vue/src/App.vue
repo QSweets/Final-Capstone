@@ -288,9 +288,10 @@ body {
   display: inline-block;
 }
 .detailed-stats {
+
   /* position: absolute; */
   transform: translateX(60px);
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;

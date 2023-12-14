@@ -2,7 +2,7 @@
     <div>
 
     </div>
-      <main>
+    <main>
       <!-- /*Want to display the MOTW details*/ -->
       <MOTW />
       <CharacterList />

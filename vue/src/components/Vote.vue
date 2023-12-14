@@ -12,16 +12,16 @@
           </ul>
         </div>
       </div>
-      <div class="voting-actions">
-        <button id="custom-font" class="vote-btn" @click="voteForSelectedUsers">Vote</button>
-      </div>
-      <NavBar />
+    <div class="voting-actions">
+    <button id="custom-font" class="vote-btn" v-on:click="voteForSelectedUsers()">Vote</button>
     </div>
-  </template>
+<NavBar />
+    </div>
+</template>
   
-  <script>
-  import NavBar from './NavBar.vue';
-  import axios from 'axios';
+<script>
+import NavBar from './NavBar.vue';
+import axios from 'axios';
   
   export default {
     components: {
