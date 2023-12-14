@@ -11,8 +11,8 @@
                 type="checkbox"
                 :id="'characterCheckbox_' + character.character_id"
                 :value="character.character_id"
-                :checked="selectedCharacters[character.character_id]"
-                @change="$toggleCharacterSelection(character)"
+                :checked="selectedCharacters.includes(character.character_id)"
+                @change="toggleCharacterSelection(character)"
                 />
                 <label :for="'characterCheckbox_' + character.character_id">
                 {{ character.character_name }} | {{ character.creature }} | {{ character.class_profession }} | Strength: {{ character.character_strength }} | 
@@ -43,7 +43,7 @@
     data() {
       return {
         partyName: '',
-        selectedCharacters: {},
+        selectedCharacters: [],
         userCharacters: [],
       };
     },
@@ -52,31 +52,37 @@
     },
     methods: {
       toggleCharacterSelection(character) {
-        const characterId = character.character_id;
-        this.selectedCharacters[characterId] = !this.selectedCharacters[characterId];
-      },
+          const characterId = character.id; 
+          const index = this.selectedCharacters.indexOf(characterId);
+
+          if (index === -1) {
+            this.selectedCharacters.push(characterId);
+          } else {
+            this.selectedCharacters.splice(index, 1);
+          }
+        },
       createParty() {
-        const selectedCharacterIds = Object.keys(this.selectedCharacters).filter(
-                characterId => this.selectedCharacters[characterId]
-            );
+        console.log('Party object:', {
+            partyName: this.partyName,
+            characterIds: this.selectedCharacters,
+          });
+          if (this.selectedCharacters.length > 4) {
+            console.error('Cannot select more than 4 characters.');
+            return;
+          }
 
-            if (selectedCharacterIds.length > 4) {
-                console.error('Cannot select more than 4 characters.');
-                return;
-            }
+          const party = {
+            partyName: this.partyName,
+            characterIds: [...this.selectedCharacters], 
+          };
 
-            const party = {
-                partyName: this.partyName,
-                characterIds: selectedCharacterIds,
-            };
-
-            axios.post('/party/createParty', party)
+          axios.post('/party/createParty', party)
             .then(response => {
-                console.log('Party created successfully:', response.data);
-                this.selectedCharacters = {};
+              console.log('Party created successfully:', response.data);
+              this.selectedCharacters = []; 
             })
             .catch(error => {
-                console.error('Error creating party:', error);
+              console.error('Error creating party:', error);
             });
         },
       async fetchCharacters() {
