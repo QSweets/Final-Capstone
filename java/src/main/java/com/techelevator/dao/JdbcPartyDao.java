@@ -63,10 +63,10 @@ public class JdbcPartyDao implements PartyDao {
                 Party party = mapRowToParty(results);
                 parties.add(party);
             }
+            return parties;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return null;
     }
 
     @Override
