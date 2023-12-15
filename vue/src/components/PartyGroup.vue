@@ -1,9 +1,9 @@
 <template>
   <div id="custom-font">
     <div class="party-container">
-      <form class="party-on" v:on:submit.prevent="createParty">
+      <form v:on:submit.prevent="createParty">
         <label for="partyName">Party Name: </label>
-        <input v-model="partyName" type="text" id="partyName" />
+        <input v-model="partyName" type="text" />
     
         <div>
           <h3>Select Characters for the Party:</h3>
@@ -122,10 +122,10 @@
   grid-template-areas: "party-on"
                        ;
   justify-content: center; 
-  align-items: center;  
-  position: relative;
-  bottom: 700px;
-  width: -700px;
+  position: absolute;
+  left: 36vh;
+  bottom: 50vh;
+  width: 60%;
   color: white;
 }
 </style>

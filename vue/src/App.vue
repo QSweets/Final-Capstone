@@ -133,7 +133,7 @@ body {
   display: flex;
   position: absolute;
   bottom: 82.5vh;
-  right: 40%;
+  right: 44%;
   border-bottom: solid 5px;
   color: white;
   border-color: rgb(33, 156, 144);
@@ -284,7 +284,7 @@ body {
   position: relative;
   bottom: 15vh;
   left: 36%;
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.3s ease;
   background: white;
   padding: 10px;
@@ -309,4 +309,5 @@ body {
   position: relative;
   top: 50%;
 }
+
 </style>

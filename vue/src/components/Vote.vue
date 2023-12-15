@@ -1,5 +1,5 @@
 <template>
-  <h1 id="custom-font" class="profile-title">Let's Battle!</h1>
+  <h1 id="custom-font" class="social-title">Let's Battle!</h1>
      <div id="custom-font">
       <div class="voting-form">
         <div class="pick-party">
@@ -35,6 +35,18 @@ import axios from 'axios';
         parties: [
           {
             name: "Scout's Honor",
+            selected: false
+          },
+          {
+            name: "Blue Gelly",
+            selected: false
+          },
+          {
+            name: "Purple Dragons",
+            selected: false
+          },
+          {
+            name: "Green Lizards",
             selected: false
           }
         ],
@@ -81,23 +93,17 @@ import axios from 'axios';
     grid-area: party-name;
   }
   .voting-form {
-    /* width: 450px;
-    background: #fff;
-    margin: 50px auto;
-    padding-bottom: 10px;
-    font-family: 'Roboto Condensed', sans-serif;
-    border-radius: 10px; */
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "pick-party"
                          "party-name";
     justify-content: center; 
-    align-items: center;  
     position: relative;
-    bottom: -300px;
-    width: -700px;
+    top: 40vh;
+    left: 35vh;
+    width: 60%;
     color: white;
   }
-  
+
   </style>
   

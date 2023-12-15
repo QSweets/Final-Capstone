@@ -20,7 +20,7 @@
       </div>
   <img class="m-img" :src="monsterImageUrl" alt="Monster Image" @error="handleImageError" />
     </div>
-    <button id="custom-font" class="r-monster" v-on:click="getSingleMonster">Get Random Monster</button>
+    <button id="custom-font" class="r-monster" v-on:click="getSingleMonster">Monster Demo</button>
   </div>
   <!-- <img :src="monsterImageUrl()" /> -->
 </template>
